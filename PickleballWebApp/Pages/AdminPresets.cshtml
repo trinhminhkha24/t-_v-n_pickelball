@@ -1,0 +1,381 @@
+@page
+@model PickleballWebApp.Pages.AdminPresetsModel
+@{
+    ViewData["Title"] = "Quản lý kỹ thuật mẫu AI";
+}
+
+<div class="page-hero" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Admin" style="color:rgba(255,255,255,0.7);">Admin</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Kỹ thuật mẫu AI</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-brain me-2"></i>Quản lý kỹ thuật mẫu AI</h1>
+        <p class="lead">Thêm, xem và xóa video mẫu dùng cho hệ thống so sánh động tác YOLOv8</p>
+    </div>
+</div>
+
+<div class="page-content" style="background:#f0f5f8;min-height:70vh;">
+    <div class="container">
+
+        <!-- TRẠNG THÁI SERVER -->
+        <div class="d-flex align-items-center gap-2 mb-4 p-3"
+             style="background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <span id="srv-dot" style="width:12px;height:12px;border-radius:50%;background:#6c757d;flex-shrink:0;"></span>
+            <span id="srv-status" style="font-size:0.9rem;color:#6c757d;font-weight:500;">Đang kiểm tra server Python...</span>
+            <span id="srv-preset-count" class="ms-auto badge" style="background:#004c6d;display:none;"></span>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- ===== PANEL THÊM PRESET ===== -->
+            <div class="col-lg-5">
+                <div class="info-card h-100">
+                    <h3 style="color:#004c6d;">
+                        <i class="fas fa-plus-circle me-2"></i>Thêm kỹ thuật mẫu mới
+                    </h3>
+                    <p style="color:#6c757d;font-size:0.88rem;margin-bottom:20px;">
+                        Upload video quay cú đánh mẫu. Hệ thống sẽ tự động trích xuất chuỗi
+                        keypoint bằng YOLOv8 và lưu thành preset để so sánh.
+                    </p>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" style="color:#004c6d;">
+                            <i class="fas fa-tag me-1"></i>Tên kỹ thuật mẫu
+                        </label>
+                        <input type="text" id="up-name" class="form-control" placeholder="VD: Forehand-Drive, Serve-Flat..."
+                               style="border-color:#004c6d;">
+                        <div class="form-text">Chỉ dùng chữ cái, số và dấu gạch ngang. Bỏ trống để dùng tên file.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" style="color:#004c6d;">
+                            <i class="fas fa-file-video me-1"></i>Video mẫu
+                        </label>
+                        <input type="file" id="up-file" accept="video/*" class="form-control"
+                               style="border-color:#004c6d;">
+                        <div class="form-text">Định dạng hỗ trợ: MP4, AVI, MOV. Nên quay toàn thân, ánh sáng tốt.</div>
+                    </div>
+
+                    <!-- Xem trước video -->
+                    <div id="up-preview-wrap" style="display:none;margin-bottom:16px;">
+                        <video id="up-preview" controls muted
+                               style="width:100%;border-radius:10px;background:#111;max-height:220px;"></video>
+                    </div>
+
+                    <!-- Progress -->
+                    <div id="up-progress-wrap" style="display:none;margin-bottom:16px;">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small id="up-progress-label" style="color:#004c6d;font-weight:600;">Đang tải lên...</small>
+                            <small id="up-progress-pct" style="color:#004c6d;">0%</small>
+                        </div>
+                        <div class="progress" style="height:10px;border-radius:6px;">
+                            <div id="up-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"
+                                 style="width:0%;background:#004c6d;border-radius:6px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Alert -->
+                    <div id="up-alert" style="display:none;" class="alert mb-3" role="alert"></div>
+
+                    <button id="up-btn" class="btn btn-primary w-100" disabled style="font-weight:600;">
+                        <i class="fas fa-upload me-2"></i>Tạo kỹ thuật mẫu
+                    </button>
+
+                    <div class="tips-box mt-4">
+                        <h3 style="font-size:0.9rem;"><i class="fas fa-lightbulb me-1"></i>Hướng dẫn quay video mẫu</h3>
+                        <ul style="font-size:0.83rem;margin:0;padding-left:16px;line-height:1.9;">
+                            <li>Quay toàn thân, đứng cách camera 2–3 m</li>
+                            <li>Nền đơn sắc, ánh sáng đều, không ngược sáng</li>
+                            <li>Mặc trang phục thoải mái, không quá rộng</li>
+                            <li>Thực hiện đúng 1 kỹ thuật, lặp lại 3–5 lần</li>
+                            <li>Độ dài khuyến nghị: 5–30 giây</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== DANH SÁCH PRESET ===== -->
+            <div class="col-lg-7">
+                <div class="info-card">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h3 style="color:#004c6d;margin:0;">
+                            <i class="fas fa-list me-2"></i>Danh sách kỹ thuật mẫu
+                        </h3>
+                        <button id="btn-refresh" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-sync-alt me-1"></i>Làm mới
+                        </button>
+                    </div>
+
+                    <div id="preset-loading" class="text-center py-4" style="color:#6c757d;">
+                        <i class="fas fa-spinner fa-spin me-2"></i>Đang tải danh sách...
+                    </div>
+
+                    <div id="preset-empty" style="display:none;" class="text-center py-5">
+                        <i class="fas fa-inbox" style="font-size:2.5rem;color:#dee2e6;display:block;margin-bottom:12px;"></i>
+                        <p style="color:#6c757d;">Chưa có kỹ thuật mẫu nào. Thêm preset đầu tiên bằng form bên trái.</p>
+                    </div>
+
+                    <div id="preset-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THÔNG BÁO KHÔNG CÓ SERVER -->
+        <div id="no-server-notice" class="info-card mt-4" style="border-left:4px solid #f0c040;display:none;">
+            <h4 style="color:#856404;"><i class="fas fa-exclamation-triangle me-2"></i>Server phân tích chưa được khởi động</h4>
+            <p style="color:#533f03;">Chức năng quản lý kỹ thuật mẫu yêu cầu server Python (FastAPI) chạy ở cổng 8000.</p>
+            <div style="background:#fff8e1;border-radius:8px;padding:14px;font-family:monospace;font-size:0.85rem;color:#533f03;">
+                <div># Cài đặt dependencies</div>
+                <div>pip install fastapi uvicorn ultralytics opencv-python numpy python-multipart</div>
+                <br>
+                <div># Khởi động server</div>
+                <div>cd files.5/motion-compare/server</div>
+                <div>uvicorn main:app --host 0.0.0.0 --port 8000</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL XÁC NHẬN XÓA -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius:14px;">
+            <div class="modal-header" style="border-bottom:1px solid #dee2e6;">
+                <h5 class="modal-title" style="color:#e63946;font-weight:700;">
+                    <i class="fas fa-trash me-2"></i>Xác nhận xóa
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn xóa kỹ thuật mẫu <strong id="delete-name-display"></strong>?</p>
+                <p style="color:#e63946;font-size:0.88rem;">Thao tác này không thể hoàn tác. File .npz sẽ bị xóa vĩnh viễn.</p>
+            </div>
+            <div class="modal-footer" style="border-top:1px solid #dee2e6;">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" id="btn-confirm-delete" class="btn btn-danger">
+                    <i class="fas fa-trash me-1"></i>Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(() => {
+    const API_BASE = 'http://localhost:8000';
+
+    const srvDot    = document.getElementById('srv-dot');
+    const srvStatus = document.getElementById('srv-status');
+    const srvCount  = document.getElementById('srv-preset-count');
+    const noServer  = document.getElementById('no-server-notice');
+    const presetLoading = document.getElementById('preset-loading');
+    const presetEmpty   = document.getElementById('preset-empty');
+    const presetList    = document.getElementById('preset-list');
+
+    const upFile    = document.getElementById('up-file');
+    const upName    = document.getElementById('up-name');
+    const upBtn     = document.getElementById('up-btn');
+    const upPreviewWrap = document.getElementById('up-preview-wrap');
+    const upPreview     = document.getElementById('up-preview');
+    const upProgressWrap = document.getElementById('up-progress-wrap');
+    const upProgressBar  = document.getElementById('up-progress-bar');
+    const upProgressPct  = document.getElementById('up-progress-pct');
+    const upProgressLabel = document.getElementById('up-progress-label');
+    const upAlert   = document.getElementById('up-alert');
+
+    let deletePresetName = '';
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    function setServerStatus(ok) {
+        srvDot.style.background    = ok ? '#28a745' : '#e63946';
+        srvStatus.style.color      = ok ? '#28a745' : '#e63946';
+        srvStatus.textContent      = ok ? 'Server Python sẵn sàng (cổng 8000)' : 'Server chưa kết nối – hãy khởi động server';
+        noServer.style.display     = ok ? 'none' : 'block';
+    }
+
+    function showAlert(msg, type) {
+        upAlert.className = `alert alert-${type} mb-3`;
+        upAlert.textContent = msg;
+        upAlert.style.display = 'block';
+        setTimeout(() => { upAlert.style.display = 'none'; }, 6000);
+    }
+
+    function scoreColor(pct) {
+        if (pct >= 75) return '#28a745';
+        if (pct >= 50) return '#f0c040';
+        return '#e63946';
+    }
+
+    function fmtDuration(sec) {
+        if (sec < 60) return sec.toFixed(1) + 's';
+        const m = Math.floor(sec / 60), s = (sec % 60).toFixed(0).padStart(2,'0');
+        return `${m}m${s}s`;
+    }
+
+    // ── Load preset list ──────────────────────────────────────────────────────
+    async function loadPresets() {
+        presetLoading.style.display = 'block';
+        presetEmpty.style.display   = 'none';
+        presetList.innerHTML        = '';
+
+        try {
+            const res = await fetch(API_BASE + '/presets', { signal: AbortSignal.timeout(4000) });
+            if (!res.ok) throw new Error(res.statusText);
+            const data = await res.json();
+            const items = data.presets || [];
+
+            setServerStatus(true);
+            presetLoading.style.display = 'none';
+            srvCount.textContent = items.length + ' preset';
+            srvCount.style.display = 'inline-block';
+
+            if (items.length === 0) {
+                presetEmpty.style.display = 'block';
+                return;
+            }
+
+            items.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'preset-card';
+                card.style.cssText = 'background:#f8fbfd;border:1px solid #dde6ed;border-radius:12px;padding:16px;margin-bottom:12px;transition:box-shadow 0.2s;';
+                card.innerHTML = `
+                    <div class="d-flex align-items-start justify-content-between gap-3">
+                        <div style="flex:1;min-width:0;">
+                            <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                                <strong style="font-size:1rem;color:#004c6d;">${p.name || p.name}</strong>
+                                ${p.error ? '<span class="badge bg-danger">Lỗi</span>' : '<span class="badge" style="background:#004c6d;">Sẵn sàng</span>'}
+                            </div>
+                            ${p.error
+                                ? `<small class="text-danger">${p.error}</small>`
+                                : `<div class="d-flex gap-3 flex-wrap" style="font-size:0.82rem;color:#6c757d;">
+                                    <span><i class="fas fa-film me-1"></i>${p.num_frames} frames</span>
+                                    <span><i class="fas fa-tachometer-alt me-1"></i>${p.fps} fps</span>
+                                    <span><i class="fas fa-clock me-1"></i>${fmtDuration(p.duration_sec)}</span>
+                                    <span><i class="fas fa-expand-alt me-1"></i>${p.width}×${p.height}</span>
+                                   </div>`
+                            }
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm flex-shrink-0"
+                                onclick="confirmDelete('${p.name}')" title="Xóa preset này">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>`;
+                presetList.appendChild(card);
+            });
+
+        } catch (e) {
+            presetLoading.style.display = 'none';
+            setServerStatus(false);
+            srvCount.style.display = 'none';
+        }
+    }
+
+    // ── Delete ────────────────────────────────────────────────────────────────
+    window.confirmDelete = function(name) {
+        deletePresetName = name;
+        document.getElementById('delete-name-display').textContent = name;
+        const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        modal.show();
+    };
+
+    document.getElementById('btn-confirm-delete').addEventListener('click', async () => {
+        const modal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+        modal.hide();
+        try {
+            const res = await fetch(`${API_BASE}/admin/presets/${encodeURIComponent(deletePresetName)}`,
+                                   { method: 'DELETE' });
+            if (!res.ok) throw new Error((await res.json()).detail || res.statusText);
+            showAlert(`Đã xóa "${deletePresetName}" thành công.`, 'success');
+            loadPresets();
+        } catch (e) {
+            showAlert('Xóa thất bại: ' + e.message, 'danger');
+        }
+    });
+
+    // ── Upload & build preset ─────────────────────────────────────────────────
+    function checkUploadReady() {
+        upBtn.disabled = !(upFile.files && upFile.files.length > 0);
+    }
+
+    upFile.addEventListener('change', () => {
+        checkUploadReady();
+        if (upFile.files && upFile.files.length > 0) {
+            upPreview.src = URL.createObjectURL(upFile.files[0]);
+            upPreviewWrap.style.display = 'block';
+        } else {
+            upPreviewWrap.style.display = 'none';
+        }
+    });
+
+    upBtn.addEventListener('click', async () => {
+        const file = upFile.files[0];
+        if (!file) return;
+
+        const name = upName.value.trim().replace(/\s+/g, '-');
+
+        // Reset
+        upAlert.style.display = 'none';
+        upProgressWrap.style.display = 'block';
+        upProgressBar.style.width = '5%';
+        upProgressPct.textContent = '0%';
+        upProgressLabel.textContent = 'Đang tải video lên server...';
+        upBtn.disabled = true;
+
+        // Fake progress
+        let fakeP = 5;
+        const timer = setInterval(() => {
+            fakeP = Math.min(88, fakeP + Math.random() * 2.5);
+            upProgressBar.style.width = fakeP + '%';
+            upProgressPct.textContent = fakeP.toFixed(0) + '%';
+            if (fakeP > 20)  upProgressLabel.textContent = 'Đang chạy YOLOv8 pose estimation...';
+            if (fakeP > 60)  upProgressLabel.textContent = 'Đang lưu file .npz preset...';
+        }, 500);
+
+        try {
+            const form = new FormData();
+            form.append('file', file);
+            form.append('name', name);
+
+            const res = await fetch(API_BASE + '/admin/presets', { method: 'POST', body: form });
+            clearInterval(timer);
+
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({ detail: res.statusText }));
+                throw new Error(err.detail || res.statusText);
+            }
+
+            const data = await res.json();
+            upProgressBar.style.width = '100%';
+            upProgressPct.textContent = '100%';
+            upProgressLabel.textContent = 'Hoàn thành!';
+
+            setTimeout(() => { upProgressWrap.style.display = 'none'; }, 700);
+            showAlert(`Đã tạo thành công: "${data.name}" — ${data.num_frames} frames, ${data.duration_sec.toFixed(1)}s`, 'success');
+
+            // Reset form
+            upFile.value = '';
+            upName.value = '';
+            upPreviewWrap.style.display = 'none';
+            checkUploadReady();
+            loadPresets();
+
+        } catch (e) {
+            clearInterval(timer);
+            upProgressWrap.style.display = 'none';
+            showAlert('Lỗi tạo preset: ' + e.message, 'danger');
+            upBtn.disabled = false;
+        }
+    });
+
+    document.getElementById('btn-refresh').addEventListener('click', loadPresets);
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    loadPresets();
+})();
+</script>
+}

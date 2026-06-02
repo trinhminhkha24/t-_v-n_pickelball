@@ -1,0 +1,195 @@
+@page
+@model PickleballWebApp.Pages.CourtsHCMModel
+@{
+    ViewData["Title"] = "Sân Pickleball tại TP.HCM";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Sân TP.HCM</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-map-marker-alt me-2"></i>Sân Pickleball tại TP.HCM</h1>
+        <p class="lead">Khám phá các địa điểm Pickleball hàng đầu tại Thành phố Hồ Chí Minh</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-map-marker-alt"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">20+</div>
+                    <div style="color:#6c757d;">Địa điểm sân</div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-table-tennis"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">80+</div>
+                    <div style="color:#6c757d;">Sân thi đấu</div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-users"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">5.000+</div>
+                    <div style="color:#6c757d;">Người chơi tích cực</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Các sân nổi bật tại TP.HCM</h3>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#c00000,#e63946);">
+                        <h4>🏆 Saigon Pickleball Hub – Quận 1</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận 1 – Trung tâm thành phố</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>42 Đinh Tiên Hoàng, Quận 1, TP.HCM</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>6 sân trong nhà máy lạnh, tiêu chuẩn quốc tế</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 23:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>120.000 – 180.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 3822 1234</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(312 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Trung tâm</span>
+                            <span class="badge-tag">Máy lạnh</span>
+                            <span class="badge-tag">HLV chuyên nghiệp</span>
+                            <span class="badge-tag">Giải đấu hàng tuần</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#1a6b35,#28a745);">
+                        <h4>🌿 Thu Duc Pickleball Park</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">TP. Thủ Đức</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Khu công nghệ cao, TP. Thủ Đức</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>14 sân ngoài trời + 4 sân phủ lưới</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>5:30 – 22:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>70.000 – 100.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 3731 5678</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(198 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Sân lớn</span>
+                            <span class="badge-tag">Giá tốt</span>
+                            <span class="badge-tag">Café xung quanh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>⚡ DKQ Pickleball – Bình Thạnh</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Bình Thạnh</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>25 Xô Viết Nghệ Tĩnh, Bình Thạnh, TP.HCM</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>8 sân trong nhà, hệ thống đèn chuyên nghiệp</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 22:30 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>90.000 – 140.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 3840 9012</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(267 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Phân tích AI</span>
+                            <span class="badge-tag">Cho thuê vợt</span>
+                            <span class="badge-tag">Thành viên tháng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#2c3e50,#3d566e);">
+                        <h4>🌙 District 7 Night Court</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận 7 – Phú Mỹ Hưng</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Đường Nguyễn Lương Bằng, Quận 7, TP.HCM</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>10 sân cao cấp trong khu phức hợp thể thao</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>7:00 – 23:30 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>130.000 – 200.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 5411 2345</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(189 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Cao cấp</span>
+                            <span class="badge-tag">Bãi đỗ xe lớn</span>
+                            <span class="badge-tag">Nhà hàng</span>
+                            <span class="badge-tag">Mở muộn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#e67e22,#f39c12);">
+                        <h4>🌅 Gò Vấp Morning Court</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Gò Vấp</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>156 Nguyễn Thái Sơn, Gò Vấp, TP.HCM</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>8 sân ngoài trời, thoáng mát</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>5:00 – 21:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>60.000 – 85.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 3984 6789</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(154 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Giá tốt nhất</span>
+                            <span class="badge-tag">Sáng sớm 5h</span>
+                            <span class="badge-tag">Cộng đồng vui vẻ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#8e44ad,#9b59b6);">
+                        <h4>💎 Tân Bình Premium Court</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Tân Bình</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Gần sân bay Tân Sơn Nhất, Tân Bình</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>6 sân trong nhà cao cấp, gần sân bay</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 22:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>100.000 – 150.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>028 3810 3456</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(109 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Gần sân bay</span>
+                            <span class="badge-tag">Tiện nghi đầy đủ</span>
+                            <span class="badge-tag">Doanh nhân</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card mt-5">
+            <div class="common-mistakes-box" style="background:linear-gradient(135deg,#e8f4fd 0%,#d1ecf1 100%);border-left-color:#00789c;">
+                <h3 style="color:#004c6d;"><i class="fas fa-info-circle me-2"></i>Thông tin đặt sân tại TP.HCM</h3>
+                <ul style="padding-left:20px;color:#004c6d;line-height:2;margin:0;">
+                    <li>Nhiều sân cung cấp <strong>app đặt sân online</strong> – tiết kiệm thời gian và có ưu đãi đặt sớm</li>
+                    <li>Giờ vàng <strong>17:30–20:30</strong> thứ Hai đến thứ Sáu thường đặt kín trong ngày</li>
+                    <li>Thành viên câu lạc bộ thường được ưu tiên đặt sân và giảm giá <strong>15–25%</strong></li>
+                    <li>Liên hệ sân trực tiếp để hỏi về <strong>khung giờ nhóm và giải đấu phong trào</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

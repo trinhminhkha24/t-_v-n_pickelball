@@ -1,0 +1,195 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- HERO -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>PLAY HARD &bull; TRAIN SMART</h1>
+        <h2>Bứt tốc kỹ năng – Làm chủ mọi trận đấu</h2>
+        <div>
+            <a asp-page="/Techniques/Serve" class="btn btn-primary me-2">
+                <i class="fas fa-book-open me-1"></i>Học kỹ thuật
+            </a>
+            <a asp-page="/MotionCompare" class="btn btn-outline-light">
+                <i class="fas fa-camera me-1"></i>Phân tích động tác
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-title">Tại sao chọn DKQ Pickleball?</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Nền tảng toàn diện giúp bạn tiến bộ nhanh hơn</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-graduation-cap"></i></span>
+                    <h4>Học kỹ thuật bài bản</h4>
+                    <p>12 kỹ thuật cơ bản và nâng cao được trình bày chi tiết bằng tiếng Việt, từ Serve đến Erne Shot.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-camera-retro"></i></span>
+                    <h4>Phân tích động tác AI</h4>
+                    <p>Dùng camera để so sánh động tác của bạn với chuyên gia thời gian thực bằng công nghệ YOLOv8.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-dumbbell"></i></span>
+                    <h4>Bài tập thực chiến</h4>
+                    <p>Bộ bài tập phân theo trình độ giúp bạn rèn luyện hiệu quả cả khi luyện một mình hoặc có đối tác.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNIQUES GRID -->
+<section class="py-5" style="background:#f0f5f8;">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-title">12 Kỹ thuật Pickleball</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">Từ cơ bản đến chuyên nghiệp – nhấn để xem chi tiết</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Serve" class="technique-card">
+                    <span class="tc-icon">🏓</span>
+                    <h5>Serve</h5>
+                    <p>Giao bóng</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Return" class="technique-card">
+                    <span class="tc-icon">↩️</span>
+                    <h5>Return</h5>
+                    <p>Trả giao bóng</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Forehand" class="technique-card">
+                    <span class="tc-icon">👊</span>
+                    <h5>Forehand</h5>
+                    <p>Đánh thuận tay</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Backhand" class="technique-card">
+                    <span class="tc-icon">🤚</span>
+                    <h5>Backhand</h5>
+                    <p>Đánh trái tay</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Volley" class="technique-card">
+                    <span class="tc-icon">⚡</span>
+                    <h5>Volley</h5>
+                    <p>Đánh vô lê</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Dink" class="technique-card">
+                    <span class="tc-icon">🎯</span>
+                    <h5>Dink</h5>
+                    <p>Bỏ nhỏ sát lưới</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/DropShot" class="technique-card">
+                    <span class="tc-icon">🌊</span>
+                    <h5>Drop Shot</h5>
+                    <p>Cú bỏ rơi</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Drive" class="technique-card">
+                    <span class="tc-icon">💥</span>
+                    <h5>Drive</h5>
+                    <p>Đánh mạnh</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Lob" class="technique-card">
+                    <span class="tc-icon">🌙</span>
+                    <h5>Lob</h5>
+                    <p>Lốp bóng cao</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Smash" class="technique-card">
+                    <span class="tc-icon">🔨</span>
+                    <h5>Smash</h5>
+                    <p>Đập bóng trên cao</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/BlockShot" class="technique-card">
+                    <span class="tc-icon">🛡️</span>
+                    <h5>Block Shot</h5>
+                    <p>Chặn bóng</p>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/ErneShot" class="technique-card">
+                    <span class="tc-icon">🚀</span>
+                    <h5>Erne Shot</h5>
+                    <p>Lao ra volley</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-md-3">
+                <div class="py-3">
+                    <div style="font-size:2.8rem;font-weight:800;color:#004c6d;">12</div>
+                    <div style="color:#6c757d;font-size:0.95rem;">Kỹ thuật chi tiết</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="py-3">
+                    <div style="font-size:2.8rem;font-weight:800;color:#004c6d;">AI</div>
+                    <div style="color:#6c757d;font-size:0.95rem;">Phân tích bằng YOLOv8</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="py-3">
+                    <div style="font-size:2.8rem;font-weight:800;color:#004c6d;">20+</div>
+                    <div style="color:#6c757d;font-size:0.95rem;">Địa điểm sân chơi</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="py-3">
+                    <div style="font-size:2.8rem;font-weight:800;color:#004c6d;">100%</div>
+                    <div style="color:#6c757d;font-size:0.95rem;">Tiếng Việt, miễn phí</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2><i class="fas fa-camera me-2"></i>Thử phân tích động tác ngay!</h2>
+        <p>Bật camera, chọn kỹ thuật mẫu và nhận phản hồi chi tiết bằng AI trong vài giây.</p>
+        <a asp-page="/MotionCompare" class="btn btn-warning btn-lg fw-bold px-5">
+            Bắt đầu ngay <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+    </div>
+</section>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Motion Compare - Web Client</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 18px; }
+    #controls { margin-bottom: 12px; }
+    #webcam { border: 1px solid #ccc; }
+    #overlay { position: absolute; left: 0; top: 0; pointer-events: none }
+    .container { position: relative; width: 640px; }
+    .status { margin-left: 8px; color: #555 }
+  </style>
+</head>
+<body>
+  <h1>Motion Compare (Web)</h1>
+  <div id="controls">
+    <label for="preset">Preset:</label>
+    <select id="preset"></select>
+    <button id="btn-start">Start</button>
+    <button id="btn-stop" disabled>Stop</button>
+    <span class="status" id="status">(server: unknown)</span>
+  </div>
+
+  <div class="container">
+    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+    <canvas id="overlay" width="640" height="480"></canvas>
+  </div>
+
+  <div style="margin-top:10px">
+    <b>Overall:</b> <span id="overall">-</span>
+    <b style="margin-left:12px">Feedback:</b>
+    <ul id="feedback"></ul>
+  </div>
+
+<script>
+(() => {
+  const API_BASE = '';// same origin (served from this server)
+  const WS_URL = (location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + location.host + '/ws/compare';
+  const presetEl = document.getElementById('preset');
+  const statusEl = document.getElementById('status');
+  const btnStart = document.getElementById('btn-start');
+  const btnStop = document.getElementById('btn-stop');
+  const video = document.getElementById('webcam');
+  const overlay = document.getElementById('overlay');
+  const overallEl = document.getElementById('overall');
+  const feedbackEl = document.getElementById('feedback');
+
+  let ws = null; let sending = false; let sendInterval = null;
+
+  async function loadPresets() {
+    try {
+      const res = await fetch('/presets');
+      const j = await res.json();
+      const presets = (j.presets || []).map(p => p.name);
+      presetEl.innerHTML = '';
+      if (presets.length === 0) {
+        const opt = document.createElement('option'); opt.text = 'No presets'; opt.disabled = true; presetEl.add(opt);
+      } else {
+        presets.forEach(p => { const opt = document.createElement('option'); opt.value = p; opt.text = p; presetEl.add(opt); });
+      }
+      statusEl.textContent = 'server: ready';
+    } catch (e) {
+      statusEl.textContent = 'server: unreachable';
+    }
+  }
+
+  async function startCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 }, audio: false });
+      video.srcObject = stream; await video.play(); return true;
+    } catch (e) {
+      alert('Không thể truy cập camera: ' + e.message);
+      return false;
+    }
+  }
+
+  function drawKeypoints(kpts) {
+    const ctx = overlay.getContext('2d');
+    ctx.clearRect(0,0,overlay.width,overlay.height);
+    if (!kpts) return;
+    ctx.fillStyle = 'lime'; ctx.strokeStyle = 'lime';
+    kpts.forEach(p => { if (!p) return; ctx.beginPath(); ctx.arc(p[0], p[1], 4, 0, Math.PI*2); ctx.fill(); });
+  }
+
+  function startSending() {
+    if (!video || video.readyState < 2) return;
+    ws = new WebSocket(WS_URL);
+    ws.onopen = () => {
+      const preset = presetEl.value || (presetEl.options[0] && presetEl.options[0].value) || '';
+      ws.send(JSON.stringify({ type: 'init', preset }));
+      sending = true; btnStart.disabled = true; btnStop.disabled = false;
+      sendInterval = setInterval(() => {
+        if (!sending) return;
+        const canvas = document.createElement('canvas'); canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d'); ctx.drawImage(video, 0, 0);
+        const data = canvas.toDataURL('image/jpeg', 0.7);
+        const b64 = data.split(',')[1];
+        try { ws.send(JSON.stringify({ type: 'frame', image: b64, client_ts: Date.now() })); } catch (e) {}
+      }, 100);
+    };
+    ws.onmessage = (ev) => {
+      try {
+        const msg = JSON.parse(ev.data);
+        if (msg.type === 'ready') { statusEl.textContent = 'compare ready: ' + (msg.ref_name||''); }
+        else if (msg.type === 'result') {
+          overallEl.textContent = msg.overall;
+          feedbackEl.innerHTML = '';
+          (msg.feedback||[]).forEach(f => { const li = document.createElement('li'); li.textContent = f; feedbackEl.appendChild(li); });
+          if (msg.kpts) drawKeypoints(msg.kpts);
+        } else if (msg.type === 'done') { statusEl.textContent = 'ref done'; }
+      } catch (e) { console.error(e); }
+    };
+    ws.onclose = () => { stopSending(); statusEl.textContent = 'ws closed'; };
+    ws.onerror = () => { statusEl.textContent = 'ws error'; };
+  }
+
+  function stopSending() {
+    sending = false; btnStart.disabled = false; btnStop.disabled = true;
+    if (sendInterval) { clearInterval(sendInterval); sendInterval = null; }
+    if (ws && ws.readyState === WebSocket.OPEN) { try { ws.send(JSON.stringify({ type: 'stop' })); } catch {} ws.close(); }
+    drawKeypoints(null);
+  }
+
+  btnStart.addEventListener('click', async () => { const ok = await startCamera(); if (!ok) return; startSending(); });
+  btnStop.addEventListener('click', () => stopSending());
+
+  loadPresets();
+})();
+</script>
+</body>
+</html>

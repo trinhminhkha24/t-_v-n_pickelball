@@ -1,0 +1,86 @@
+@page
+@model PickleballWebApp.Pages.Techniques.DinkModel
+@{
+    ViewData["Title"] = "Dink – Bỏ nhỏ sát lưới";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Dink</li>
+            </ol>
+        </nav>
+        <h1>🎯 Dink – Bỏ nhỏ sát lưới</h1>
+        <p class="lead">Nghệ thuật kiểm soát bóng ở kitchen – cốt lõi của chiến thuật Pickleball hiện đại</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Dink là cú đánh nhẹ nhàng, có kiểm soát, thực hiện khi đứng gần vạch NVZ, làm bóng bay qua lưới và rơi vào vùng kitchen của đối thủ. Đây là kỹ thuật <strong>đặc trưng và quan trọng nhất</strong> của Pickleball – chiến thuật dink kéo dài giúp bạn kiên nhẫn chờ đợi lỗi của đối thủ hoặc tạo cơ hội tấn công.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Đứng sát kitchen line, đầu gối khuỵu nhẹ, trọng tâm thấp và ổn định.</li>
+                        <li>Cầm vợt lỏng hơn bình thường (grip pressure khoảng 4/10) để cảm nhận bóng tốt hơn.</li>
+                        <li>Khi bóng đến, sử dụng cử động cẳng tay và vai nhỏ – không vung vai lớn.</li>
+                        <li>Mở mặt vợt nhẹ để nâng bóng qua lưới với quỹ đạo cong thấp.</li>
+                        <li>Nhắm bóng rơi vào vùng kitchen của đối thủ, càng gần lưới càng tốt.</li>
+                        <li>Kiên nhẫn duy trì rally dink, không cố kết thúc điểm quá sớm.</li>
+                        <li>Chờ bóng của đối thủ nổi cao ("pop up") rồi mới tấn công.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Chiến thuật dink nâng cao</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Cross-court dink:</strong> An toàn hơn down-the-line vì lưới thấp hơn ở giữa</li>
+                        <li><strong>Dink vào thân:</strong> Nhắm vào phần cơ thể đối thủ để họ khó trả với cả forehand lẫn backhand</li>
+                        <li><strong>Thay đổi tốc độ:</strong> Thỉnh thoảng đánh nhanh hơn để đối thủ phản ứng sai</li>
+                        <li><strong>ATP (Around The Post):</strong> Khi bóng ra ngoài sân, thực hiện cú dink vòng qua cột lưới – hoàn toàn hợp lệ!</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Dink quá cao – tạo cơ hội cho đối thủ tấn công (pop up)</li>
+                        <li>Cầm vợt quá chặt – mất cảm giác bóng và độ nhạy</li>
+                        <li>Vội tấn công khi chưa có cơ hội rõ ràng – mắc lỗi không đáng</li>
+                        <li>Lùi lại khỏi kitchen line khi dink – mất vị trí có lợi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật đặc trưng</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Sát kitchen line</td></tr>
+                        <tr><td>Mục tiêu</td><td>Kitchen đối thủ</td></tr>
+                        <tr><td>Chiến thuật</td><td>Kiên nhẫn, rally dài</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/DropShot" class="btn btn-outline-primary btn-sm">🌊 Drop Shot</a>
+                        <a asp-page="/Techniques/Volley" class="btn btn-outline-primary btn-sm">⚡ Volley – Đánh vô lê</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

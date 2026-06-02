@@ -1,0 +1,86 @@
+@page
+@model PickleballWebApp.Pages.Techniques.ForehandModel
+@{
+    ViewData["Title"] = "Forehand – Đánh thuận tay";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Forehand</li>
+            </ol>
+        </nav>
+        <h1>👊 Forehand – Đánh thuận tay</h1>
+        <p class="lead">Cú đánh phổ biến nhất và mạnh mẽ nhất – vũ khí chính của mọi người chơi</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Forehand là cú đánh cơ bản và phổ biến nhất trong Pickleball, thực hiện ở bên tay thuận của người chơi. Với nền tảng forehand vững chắc, bạn có thể thực hiện mọi loại cú đánh: drive, dink, lob, và cross-court winner.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Đứng ở tư thế sẵn sàng (ready position): chân rộng bằng vai, đầu gối hơi khuỵu, vợt ở trước bụng.</li>
+                        <li>Khi bóng đến bên tay thuận, xoay vai và hông về phía bóng (shoulder turn).</li>
+                        <li>Đưa vợt ra sau (backswing) – không cần quá lớn, phù hợp với tốc độ bóng đến.</li>
+                        <li>Bước chân không thuận về phía trước (step into the ball) để tạo trọng tâm.</li>
+                        <li>Vung vợt từ sau ra trước, tiếp xúc bóng ở phía trước và bên cạnh cơ thể.</li>
+                        <li>Giữ mặt vợt bằng phẳng hoặc hơi nghiêng theo hướng muốn đánh.</li>
+                        <li>Hoàn thành động tác follow-through: vợt hướng về phía mục tiêu, cao ngang vai.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo nâng cao</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li>Sử dụng toàn bộ cơ thể (hông, vai, tay) để tạo lực – không chỉ dùng cánh tay</li>
+                        <li>Giữ cổ tay chắc tại điểm tiếp xúc để kiểm soát hướng bóng chính xác</li>
+                        <li>Tập đánh cross-court (chéo sân) và down-the-line (dọc sân) để đa dạng hóa</li>
+                        <li>Forehand topspin rất hiệu quả để đẩy đối thủ ra sau và tạo góc tấn công</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Tiếp xúc bóng quá muộn (bóng đã qua thân người) – mất lực và kiểm soát</li>
+                        <li>Chỉ dùng cánh tay, không xoay hông vai – bóng yếu và dễ chấn thương</li>
+                        <li>Cổ tay mềm tại điểm tiếp xúc – bóng đi lệch hướng</li>
+                        <li>Backswing quá lớn – phản ứng chậm với bóng nhanh</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge easy">Dễ</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật cơ bản</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Mọi vị trí trên sân</td></tr>
+                        <tr><td>Ứng dụng</td><td>Drive, Dink, Lob, Return</td></tr>
+                        <tr><td>Tay thực hiện</td><td>Tay thuận</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Backhand" class="btn btn-outline-primary btn-sm">🤚 Backhand – Trái tay</a>
+                        <a asp-page="/Techniques/Drive" class="btn btn-outline-primary btn-sm">💥 Drive – Đánh mạnh</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

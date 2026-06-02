@@ -1,0 +1,86 @@
+@page
+@model PickleballWebApp.Pages.Techniques.VolleyModel
+@{
+    ViewData["Title"] = "Volley – Đánh vô lê";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Volley</li>
+            </ol>
+        </nav>
+        <h1>⚡ Volley – Đánh vô lê</h1>
+        <p class="lead">Đánh bóng trước khi nảy – vũ khí tấn công ở vị trí kitchen line</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Volley là cú đánh bóng trước khi chạm đất, thường được thực hiện khi đứng ở kitchen line (NVZ line). Đây là kỹ thuật tấn công quan trọng nhất khi bạn đã chiếm được vị trí lưới. <strong>Lưu ý:</strong> Không được đứng trong hoặc chạm vào vùng NVZ khi đánh volley.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Đứng ngay sau vạch NVZ (kitchen line), tư thế sẵn sàng: đầu gối khuỵu, trọng tâm thấp.</li>
+                        <li>Giữ vợt ở phía trước cơ thể, mặt vợt hướng về phía đối thủ.</li>
+                        <li>Khi bóng đến, chuyển động vung vợt ngắn và gọn – không backswing lớn.</li>
+                        <li>Tiếp xúc bóng ở phía trước cơ thể, trước vạch NVZ.</li>
+                        <li>Sử dụng lực từ bóng của đối thủ để trả lại – "punch volley" khi cần sức mạnh.</li>
+                        <li>Hướng bóng vào chân đối thủ hoặc các khoảng trống trên sân.</li>
+                        <li>Nhanh chóng trở về tư thế sẵn sàng sau mỗi cú đánh.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Các loại volley</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Punch Volley:</strong> Cú volley mạnh, hướng thẳng về phía đối thủ – dùng để kết thúc điểm</li>
+                        <li><strong>Roll Volley:</strong> Thêm topspin nhẹ để bóng chìm xuống sau khi qua lưới</li>
+                        <li><strong>Drop Volley:</strong> Volley nhẹ, thả bóng vào kitchen đối thủ – dùng khi họ ở lùi sâu</li>
+                        <li><strong>Reset Volley:</strong> Volley phòng thủ, trả bóng nhẹ vào kitchen để reset rally</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Bước chân vào vùng NVZ khi đánh volley → lỗi (fault)</li>
+                        <li>Backswing quá lớn – mất kiểm soát và phản ứng chậm</li>
+                        <li>Đánh volley xuống lưới vì tiếp xúc bóng quá muộn</li>
+                        <li>Không trở về tư thế sẵn sàng sau cú đánh – bị bắt vào thế bị động</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Tấn công / Phòng thủ</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Ngay sau kitchen line</td></tr>
+                        <tr><td>Đặc điểm</td><td>Đánh trước khi bóng nảy</td></tr>
+                        <tr><td>Giới hạn</td><td>Không được đứng trong NVZ</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/Techniques/BlockShot" class="btn btn-outline-primary btn-sm">🛡️ Block Shot – Chặn bóng</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

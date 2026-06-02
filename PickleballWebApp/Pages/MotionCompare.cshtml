@@ -1,0 +1,682 @@
+@page
+@model PickleballWebApp.Pages.MotionCompareModel
+@{
+    ViewData["Title"] = "Phân tích động tác AI";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Phân tích động tác</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-camera me-2"></i>Phân Tích Động Tác AI</h1>
+        <p class="lead">So sánh chuyển động của bạn với chuyên gia theo thời gian thực bằng YOLOv8</p>
+    </div>
+</div>
+
+<div class="mc-wrapper">
+    <div class="container">
+
+        <!-- MODE TABS -->
+        <ul class="nav nav-tabs mb-4" id="modeTabs" style="border-bottom:2px solid #004c6d;">
+            <li class="nav-item">
+                <button class="nav-link active" id="tab-camera" data-mode="camera"
+                        style="font-weight:600;color:#004c6d;">
+                    <i class="fas fa-video me-1"></i>Camera trực tiếp
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-video" data-mode="video"
+                        style="font-weight:600;color:#004c6d;">
+                    <i class="fas fa-file-video me-1"></i>Upload video
+                </button>
+            </li>
+        </ul>
+
+        <!-- ======================================================= -->
+        <!--  PANEL 1: CAMERA TRỰC TIẾP                              -->
+        <!-- ======================================================= -->
+        <div id="panel-camera">
+            <div class="row g-4">
+                <!-- CONTROL PANEL -->
+                <div class="col-lg-8">
+                    <div class="mc-control-panel mb-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold mb-1" style="color:#004c6d;font-size:0.9rem;">
+                                    <i class="fas fa-bookmark me-1"></i>Chọn kỹ thuật mẫu
+                                </label>
+                                <select id="preset" class="form-select" style="border-color:#004c6d;">
+                                    <option value="">-- Chờ kết nối server --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold mb-1" style="color:#004c6d;font-size:0.9rem;">
+                                    <i class="fas fa-server me-1"></i>Trạng thái
+                                </label>
+                                <div id="status-bar" class="d-flex align-items-center gap-2">
+                                    <span id="status-dot" style="width:10px;height:10px;border-radius:50%;background:#6c757d;flex-shrink:0;"></span>
+                                    <span id="status" style="font-size:0.9rem;color:#6c757d;">Đang kiểm tra server...</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold mb-1" style="color:#004c6d;font-size:0.9rem;">Điều khiển</label>
+                                <div class="d-flex gap-2">
+                                    <button id="btn-start" class="btn btn-primary px-3">
+                                        <i class="fas fa-play me-1"></i>Bắt đầu
+                                    </button>
+                                    <button id="btn-stop" class="btn btn-outline-danger px-3" disabled>
+                                        <i class="fas fa-stop me-1"></i>Dừng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <small class="text-muted"><i class="fas fa-keyboard me-1"></i>Phím tắt: <kbd>Space</kbd> để bắt đầu/dừng</small>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO + CANVAS -->
+                    <div style="position:relative;display:inline-block;width:100%;max-width:640px;">
+                        <video id="webcam" autoplay playsinline
+                               style="width:100%;max-width:640px;height:auto;border-radius:14px;background:#111;display:block;"></video>
+                        <canvas id="overlay"
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:14px;"></canvas>
+                        <div id="camera-placeholder"
+                             style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#1a1a2e;border-radius:14px;color:white;min-height:320px;">
+                            <i class="fas fa-camera" style="font-size:3rem;opacity:0.4;margin-bottom:12px;"></i>
+                            <p style="opacity:0.6;font-size:0.95rem;">Nhấn Bắt đầu để mở camera</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESULTS PANEL - CAMERA -->
+                <div class="col-lg-4">
+                    <div class="mc-results mb-4 text-center">
+                        <div class="score-label">ĐỘ CHÍNH XÁC TỔNG THỂ</div>
+                        <div class="score-display" id="overall">--</div>
+                        <div style="color:#6c757d;font-size:0.85rem;">So với kỹ thuật mẫu chuyên gia</div>
+                        <div id="score-bar-wrapper" class="mt-3" style="display:none;">
+                            <div class="progress" style="height:12px;border-radius:6px;">
+                                <div id="score-bar" class="progress-bar" style="width:0%;background:linear-gradient(90deg,#e63946,#f0c040,#28a745);border-radius:6px;transition:width 0.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mc-results mb-4">
+                        <h6 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
+                            <i class="fas fa-comment-alt me-2"></i>Phản hồi chi tiết
+                        </h6>
+                        <ul id="feedback" style="padding-left:18px;color:#555;font-size:0.9rem;line-height:1.8;margin:0;">
+                            <li style="color:#6c757d;">Chưa có dữ liệu – hãy bắt đầu phân tích</li>
+                        </ul>
+                    </div>
+
+                    <div class="mc-results">
+                        <h6 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
+                            <i class="fas fa-info-circle me-2"></i>Hướng dẫn sử dụng
+                        </h6>
+                        <ol style="padding-left:18px;color:#555;font-size:0.88rem;line-height:2;margin:0;">
+                            <li>Khởi động server Python (cổng 8000)</li>
+                            <li>Chọn kỹ thuật mẫu từ danh sách</li>
+                            <li>Nhấn <strong>Bắt đầu</strong> và cho phép truy cập camera</li>
+                            <li>Thực hiện động tác trước camera</li>
+                            <li>Xem điểm số và phản hồi theo thời gian thực</li>
+                        </ol>
+                        <div class="tips-box mt-3">
+                            <h3 style="font-size:0.9rem;"><i class="fas fa-lightbulb me-1"></i>Mẹo</h3>
+                            <p style="font-size:0.85rem;margin:0;">Đứng cách camera 2–3m để hệ thống nhận diện toàn thân tốt nhất. Đảm bảo ánh sáng đầy đủ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================= -->
+        <!--  PANEL 2: UPLOAD VIDEO                                  -->
+        <!-- ======================================================= -->
+        <div id="panel-video" style="display:none;">
+            <div class="row g-4">
+
+                <!-- UPLOAD CONTROLS -->
+                <div class="col-lg-8">
+                    <div class="mc-control-panel mb-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold mb-1" style="color:#004c6d;font-size:0.9rem;">
+                                    <i class="fas fa-bookmark me-1"></i>Kỹ thuật mẫu
+                                </label>
+                                <select id="v-preset" class="form-select" style="border-color:#004c6d;">
+                                    <option value="">-- Chờ kết nối server --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold mb-1" style="color:#004c6d;font-size:0.9rem;">
+                                    <i class="fas fa-file-video me-1"></i>Video của bạn
+                                </label>
+                                <input type="file" id="v-file" accept="video/*" class="form-control"
+                                       style="border-color:#004c6d;">
+                            </div>
+                            <div class="col-md-3">
+                                <button id="v-btn-analyze" class="btn btn-primary w-100" disabled>
+                                    <i class="fas fa-search me-1"></i>Phân tích
+                                </button>
+                            </div>
+                        </div>
+                        <div id="v-progress-wrap" class="mt-3" style="display:none;">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small style="color:#004c6d;font-weight:600;" id="v-progress-label">Đang xử lý video...</small>
+                                <small id="v-progress-pct" style="color:#004c6d;">0%</small>
+                            </div>
+                            <div class="progress" style="height:10px;border-radius:6px;">
+                                <div id="v-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"
+                                     style="width:0%;background:#004c6d;border-radius:6px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO PREVIEW (trước khi phân tích) -->
+                    <div id="v-preview-wrap" style="display:none;margin-bottom:16px;">
+                        <p style="font-size:0.85rem;color:#6c757d;margin-bottom:6px;">
+                            <i class="fas fa-eye me-1"></i>Xem trước video đã chọn:
+                        </p>
+                        <video id="v-preview" controls
+                               style="width:100%;max-width:640px;border-radius:14px;background:#111;display:block;"></video>
+                    </div>
+
+                    <!-- RESULT VIDEO (sau khi phân tích, với overlay keypoint) -->
+                    <div id="v-result-wrap" style="display:none;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                            <p style="font-size:0.85rem;color:#6c757d;margin:0;">
+                                <i class="fas fa-film me-1"></i>Video phân tích (click frame để xem keypoint):
+                            </p>
+                            <span id="v-frame-badge" class="badge"
+                                  style="background:#004c6d;font-size:0.78rem;">Frame 0</span>
+                        </div>
+                        <div style="position:relative;display:inline-block;width:100%;max-width:640px;">
+                            <video id="v-result-video" controls
+                                   style="width:100%;max-width:640px;border-radius:14px;background:#111;display:block;"></video>
+                            <canvas id="v-overlay"
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:14px;"></canvas>
+                        </div>
+
+                        <!-- BIỂU ĐỒ ĐỘ CHÍNH XÁC THEO FRAME -->
+                        <div class="mc-results mt-3">
+                            <h6 style="color:#004c6d;font-weight:700;margin-bottom:8px;">
+                                <i class="fas fa-chart-line me-1"></i>Độ chính xác theo thời gian
+                            </h6>
+                            <canvas id="v-chart" height="90" style="width:100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESULTS PANEL - VIDEO -->
+                <div class="col-lg-4">
+                    <!-- ĐIỂM SỐ -->
+                    <div class="mc-results mb-4 text-center">
+                        <div class="score-label">ĐỘ CHÍNH XÁC TỔNG THỂ</div>
+                        <div class="score-display" id="v-overall">--</div>
+                        <div style="color:#6c757d;font-size:0.85rem;">Trung bình toàn video</div>
+                        <div id="v-score-bar-wrapper" class="mt-3" style="display:none;">
+                            <div class="progress" style="height:12px;border-radius:6px;">
+                                <div id="v-score-bar" class="progress-bar"
+                                     style="width:0%;background:linear-gradient(90deg,#e63946,#f0c040,#28a745);border-radius:6px;transition:width 0.5s;"></div>
+                            </div>
+                        </div>
+                        <div id="v-stats" style="display:none;margin-top:10px;font-size:0.82rem;color:#6c757d;">
+                            <span id="v-stat-frames"></span> &nbsp;|&nbsp;
+                            <span id="v-stat-dur"></span>
+                        </div>
+                    </div>
+
+                    <!-- PHẢN HỒI VIDEO -->
+                    <div class="mc-results mb-4">
+                        <h6 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
+                            <i class="fas fa-comment-alt me-2"></i>Phản hồi tổng hợp
+                        </h6>
+                        <ul id="v-feedback" style="padding-left:18px;color:#555;font-size:0.9rem;line-height:1.8;margin:0;">
+                            <li style="color:#6c757d;">Upload video và nhấn Phân tích để xem kết quả</li>
+                        </ul>
+                    </div>
+
+                    <!-- KẾT QUẢ TỪNG KHỚP -->
+                    <div class="mc-results mb-4" id="v-joints-panel" style="display:none;">
+                        <h6 style="color:#004c6d;font-weight:700;margin-bottom:10px;">
+                            <i class="fas fa-running me-2"></i>Điểm từng khớp (frame hiện tại)
+                        </h6>
+                        <div id="v-joints-list" style="font-size:0.82rem;"></div>
+                    </div>
+
+                    <!-- HƯỚNG DẪN VIDEO -->
+                    <div class="mc-results">
+                        <h6 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
+                            <i class="fas fa-info-circle me-2"></i>Hướng dẫn sử dụng
+                        </h6>
+                        <ol style="padding-left:18px;color:#555;font-size:0.88rem;line-height:2;margin:0;">
+                            <li>Khởi động server Python (cổng 8000)</li>
+                            <li>Chọn kỹ thuật mẫu từ danh sách</li>
+                            <li>Chọn file video của bạn (mp4, avi, mov)</li>
+                            <li>Nhấn <strong>Phân tích</strong> và chờ xử lý</li>
+                            <li>Xem điểm số và kéo video để xem keypoint</li>
+                        </ol>
+                        <div class="tips-box mt-3">
+                            <h3 style="font-size:0.9rem;"><i class="fas fa-lightbulb me-1"></i>Mẹo</h3>
+                            <p style="font-size:0.85rem;margin:0;">Quay video toàn thân, đứng cách camera 2–3m, ánh sáng tốt để đạt kết quả phân tích chính xác nhất.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THÔNG BÁO KHÔNG CÓ SERVER -->
+        <div id="no-server-notice" class="info-card mt-4" style="border-left:4px solid #f0c040;display:none;">
+            <h4 style="color:#856404;"><i class="fas fa-exclamation-triangle me-2"></i>Server phân tích chưa được khởi động</h4>
+            <p style="color:#533f03;">Tính năng phân tích động tác yêu cầu server Python (FastAPI) chạy ở cổng 8000.</p>
+            <div style="background:#fff8e1;border-radius:8px;padding:14px;font-family:monospace;font-size:0.85rem;color:#533f03;">
+                <div># Cài đặt dependencies</div>
+                <div>pip install fastapi uvicorn ultralytics opencv-python numpy python-multipart</div>
+                <br>
+                <div># Khởi động server</div>
+                <div>cd files.5/motion-compare/server</div>
+                <div>uvicorn main:app --host 0.0.0.0 --port 8000</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(() => {
+    const API_BASE = 'http://localhost:8000';
+    const WS_URL   = 'ws://localhost:8000/ws/compare';
+
+    // COCO-17 joint names tiếng Việt
+    const JOINT_NAMES = [
+        'Mũi','Mắt trái','Mắt phải','Tai trái','Tai phải',
+        'Vai trái','Vai phải','Khuỷu tay trái','Khuỷu tay phải',
+        'Cổ tay trái','Cổ tay phải','Hông trái','Hông phải',
+        'Đầu gối trái','Đầu gối phải','Mắt cá trái','Mắt cá phải'
+    ];
+    const SKELETON = [[0,1],[0,2],[1,3],[2,4],[5,6],[5,7],[7,9],[6,8],[8,10],[5,11],[6,12],[11,12],[11,13],[13,15],[12,14],[14,16]];
+
+    // ===================== SHARED =====================
+    const noServerDiv = document.getElementById('no-server-notice');
+
+    function setNoServer(show) { noServerDiv.style.display = show ? 'block' : 'none'; }
+
+    async function loadPresets(selectEl, statusEl, statusDotEl) {
+        try {
+            const res = await fetch(API_BASE + '/presets', { signal: AbortSignal.timeout(3000) });
+            const j = await res.json();
+            const presets = (j.presets || []).map(p => p.name);
+            selectEl.innerHTML = '';
+            if (presets.length === 0) {
+                selectEl.innerHTML = '<option value="">-- Chưa có preset --</option>';
+            } else {
+                presets.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p; opt.text = p; selectEl.add(opt);
+                });
+            }
+            if (statusEl)    { statusEl.textContent = 'Server sẵn sàng'; statusEl.style.color = '#28a745'; }
+            if (statusDotEl) { statusDotEl.style.background = '#28a745'; }
+            setNoServer(false);
+            return true;
+        } catch {
+            selectEl.innerHTML = '<option value="">-- Server chưa khởi động --</option>';
+            if (statusEl)    { statusEl.textContent = 'Server chưa kết nối'; statusEl.style.color = '#e63946'; }
+            if (statusDotEl) { statusDotEl.style.background = '#e63946'; }
+            setNoServer(true);
+            return false;
+        }
+    }
+
+    function drawKeypoints(canvas, kpts) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (!kpts || kpts.length === 0) return;
+        const scaleX = canvas.width  / (canvas._videoW || canvas.width);
+        const scaleY = canvas.height / (canvas._videoH || canvas.height);
+        ctx.strokeStyle = 'rgba(0,200,255,0.8)'; ctx.lineWidth = 2;
+        SKELETON.forEach(([a,b]) => {
+            if (kpts[a] && kpts[b] && (kpts[a][0]||kpts[a][1]) && (kpts[b][0]||kpts[b][1])) {
+                ctx.beginPath();
+                ctx.moveTo(kpts[a][0]*scaleX, kpts[a][1]*scaleY);
+                ctx.lineTo(kpts[b][0]*scaleX, kpts[b][1]*scaleY);
+                ctx.stroke();
+            }
+        });
+        ctx.fillStyle = '#00c8ff';
+        kpts.forEach(p => {
+            if (!p || (!p[0] && !p[1])) return;
+            ctx.beginPath(); ctx.arc(p[0]*scaleX, p[1]*scaleY, 5, 0, Math.PI*2); ctx.fill();
+        });
+    }
+
+    // ===================== TAB SWITCHING =====================
+    const tabCamera = document.getElementById('tab-camera');
+    const tabVideo  = document.getElementById('tab-video');
+    const panelCamera = document.getElementById('panel-camera');
+    const panelVideo  = document.getElementById('panel-video');
+
+    function switchTab(mode) {
+        if (mode === 'camera') {
+            tabCamera.classList.add('active'); tabVideo.classList.remove('active');
+            panelCamera.style.display = ''; panelVideo.style.display = 'none';
+        } else {
+            tabVideo.classList.add('active'); tabCamera.classList.remove('active');
+            panelVideo.style.display = ''; panelCamera.style.display = 'none';
+        }
+    }
+    tabCamera.addEventListener('click', () => switchTab('camera'));
+    tabVideo.addEventListener('click',  () => switchTab('video'));
+
+    // ===================== CAMERA MODE =====================
+    const presetEl   = document.getElementById('preset');
+    const statusEl   = document.getElementById('status');
+    const statusDot  = document.getElementById('status-dot');
+    const btnStart   = document.getElementById('btn-start');
+    const btnStop    = document.getElementById('btn-stop');
+    const video      = document.getElementById('webcam');
+    const overlay    = document.getElementById('overlay');
+    const overallEl  = document.getElementById('overall');
+    const feedbackEl = document.getElementById('feedback');
+    const scorebar   = document.getElementById('score-bar');
+    const scorebarWr = document.getElementById('score-bar-wrapper');
+    const placeholder = document.getElementById('camera-placeholder');
+
+    let ws = null, sending = false, sendInterval = null;
+
+    function setStatus(msg, color) {
+        statusEl.textContent = msg; statusEl.style.color = color || '#6c757d';
+        statusDot.style.background = color || '#6c757d';
+    }
+
+    function updateScore(score) {
+        if (score == null || score === '-') { overallEl.textContent = '--'; scorebarWr.style.display = 'none'; return; }
+        const num = parseFloat(score);
+        overallEl.textContent = isNaN(num) ? score : num.toFixed(1) + '%';
+        overallEl.style.color = num >= 75 ? '#28a745' : num >= 50 ? '#f0c040' : '#e63946';
+        scorebarWr.style.display = 'block';
+        scorebar.style.width = (isNaN(num) ? 0 : Math.min(100, num)) + '%';
+    }
+
+    function startSending() {
+        if (!video || video.readyState < 2) return;
+        ws = new WebSocket(WS_URL);
+        ws.onopen = () => {
+            ws.send(JSON.stringify({ type: 'init', preset: presetEl.value || '' }));
+            sending = true; btnStart.disabled = true; btnStop.disabled = false;
+            setStatus('Đang phân tích...', '#004c6d');
+            sendInterval = setInterval(() => {
+                if (!sending || !video.videoWidth) return;
+                const c = document.createElement('canvas');
+                c.width = video.videoWidth; c.height = video.videoHeight;
+                c.getContext('2d').drawImage(video, 0, 0);
+                c.toBlob(async blob => {
+                    if (!blob || !ws || ws.readyState !== WebSocket.OPEN) return;
+                    const b64 = btoa(String.fromCharCode(...new Uint8Array(await blob.arrayBuffer())));
+                    try { ws.send(JSON.stringify({ type: 'frame', image: b64, client_ts: Date.now() })); } catch {}
+                }, 'image/jpeg', 0.7);
+            }, 100);
+        };
+        ws.onmessage = ev => {
+            try {
+                const msg = JSON.parse(ev.data);
+                if (msg.type === 'ready') {
+                    setStatus('Đang so sánh: ' + (msg.ref_name || ''), '#00789c');
+                } else if (msg.type === 'result') {
+                    updateScore(msg.overall);
+                    feedbackEl.innerHTML = '';
+                    (msg.feedback || []).forEach(f => {
+                        const li = document.createElement('li'); li.textContent = f; feedbackEl.appendChild(li);
+                    });
+                    if (feedbackEl.children.length === 0) {
+                        feedbackEl.innerHTML = '<li style="color:#28a745;font-weight:600;">Kỹ thuật rất tốt! Tiếp tục duy trì.</li>';
+                    }
+                    if (msg.kpts) {
+                        overlay.width = video.videoWidth; overlay.height = video.videoHeight;
+                        overlay._videoW = video.videoWidth; overlay._videoH = video.videoHeight;
+                        drawKeypoints(overlay, msg.kpts);
+                    }
+                } else if (msg.type === 'error') {
+                    setStatus('Lỗi: ' + (msg.msg || ''), '#e63946');
+                }
+            } catch {}
+        };
+        ws.onclose = () => { stopSending(); setStatus('Đã ngắt kết nối', '#6c757d'); };
+        ws.onerror = () => { setStatus('Lỗi kết nối WebSocket', '#e63946'); };
+    }
+
+    function stopSending() {
+        sending = false; btnStart.disabled = false; btnStop.disabled = true;
+        if (sendInterval) { clearInterval(sendInterval); sendInterval = null; }
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            try { ws.send(JSON.stringify({ type: 'stop' })); } catch {} ws.close();
+        }
+        drawKeypoints(overlay, null);
+        setStatus('Đã dừng phân tích', '#6c757d');
+    }
+
+    async function startCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { width:640, height:480 }, audio:false });
+            video.srcObject = stream; await video.play();
+            placeholder.style.display = 'none';
+            video.addEventListener('loadedmetadata', () => {
+                overlay.width = video.videoWidth; overlay.height = video.videoHeight;
+            });
+            return true;
+        } catch (e) { alert('Không thể truy cập camera: ' + e.message); return false; }
+    }
+
+    btnStart.addEventListener('click', async () => { const ok = await startCamera(); if (!ok) return; startSending(); });
+    btnStop.addEventListener('click', () => stopSending());
+    document.addEventListener('keydown', e => {
+        if (e.code === 'Space' && e.target.tagName !== 'INPUT' && panelCamera.style.display !== 'none') {
+            e.preventDefault();
+            if (btnStart.disabled) stopSending(); else btnStart.click();
+        }
+    });
+
+    // ===================== VIDEO UPLOAD MODE =====================
+    const vPreset     = document.getElementById('v-preset');
+    const vFile       = document.getElementById('v-file');
+    const vBtnAnalyze = document.getElementById('v-btn-analyze');
+    const vProgressWrap = document.getElementById('v-progress-wrap');
+    const vProgressBar  = document.getElementById('v-progress-bar');
+    const vProgressPct  = document.getElementById('v-progress-pct');
+    const vProgressLabel = document.getElementById('v-progress-label');
+    const vPreviewWrap = document.getElementById('v-preview-wrap');
+    const vPreview     = document.getElementById('v-preview');
+    const vResultWrap  = document.getElementById('v-result-wrap');
+    const vResultVideo = document.getElementById('v-result-video');
+    const vOverlay     = document.getElementById('v-overlay');
+    const vOverallEl   = document.getElementById('v-overall');
+    const vFeedbackEl  = document.getElementById('v-feedback');
+    const vScorebar    = document.getElementById('v-score-bar');
+    const vScorebarWr  = document.getElementById('v-score-bar-wrapper');
+    const vStats       = document.getElementById('v-stats');
+    const vStatFrames  = document.getElementById('v-stat-frames');
+    const vStatDur     = document.getElementById('v-stat-dur');
+    const vChart       = document.getElementById('v-chart');
+    const vJointsPanel = document.getElementById('v-joints-panel');
+    const vJointsList  = document.getElementById('v-joints-list');
+    const vFrameBadge  = document.getElementById('v-frame-badge');
+
+    let videoFrames = [];  // mảng kết quả từng frame
+    let videoFps = 30;
+
+    function vUpdateScore(num) {
+        vOverallEl.textContent = num.toFixed(1) + '%';
+        vOverallEl.style.color = num >= 75 ? '#28a745' : num >= 50 ? '#f0c040' : '#e63946';
+        vScorebarWr.style.display = 'block';
+        vScorebar.style.width = Math.min(100, num) + '%';
+    }
+
+    function vShowJoints(frameData) {
+        if (!frameData) { vJointsPanel.style.display = 'none'; return; }
+        vJointsPanel.style.display = 'block';
+        const joints = frameData.per_joint || [];
+        vJointsList.innerHTML = joints.map((v, i) => {
+            if (v == null) return '';
+            const color = v >= 75 ? '#28a745' : v >= 50 ? '#f0c040' : '#e63946';
+            const bar = Math.min(100, v);
+            return `<div style="margin-bottom:5px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:2px;">
+                    <small>${JOINT_NAMES[i]}</small>
+                    <small style="color:${color};font-weight:600;">${v.toFixed(0)}%</small>
+                </div>
+                <div style="height:5px;background:#eee;border-radius:3px;">
+                    <div style="height:5px;width:${bar}%;background:${color};border-radius:3px;"></div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function drawChart(frames) {
+        const ctx = vChart.getContext('2d');
+        const W = vChart.offsetWidth || 560;
+        vChart.width = W; vChart.height = 90;
+        ctx.clearRect(0, 0, W, 90);
+        if (!frames || frames.length === 0) return;
+        const scores = frames.map(f => f.overall || 0);
+        const step = W / scores.length;
+        ctx.fillStyle = 'rgba(0,76,109,0.08)';
+        ctx.beginPath(); ctx.moveTo(0, 90);
+        scores.forEach((s, i) => ctx.lineTo(i * step, 90 - s * 0.8));
+        ctx.lineTo(W, 90); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = '#004c6d'; ctx.lineWidth = 2;
+        ctx.beginPath();
+        scores.forEach((s, i) => {
+            if (i === 0) ctx.moveTo(0, 90 - s * 0.8);
+            else ctx.lineTo(i * step, 90 - s * 0.8);
+        });
+        ctx.stroke();
+        // 75% threshold line
+        ctx.strokeStyle = 'rgba(40,167,69,0.4)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+        ctx.beginPath(); ctx.moveTo(0, 90 - 75*0.8); ctx.lineTo(W, 90 - 75*0.8); ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    // Kéo video -> cập nhật keypoints và joint theo frame
+    vResultVideo.addEventListener('timeupdate', () => {
+        if (!videoFrames.length) return;
+        const frameIdx = Math.round(vResultVideo.currentTime * videoFps);
+        const clamped = Math.max(0, Math.min(videoFrames.length - 1, frameIdx));
+        const fd = videoFrames[clamped];
+        if (!fd) return;
+        vFrameBadge.textContent = `Frame ${fd.frame_idx} | ${fd.overall.toFixed(1)}%`;
+        vOverlay.width = vResultVideo.videoWidth || vOverlay.offsetWidth;
+        vOverlay.height = vResultVideo.videoHeight || vOverlay.offsetHeight;
+        vOverlay._videoW = vResultVideo.videoWidth;
+        vOverlay._videoH = vResultVideo.videoHeight;
+        drawKeypoints(vOverlay, fd.kpts);
+        vShowJoints(fd);
+    });
+
+    // Enable analyze button when both file and preset selected
+    function checkVideoReady() {
+        vBtnAnalyze.disabled = !(vFile.files && vFile.files.length > 0 && vPreset.value);
+    }
+    vFile.addEventListener('change', () => {
+        checkVideoReady();
+        if (vFile.files && vFile.files.length > 0) {
+            vPreview.src = URL.createObjectURL(vFile.files[0]);
+            vPreviewWrap.style.display = 'block';
+            vResultWrap.style.display = 'none';
+        }
+    });
+    vPreset.addEventListener('change', checkVideoReady);
+
+    vBtnAnalyze.addEventListener('click', async () => {
+        const file = vFile.files[0];
+        const preset = vPreset.value;
+        if (!file || !preset) return;
+
+        // Reset UI
+        vResultWrap.style.display = 'none';
+        vProgressWrap.style.display = 'block';
+        vProgressBar.style.width = '5%';
+        vProgressPct.textContent = '0%';
+        vProgressLabel.textContent = 'Đang tải video lên server...';
+        vBtnAnalyze.disabled = true;
+        videoFrames = [];
+
+        try {
+            const form = new FormData();
+            form.append('file', file);
+            form.append('preset', preset);
+
+            // Giả lập tiến độ (server xử lý không có stream)
+            let fakeProgress = 5;
+            const fakeTimer = setInterval(() => {
+                fakeProgress = Math.min(90, fakeProgress + Math.random() * 3);
+                vProgressBar.style.width = fakeProgress + '%';
+                vProgressPct.textContent = fakeProgress.toFixed(0) + '%';
+                if (fakeProgress > 20) vProgressLabel.textContent = 'Đang chạy YOLOv8 pose estimation...';
+                if (fakeProgress > 60) vProgressLabel.textContent = 'Đang tính điểm so sánh...';
+            }, 400);
+
+            const res = await fetch(API_BASE + '/compare-video', { method: 'POST', body: form });
+            clearInterval(fakeTimer);
+
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({ detail: res.statusText }));
+                throw new Error(err.detail || 'Lỗi server');
+            }
+
+            const data = await res.json();
+            videoFrames = data.frames || [];
+            videoFps = data.fps_video || 30;
+
+            // Cập nhật progress hoàn thành
+            vProgressBar.style.width = '100%';
+            vProgressPct.textContent = '100%';
+            vProgressLabel.textContent = 'Hoàn thành!';
+            setTimeout(() => { vProgressWrap.style.display = 'none'; }, 800);
+
+            // Điểm tổng thể
+            vUpdateScore(data.overall);
+            vStats.style.display = 'block';
+            vStatFrames.textContent = `${data.num_frames_valid}/${data.num_frames_processed} frame hợp lệ`;
+            vStatDur.textContent = `${data.duration_sec.toFixed(1)}s`;
+
+            // Feedback tổng hợp (lấy các feedback xuất hiện nhiều nhất)
+            const fbCount = {};
+            videoFrames.forEach(f => (f.feedback || []).forEach(fb => { fbCount[fb] = (fbCount[fb]||0) + 1; }));
+            const topFb = Object.entries(fbCount).sort((a,b)=>b[1]-a[1]).slice(0,5).map(e=>e[0]);
+            vFeedbackEl.innerHTML = topFb.length
+                ? topFb.map(f=>`<li>${f}</li>`).join('')
+                : '<li style="color:#28a745;font-weight:600;">Kỹ thuật tốt! Không có lỗi đáng kể.</li>';
+
+            // Hiện video gốc với overlay
+            vResultVideo.src = URL.createObjectURL(file);
+            vResultWrap.style.display = 'block';
+            vPreviewWrap.style.display = 'none';
+
+            // Vẽ biểu đồ sau khi canvas render
+            setTimeout(() => drawChart(videoFrames), 50);
+
+            // Hiện joint frame đầu
+            vShowJoints(videoFrames[0]);
+
+        } catch (e) {
+            vProgressWrap.style.display = 'none';
+            alert('Lỗi phân tích video: ' + e.message);
+        } finally {
+            vBtnAnalyze.disabled = false;
+            checkVideoReady();
+        }
+    });
+
+    // ===================== KHỞI TẠO =====================
+    loadPresets(presetEl,  statusEl, statusDot);
+    loadPresets(vPreset, null, null);
+
+})();
+</script>
+}

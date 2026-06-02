@@ -1,0 +1,188 @@
+@page
+@model PickleballWebApp.Pages.NewsInternationalModel
+@{
+    ViewData["Title"] = "Tin tức Pickleball Quốc tế";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Tin quốc tế</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-globe me-2"></i>Tin Pickleball Quốc Tế</h1>
+        <p class="lead">Cập nhật tin tức từ các giải đấu và phong trào Pickleball trên toàn thế giới</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <!-- TIN NỔI BẬT -->
+        <div class="info-card mb-5" style="border-left:5px solid #f0c040;">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <span class="news-tag" style="background:#f0c040;color:#333;">TIN NỔI BẬT</span>
+                    <h3 style="color:#222;font-weight:700;margin-bottom:10px;">Pickleball chính thức được đề xuất vào chương trình thi đấu Olympic 2028 Los Angeles</h3>
+                    <p class="text-muted" style="font-size:0.9rem;"><i class="fas fa-calendar me-1"></i>20/05/2026 &nbsp;|&nbsp; <i class="fas fa-globe me-1"></i>Toàn cầu</p>
+                    <p style="color:#555;line-height:1.7;">Liên đoàn Pickleball Quốc tế (IFP) đã chính thức gửi đề xuất lên Ủy ban Olympic Quốc tế (IOC) để đưa Pickleball vào chương trình thi đấu Olympic 2028 tại Los Angeles. Với hơn 36 triệu người chơi toàn cầu và sự tham gia của 80+ quốc gia, cơ hội để Pickleball trở thành môn Olympic là rất cao.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Đọc thêm <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="news-card-img rounded-3" style="height:200px;background:linear-gradient(135deg,#f0c040,#e67e22);">
+                        <i class="fas fa-globe" style="font-size:4rem;color:white;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIN QUỐC TẾ -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Tin tức quốc tế mới nhất</h3>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#004c6d,#00a8cc);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">PPA Tour</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>15/05/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>USA</span>
+                        </div>
+                        <h5>Ben Johns giành danh hiệu Grand Slam thứ 5 liên tiếp tại US Pickleball Open 2026</h5>
+                        <p>Tay vợt số 1 thế giới Ben Johns tiếp tục thống trị làng Pickleball chuyên nghiệp với chiến thắng ấn tượng 11-3, 11-6 trong trận chung kết...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#c00000,#e63946);">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">MLP</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>10/05/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>USA</span>
+                        </div>
+                        <h5>Major League Pickleball mùa 2026 khởi tranh với tổng giải thưởng kỷ lục 50 triệu USD</h5>
+                        <p>MLP năm nay mở rộng lên 24 đội với sự tham gia của nhiều ngôi sao thể thao và nghệ sĩ nổi tiếng đầu tư vào đội, đánh dấu bước phát triển vượt bậc...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#1a6b35,#28a745);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#28a745;">Châu Á</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>05/05/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>Nhật Bản</span>
+                        </div>
+                        <h5>Nhật Bản vô địch giải Pickleball Châu Á 2026, Việt Nam kết thúc hạng 7 ấn tượng</h5>
+                        <p>Giải Pickleball Vô địch Châu Á 2026 diễn ra tại Tokyo với 18 quốc gia tham dự. Đội tuyển Việt Nam có màn trình diễn xuất sắc, giành chiến thắng trước Indonesia và Malaysia...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#2c3e50,#3d566e);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#3d566e;">Công nghệ</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>28/04/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>USA</span>
+                        </div>
+                        <h5>DUPR ra mắt hệ thống xếp hạng AI mới, chính xác hơn 40% so với phương pháp cũ</h5>
+                        <p>Dynamic Universal Pickleball Rating (DUPR) – hệ thống xếp hạng được dùng rộng rãi nhất thế giới – công bố thuật toán AI mới sử dụng phân tích video và dữ liệu từ hàng triệu trận đấu...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#8e44ad,#9b59b6);">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#9b59b6;">Pro Tour</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>22/04/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>Spain</span>
+                        </div>
+                        <h5>Anna Leigh Waters – "Công chúa Pickleball" – phá vỡ kỷ lục 50 danh hiệu ở tuổi 19</h5>
+                        <p>Anna Leigh Waters tiếp tục khẳng định vị thế số 1 thế giới nữ khi giành danh hiệu thứ 50 tại Madrid Open, trở thành VĐV trẻ nhất đạt cột mốc này...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#e67e22,#f39c12);">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#e67e22;">Đầu tư</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>15/04/2026</span>
+                            <span><i class="fas fa-flag me-1"></i>Châu Á</span>
+                        </div>
+                        <h5>Tập đoàn SportsAsia đầu tư 200 triệu USD xây dựng 1.000 sân Pickleball trên khắp Đông Nam Á</h5>
+                        <p>Kế hoạch đầy tham vọng của SportsAsia sẽ đưa 1.000 trung tâm Pickleball đến 6 quốc gia Đông Nam Á trong vòng 5 năm, trong đó Việt Nam sẽ nhận 150 trung tâm...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEO NỔI BẬT -->
+        <div class="info-card mt-5">
+            <h3><i class="fas fa-play-circle me-2"></i>Highlight quốc tế đáng xem</h3>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div style="background:#f0f5f8;border-radius:10px;padding:20px;text-align:center;">
+                        <div style="font-size:3rem;color:#004c6d;margin-bottom:10px;"><i class="fab fa-youtube"></i></div>
+                        <strong>Ben Johns vs. Tyson McGuffin</strong>
+                        <p style="font-size:0.85rem;color:#6c757d;margin:6px 0;">US Open 2026 – Chung kết đơn nam</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Xem trên YouTube</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background:#f0f5f8;border-radius:10px;padding:20px;text-align:center;">
+                        <div style="font-size:3rem;color:#004c6d;margin-bottom:10px;"><i class="fab fa-youtube"></i></div>
+                        <strong>Anna Leigh Waters – Top 10 shots</strong>
+                        <p style="font-size:0.85rem;color:#6c757d;margin:6px 0;">Những cú đánh đẹp nhất 2026</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Xem trên YouTube</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background:#f0f5f8;border-radius:10px;padding:20px;text-align:center;">
+                        <div style="font-size:3rem;color:#004c6d;margin-bottom:10px;"><i class="fab fa-youtube"></i></div>
+                        <strong>MLP Season 4 – Best rallies</strong>
+                        <p style="font-size:0.85rem;color:#6c757d;margin:6px 0;">Những pha bóng hay nhất MLP 2026</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Xem trên YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-5">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item active"><a class="page-link" href="#" style="background:#004c6d;border-color:#004c6d;">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">Tiếp <i class="fas fa-chevron-right ms-1"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

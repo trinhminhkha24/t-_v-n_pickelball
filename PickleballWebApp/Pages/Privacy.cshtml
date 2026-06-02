@@ -1,0 +1,71 @@
+@page
+@model PickleballWebApp.Pages.PrivacyModel
+@{
+    ViewData["Title"] = "Chính sách bảo mật";
+}
+
+<div class="page-hero" style="padding:40px 0 30px;">
+    <div class="container">
+        <h1><i class="fas fa-shield-alt me-2"></i>Chính sách bảo mật</h1>
+        <p class="lead">DKQ Pickleball cam kết bảo vệ quyền riêng tư của bạn</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container" style="max-width:800px;">
+        <div class="info-card mb-4">
+            <p style="color:#6c757d;font-size:0.9rem;margin:0;"><i class="fas fa-calendar me-1"></i>Cập nhật lần cuối: 01/06/2026</p>
+        </div>
+
+        <div class="info-card mb-4">
+            <h3>1. Thu thập thông tin</h3>
+            <p style="color:#555;line-height:1.8;">DKQ Pickleball chỉ thu thập thông tin tối thiểu cần thiết để cung cấp dịch vụ. Chúng tôi không bán hay chia sẻ thông tin cá nhân của bạn với bên thứ ba.</p>
+            <ul style="color:#555;line-height:1.9;padding-left:22px;">
+                <li>Thông tin đăng nhập (tên người dùng đã mã hóa)</li>
+                <li>Dữ liệu sử dụng tính năng phân tích động tác (xử lý cục bộ, không lưu trữ)</li>
+                <li>Thông tin phiên làm việc (cookie xác thực)</li>
+            </ul>
+        </div>
+
+        <div class="info-card mb-4">
+            <h3>2. Sử dụng camera</h3>
+            <p style="color:#555;line-height:1.8;">Tính năng phân tích động tác yêu cầu quyền truy cập camera của thiết bị bạn. Chúng tôi cam kết:</p>
+            <ul style="color:#555;line-height:1.9;padding-left:22px;">
+                <li>Chỉ sử dụng camera khi bạn chủ động nhấn nút "Bắt đầu"</li>
+                <li>Không lưu trữ video hoặc hình ảnh từ camera của bạn lên server</li>
+                <li>Dữ liệu hình ảnh chỉ được xử lý tạm thời để phân tích tư thế và không được giữ lại</li>
+                <li>Bạn có thể dừng sử dụng camera bất kỳ lúc nào bằng nút "Dừng"</li>
+            </ul>
+        </div>
+
+        <div class="info-card mb-4">
+            <h3>3. Cookie</h3>
+            <p style="color:#555;line-height:1.8;">Website sử dụng cookie xác thực để duy trì phiên đăng nhập. Cookie này:</p>
+            <ul style="color:#555;line-height:1.9;padding-left:22px;">
+                <li>Chỉ được tạo khi bạn đăng nhập vào trang quản trị</li>
+                <li>Tự động hết hạn khi bạn đóng trình duyệt hoặc đăng xuất</li>
+                <li>Không chứa thông tin cá nhân nhạy cảm</li>
+            </ul>
+        </div>
+
+        <div class="info-card mb-4">
+            <h3>4. Bảo mật dữ liệu</h3>
+            <p style="color:#555;line-height:1.8;">Chúng tôi áp dụng các biện pháp bảo mật phù hợp để bảo vệ thông tin của bạn bao gồm mã hóa HTTPS, kiểm soát truy cập và theo dõi hoạt động hệ thống.</p>
+        </div>
+
+        <div class="info-card mb-4">
+            <h3>5. Liên hệ</h3>
+            <p style="color:#555;line-height:1.8;">Nếu bạn có câu hỏi về chính sách bảo mật này, vui lòng liên hệ:</p>
+            <ul style="color:#555;line-height:1.9;padding-left:22px;list-style:none;">
+                <li><i class="fas fa-envelope me-2" style="color:#004c6d;"></i>info@dkqpickleball.vn</li>
+                <li><i class="fas fa-phone me-2" style="color:#004c6d;"></i>0123 456 789</li>
+            </ul>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-page="/Index" class="btn btn-outline-primary px-4">
+                <i class="fas fa-home me-1"></i>Quay về trang chủ
+            </a>
+        </div>
+    </div>
+</div>

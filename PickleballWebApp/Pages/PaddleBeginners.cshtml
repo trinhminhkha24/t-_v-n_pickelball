@@ -1,0 +1,213 @@
+@page
+@model PickleballWebApp.Pages.PaddleBeginnersModel
+@{
+    ViewData["Title"] = "Vợt Pickleball cho người mới";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Vợt người mới</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-table-tennis me-2"></i>Vợt Pickleball cho Người Mới</h1>
+        <p class="lead">Top 5 cây vợt tốt nhất cho người mới bắt đầu – giá hợp lý, dễ kiểm soát</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <!-- Hướng dẫn chọn vợt -->
+        <div class="info-card mb-5">
+            <h3><i class="fas fa-info-circle me-2"></i>Người mới cần tìm gì ở một cây vợt?</h3>
+            <div class="row g-4">
+                <div class="col-md-3 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-weight-hanging"></i></div>
+                    <strong style="color:#004c6d;">Trọng lượng nhẹ</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">210–250g giúp dễ điều khiển và tránh chấn thương vai, khuỷu tay</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-expand-arrows-alt"></i></div>
+                    <strong style="color:#004c6d;">Sweet spot lớn</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">Vùng tiếp xúc tốt rộng hơn giúp bóng đi đều kể cả khi đánh lệch tâm</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-hand-paper"></i></div>
+                    <strong style="color:#004c6d;">Cán tay thoải mái</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">Cán ngắn–trung bình, chất liệu cản chấn tốt để giảm rung</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-dollar-sign"></i></div>
+                    <strong style="color:#004c6d;">Giá hợp lý</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">500.000 – 1.500.000 VNĐ là khoảng giá lý tưởng cho người mới bắt đầu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách vợt -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Top 5 vợt dành cho người mới</h3>
+        <div class="row g-4">
+            <!-- Vợt 1 -->
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-success fs-6 px-3">Lựa chọn #1</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <h4>Selkirk Amped S2</h4>
+                    <div class="price">1.200.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Nhẹ nhàng</span>
+                        <span class="badge-tag">Sweet spot lớn</span>
+                        <span class="badge-tag">Kiểm soát tốt</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>220–240g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Fiberglass</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Polymer honeycomb</strong></td></tr>
+                        <tr><td>Chiều dài cán</td><td><strong>10,4 cm</strong></td></tr>
+                        <tr><td>Phù hợp</td><td><strong>Người mới – Trung cấp</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Selkirk Amped S2 là cây vợt được yêu thích nhất trong phân khúc người mới. Mặt Fiberglass tạo lực xoáy tốt, lõi polymer giảm rung và cảm giác cầm thoải mái ngay từ đầu.</p>
+                </div>
+            </div>
+
+            <!-- Vợt 2 -->
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-primary fs-6 px-3">Giá tốt nhất</span>
+                        <div class="rating">★★★★☆</div>
+                    </div>
+                    <h4>Gamma Mirage</h4>
+                    <div class="price">650.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Siêu nhẹ</span>
+                        <span class="badge-tag">Bền</span>
+                        <span class="badge-tag">Giá phải chăng</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>210–225g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Composite</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Foam</strong></td></tr>
+                        <tr><td>Chiều dài cán</td><td><strong>11,4 cm</strong></td></tr>
+                        <tr><td>Phù hợp</td><td><strong>Người mới hoàn toàn</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Lựa chọn ngân sách tuyệt vời với trọng lượng siêu nhẹ. Phù hợp nhất với người trung cao tuổi hoặc người mới chỉ muốn thử môn thể thao mà chưa muốn đầu tư nhiều.</p>
+                </div>
+            </div>
+
+            <!-- Vợt 3 -->
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-warning text-dark fs-6 px-3">Phổ biến nhất</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <h4>Paddletek Tempest Wave Pro</h4>
+                    <div class="price">1.450.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Kiểm soát</span>
+                        <span class="badge-tag">Đa năng</span>
+                        <span class="badge-tag">Chuẩn tournament</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>230–250g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Graphite</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>BEF polymer</strong></td></tr>
+                        <tr><td>Chiều dài cán</td><td><strong>12,7 cm</strong></td></tr>
+                        <tr><td>Phù hợp</td><td><strong>Người mới – Tiến bộ nhanh</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Paddletek Tempest Wave Pro được hàng nghìn người chơi Việt Nam tin dùng. Cân bằng hoàn hảo giữa kiểm soát và sức mạnh, đồng hành được cả khi lên trình độ trung cấp.</p>
+                </div>
+            </div>
+
+            <!-- Vợt 4 -->
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-info text-dark fs-6 px-3">Nhẹ nhất</span>
+                        <div class="rating">★★★★☆</div>
+                    </div>
+                    <h4>Onix Graphite Z5</h4>
+                    <div class="price">880.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Graphite</span>
+                        <span class="badge-tag">Giá trung</span>
+                        <span class="badge-tag">Dễ dùng</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>218–240g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Graphite</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Nomex honeycomb</strong></td></tr>
+                        <tr><td>Chiều dài cán</td><td><strong>10,2 cm</strong></td></tr>
+                        <tr><td>Phù hợp</td><td><strong>Người mới muốn sức mạnh</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Onix Z5 là một trong những cây vợt bán chạy nhất thị trường. Mặt Graphite cho cảm giác chắc, dễ đánh bóng mạnh hơn so với Fiberglass cùng mức giá.</p>
+                </div>
+            </div>
+
+            <!-- Vợt 5 -->
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge" style="background:#004c6d;">Made in Vietnam</span>
+                        <div class="rating">★★★★☆</div>
+                    </div>
+                    <h4>DKQ Pro Series V1</h4>
+                    <div class="price">750.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Nội địa</span>
+                        <span class="badge-tag">Bảo hành 1 năm</span>
+                        <span class="badge-tag">Hỗ trợ nhanh</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>225–245g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Carbon fiber</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>PP honeycomb</strong></td></tr>
+                        <tr><td>Chiều dài cán</td><td><strong>11,5 cm</strong></td></tr>
+                        <tr><td>Phù hợp</td><td><strong>Mọi trình độ</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Vợt được sản xuất và phân phối trong nước, dễ dàng bảo hành và mua thay thế. Chất lượng tốt ở phân khúc giá nội địa, phù hợp với người mới muốn tiết kiệm.</p>
+                </div>
+            </div>
+
+            <!-- So sánh & kết luận -->
+            <div class="col-lg-6">
+                <div class="info-card h-100">
+                    <h3><i class="fas fa-balance-scale me-2"></i>So sánh nhanh</h3>
+                    <div class="table-responsive">
+                        <table class="table table-sm" style="font-size:0.88rem;">
+                            <thead style="background:#004c6d;color:white;">
+                                <tr>
+                                    <th>Vợt</th>
+                                    <th>Giá</th>
+                                    <th>Kiểm soát</th>
+                                    <th>Sức mạnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Selkirk S2</td><td>1.2tr</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐</td></tr>
+                                <tr><td>Gamma Mirage</td><td>650k</td><td>⭐⭐⭐⭐</td><td>⭐⭐</td></tr>
+                                <tr><td>Paddletek TWP</td><td>1.45tr</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                                <tr><td>Onix Z5</td><td>880k</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+                                <tr><td>DKQ Pro V1</td><td>750k</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tips-box mt-3">
+                        <h3>Kết luận của chúng tôi</h3>
+                        <p>Nếu ngân sách dưới 800k → chọn <strong>DKQ Pro V1</strong>. Nếu muốn đầu tư bền lâu → chọn <strong>Selkirk S2</strong> hoặc <strong>Paddletek TWP</strong>.</p>
+                    </div>
+                    <div class="mt-3">
+                        <a asp-page="/PaddleIntermediate" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-arrow-right me-1"></i>Xem vợt cho người chơi trung cấp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+@page
+@model PickleballWebApp.Pages.Techniques.BackhandModel
+@{
+    ViewData["Title"] = "Backhand – Đánh trái tay";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Backhand</li>
+            </ol>
+        </nav>
+        <h1>🤚 Backhand – Đánh trái tay</h1>
+        <p class="lead">Cú đánh bên tay không thuận – điểm yếu cần được biến thành vũ khí bí mật</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Backhand được thực hiện ở bên tay không thuận. Trong Pickleball, backhand có thể đánh một tay hoặc hai tay. Nhiều pro players thực tế có <strong>backhand mạnh hơn forehand</strong> vì cú đánh này cho phép kiểm soát tốt hơn ở Kitchen.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Kỹ thuật đánh một tay</h3>
+                    <ol class="step-list">
+                        <li>Từ tư thế sẵn sàng, nhận biết bóng đến bên tay không thuận và xoay vai về phía đó.</li>
+                        <li>Đưa vợt sang bên trái (nếu thuận tay phải), tay giữ vợt chắc chắn.</li>
+                        <li>Bước chân thuận về phía trước để tạo đòn bẩy và trọng tâm.</li>
+                        <li>Vung vợt từ sau ra trước theo đường cung tự nhiên.</li>
+                        <li>Tiếp xúc bóng ở phía trước cơ thể, không để bóng qua thân.</li>
+                        <li>Hoàn thành follow-through, vợt hướng về mục tiêu.</li>
+                    </ol>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Kỹ thuật đánh hai tay</h3>
+                    <ol class="step-list">
+                        <li>Cầm vợt bằng cả hai tay – tay không thuận đặt phía trên tay thuận trên cán vợt.</li>
+                        <li>Xoay vai và hông về phía bóng để tạo lực.</li>
+                        <li>Vung vợt từ dưới lên trên, hai tay cùng kiểm soát hướng vợt.</li>
+                        <li>Tiếp xúc bóng ở phía trước người, cổ tay chắc.</li>
+                        <li>Follow-through cao và dài về phía mục tiêu.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo cải thiện backhand</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li>Đánh backhand hai tay cho sự ổn định và sức mạnh tốt hơn, đặc biệt khi mới học</li>
+                        <li>Backhand dink là vũ khí cực kỳ hiệu quả ở kitchen – luyện tập nhiều</li>
+                        <li>Đừng "chạy vòng" bóng backhand bằng forehand – hãy đánh thẳng backhand</li>
+                        <li>Đánh cross-court backhand là cú an toàn và khó trả nhất trong Pickleball</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Né tránh backhand, luôn cố đánh forehand – làm lộ điểm yếu và mất vị trí</li>
+                        <li>Không xoay vai đủ – cú đánh yếu và mất kiểm soát</li>
+                        <li>Tiếp xúc bóng quá gần người hoặc quá muộn</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật cơ bản</td></tr>
+                        <tr><td>Kiểu đánh</td><td>1 tay hoặc 2 tay</td></tr>
+                        <tr><td>Ứng dụng</td><td>Dink, Return, Drive</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Forehand" class="btn btn-outline-primary btn-sm">👊 Forehand – Thuận tay</a>
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

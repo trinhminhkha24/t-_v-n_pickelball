@@ -1,0 +1,86 @@
+@page
+@model PickleballWebApp.Pages.Techniques.DriveModel
+@{
+    ViewData["Title"] = "Drive – Đánh mạnh, nhanh";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Drive</li>
+            </ol>
+        </nav>
+        <h1>💥 Drive – Đánh mạnh, nhanh</h1>
+        <p class="lead">Cú đánh tốc độ cao, mạnh mẽ – tạo áp lực tối đa cho đối thủ</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Drive là cú đánh mạnh, nhanh, bay thẳng qua lưới, nhằm mục đích áp đảo đối thủ về tốc độ. Drive hiệu quả khi đối thủ đang ở vị trí bất lợi hoặc bóng nổi lên cao. Tuy nhiên, drive <strong>rủi ro hơn drop shot</strong> và không phải lúc nào cũng là lựa chọn tốt nhất.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Thường thực hiện khi bóng nổi lên cao hơn lưới hoặc đối thủ ở vị trí bất lợi.</li>
+                        <li>Tư thế vững: chân rộng, xoay hông và vai để tạo lực.</li>
+                        <li>Backswing vừa phải – không quá dài để vẫn kiểm soát được.</li>
+                        <li>Vung vợt từ sau ra trước với tốc độ cao, tiếp xúc bóng ở phía trước cơ thể.</li>
+                        <li>Giữ mặt vợt hơi đóng (hướng xuống) để bóng không ra ngoài.</li>
+                        <li>Nhắm vào chân đối thủ, các góc sân, hoặc khoảng trống.</li>
+                        <li>Follow-through dài về phía mục tiêu.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Khi nào nên dùng Drive?</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Khi bóng nổi cao:</strong> Đây là thời điểm lý tưởng để drive tấn công</li>
+                        <li><strong>Khi đối thủ ở cuối sân:</strong> Drive sâu đẩy họ lùi thêm và mất vị trí</li>
+                        <li><strong>Để đổi nhịp:</strong> Đột ngột drive giữa rally dink khiến đối thủ bất ngờ</li>
+                        <li><strong>Down the middle:</strong> Drive vào giữa sân khi đôi đối thủ không rõ ai xử lý</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Drive khi bóng thấp hơn lưới – gần như chắc chắn đánh vào lưới</li>
+                        <li>Drive quá nhiều thay vì drop shot – đối thủ học được và block lại</li>
+                        <li>Mặt vợt quá mở – bóng ra ngoài</li>
+                        <li>Thiếu kiểm soát hướng – drive ngẫu nhiên không có mục tiêu cụ thể</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Tấn công</td></tr>
+                        <tr><td>Tốc độ bóng</td><td>Nhanh</td></tr>
+                        <tr><td>Rủi ro</td><td>Cao hơn Drop Shot</td></tr>
+                        <tr><td>Khi dùng</td><td>Bóng nổi cao, đổi nhịp</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/DropShot" class="btn btn-outline-primary btn-sm">🌊 Drop Shot – Cú bỏ rơi</a>
+                        <a asp-page="/Techniques/Smash" class="btn btn-outline-primary btn-sm">🔨 Smash – Đập bóng</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

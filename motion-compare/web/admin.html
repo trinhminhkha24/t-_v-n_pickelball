@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Motion Compare - Admin</title>
+  <style>body{font-family:Arial,Helvetica,sans-serif;padding:12px} table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:6px}</style>
+</head>
+<body>
+  <h1>Motion Compare - Admin</h1>
+  <div id="login">
+    <h3>Đăng nhập</h3>
+    <form id="loginForm">
+      <label>Username: <input name="username" value="admin"></label>
+      <label>Password: <input name="password" type="password" value="adminpass"></label>
+      <button type="submit">Login</button>
+    </form>
+    <div id="loginMsg"></div>
+  </div>
+
+  <div id="adminUI" style="display:none">
+    <button id="btnLogout">Logout</button>
+    <h3>Presets</h3>
+    <table id="presetsTable"><thead><tr><th>Name</th><th>Frames</th><th>FPS</th><th>Actions</th></tr></thead><tbody></tbody></table>
+    <h4>Upload preset (.npz)</h4>
+    <form id="uploadForm">
+      <input type="file" name="file" accept=".npz">
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+
+<script>
+async function doLogin(ev){
+  ev.preventDefault();
+  const fd = new FormData(ev.target);
+  const res = await fetch('/admin/login',{method:'POST', body:fd});
+  const j = await res.json();
+  if(j.ok){ document.getElementById('login').style.display='none'; document.getElementById('adminUI').style.display='block'; loadPresets(); }
+  else { document.getElementById('loginMsg').textContent = j.msg || 'Login failed'; }
+}
+
+async function loadPresets(){
+  const res = await fetch('/admin/api/presets');
+  if(res.status===401){ alert('Unauthorized'); return; }
+  const j = await res.json();
+  const tbody = document.querySelector('#presetsTable tbody'); tbody.innerHTML='';
+  (j.presets||[]).forEach(p=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${p.name}</td><td>${p.num_frames||''}</td><td>${p.fps||''}</td><td><button data-name="${p.name}" class="del">Delete</button></td>`;
+    tbody.appendChild(tr);
+  });
+  document.querySelectorAll('.del').forEach(b=> b.addEventListener('click', async (e)=>{
+    const name = e.target.dataset.name;
+    const fd = new FormData(); fd.append('name', name);
+    const r = await fetch('/admin/api/delete_preset',{method:'POST', body:fd});
+    if(r.ok) loadPresets(); else alert('Delete failed');
+  }));
+}
+
+async function doUpload(ev){
+  ev.preventDefault();
+  const input = ev.target.querySelector('input[name=file]');
+  if(!input.files.length) return alert('Choose a file');
+  const fd = new FormData(); fd.append('file', input.files[0]);
+  const res = await fetch('/admin/api/upload_preset',{method:'POST', body:fd});
+  const j = await res.json(); if(j.ok) { loadPresets(); alert('Uploaded'); } else alert('Upload failed: '+(j.msg||'error'));
+}
+
+async function doLogout(){ await fetch('/admin/logout',{method:'POST'}); location.reload(); }
+
+document.getElementById('loginForm').addEventListener('submit', doLogin);
+document.getElementById('uploadForm').addEventListener('submit', doUpload);
+document.getElementById('btnLogout').addEventListener('click', doLogout);
+</script>
+</body>
+</html>

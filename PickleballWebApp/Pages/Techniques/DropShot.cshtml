@@ -1,0 +1,85 @@
+@page
+@model PickleballWebApp.Pages.Techniques.DropShotModel
+@{
+    ViewData["Title"] = "Drop Shot – Cú bỏ rơi mềm qua lưới";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Drop Shot</li>
+            </ol>
+        </nav>
+        <h1>🌊 Drop Shot – Cú bỏ rơi mềm</h1>
+        <p class="lead">Cú đánh thần kỳ giúp bạn chuyển từ thế bị động ở cuối sân lên kitchen line</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Drop shot (hay "third shot drop" – cú đánh thứ 3) là cú đánh nhẹ từ giữa sân hoặc cuối sân, làm bóng rơi vào vùng kitchen của đối thủ. Đây là kỹ thuật <strong>chiến thuật quan trọng nhất</strong> trong Pickleball đôi – giúp đội giao bóng có thể lên kitchen sau khi serve và đối thủ return.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Thường thực hiện từ vị trí giữa sân hoặc gần baseline khi đối thủ đã ở kitchen line.</li>
+                        <li>Để bóng nảy trước khi đánh (đây thường là cú đánh thứ 3 của lượt).</li>
+                        <li>Sử dụng cú đánh dưới tay (underhand) hoặc ngang hông – không phải từ trên xuống.</li>
+                        <li>Mở mặt vợt để nâng bóng qua lưới với quỹ đạo cong, không thẳng.</li>
+                        <li>Kiểm soát lực: bóng vừa đủ mạnh để qua lưới nhưng đủ nhẹ để rơi vào kitchen.</li>
+                        <li>Ngay sau khi thực hiện drop shot, di chuyển lên kitchen line.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Chìa khóa thực hiện drop shot tốt</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Lực vừa phải:</strong> Cú đánh nhẹ hơn bạn nghĩ – luyện nhiều để cảm nhận lực cần thiết</li>
+                        <li><strong>Quỹ đạo cong:</strong> Bóng cần bay cung cong thấp qua lưới, không phải đường thẳng</li>
+                        <li><strong>Di chuyển ngay:</strong> Đừng đứng nhìn drop shot – lên kitchen ngay lập tức</li>
+                        <li><strong>Kiên nhẫn:</strong> Nếu drop shot không lý tưởng, chuẩn bị cho "fifth shot drop" tiếp theo</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Drop shot quá cao – đối thủ có cơ hội volley tấn công dễ dàng</li>
+                        <li>Drop shot ra ngoài sân hoặc vào lưới</li>
+                        <li>Không di chuyển lên kitchen sau khi thực hiện</li>
+                        <li>Cố drop shot khi bóng quá thấp – thay vào đó hãy drive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge hard">Khó</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật chiến thuật</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Giữa sân / Cuối sân</td></tr>
+                        <tr><td>Tên khác</td><td>Third Shot Drop</td></tr>
+                        <tr><td>Mục tiêu</td><td>Kitchen đối thủ + lên NVZ</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/Techniques/Drive" class="btn btn-outline-primary btn-sm">💥 Drive – Đánh mạnh</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

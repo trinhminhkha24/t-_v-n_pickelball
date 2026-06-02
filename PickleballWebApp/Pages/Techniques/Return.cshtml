@@ -1,0 +1,85 @@
+@page
+@model PickleballWebApp.Pages.Techniques.ReturnModel
+@{
+    ViewData["Title"] = "Return – Trả giao bóng";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Return</li>
+            </ol>
+        </nav>
+        <h1>↩️ Return – Trả giao bóng</h1>
+        <p class="lead">Cú đánh đáp lại serve – quan trọng để chiếm lợi thế vị trí ngay từ đầu điểm</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Return là cú đánh đầu tiên của đội nhận serve. Theo luật <strong>Double Bounce Rule</strong>, bạn phải để bóng nảy một lần trước khi đánh trả. Mục tiêu của return tốt là <strong>trả bóng sâu</strong> để có đủ thời gian lên Kitchen Line và chiếm lợi thế vị trí.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Đứng khoảng 1–1,5m sau baseline để có không gian xử lý bóng sâu từ đối thủ.</li>
+                        <li>Theo dõi bóng ngay khi đối thủ bắt đầu serve, chuẩn bị tư thế sẵn sàng (ready position).</li>
+                        <li>Di chuyển vào vị trí đánh bóng sớm, không đợi bóng đến gần mới di chuyển.</li>
+                        <li>Để bóng nảy một lần (bắt buộc theo quy tắc double bounce).</li>
+                        <li>Đánh bóng trả lại sâu (deep return) về phía cuối sân đối thủ – ưu tiên hàng đầu.</li>
+                        <li>Ngay sau khi đánh, di chuyển về Kitchen Line để chiếm lợi thế vị trí.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Chiến thuật return hiệu quả</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Return sâu:</strong> Trả bóng nảy gần vạch cuối sân đối thủ để họ khó lên kitchen</li>
+                        <li><strong>Return vào giữa sân:</strong> Gây nhầm lẫn giữa hai người chơi đôi của đối thủ</li>
+                        <li><strong>Nhắm vào backhand:</strong> Đa số người chơi có backhand yếu hơn forehand</li>
+                        <li><strong>Lên kitchen ngay:</strong> Sau khi return, tranh thủ chiếm Kitchen Line</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Return quá ngắn – cho đối thủ cơ hội tấn công dễ dàng</li>
+                        <li>Không lên kitchen sau khi return – mất lợi thế vị trí</li>
+                        <li>Đứng quá gần baseline – khó xử lý bóng sâu</li>
+                        <li>Đánh trả quá mạnh mà thiếu kiểm soát hướng bóng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge easy">Dễ</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật cơ bản</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Sau baseline</td></tr>
+                        <tr><td>Mục tiêu</td><td>Return sâu, lên kitchen</td></tr>
+                        <tr><td>Bắt buộc</td><td>Để bóng nảy 1 lần</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Serve" class="btn btn-outline-primary btn-sm">🏓 Serve – Giao bóng</a>
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

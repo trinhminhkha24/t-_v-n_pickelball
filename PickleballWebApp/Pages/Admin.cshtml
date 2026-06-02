@@ -1,0 +1,227 @@
+@page
+@model PickleballWebApp.Pages.AdminModel
+@{
+    ViewData["Title"] = "Trang quản trị";
+}
+
+<div class="page-hero" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
+    <div class="container">
+        <h1><i class="fas fa-tachometer-alt me-2"></i>Bảng điều khiển Admin</h1>
+        <p class="lead">Chào mừng trở lại, <strong>@User.Identity?.Name</strong> 👋</p>
+    </div>
+</div>
+
+<div class="page-content" style="background:#f0f5f8;min-height:60vh;">
+    <div class="container">
+        <!-- THỐNG KÊ NHANH -->
+        <div class="row g-4 mb-5">
+            <div class="col-sm-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background:#e8f4fd;">
+                        <i class="fas fa-book-open" style="color:#004c6d;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Kỹ thuật</div>
+                        <div class="stat-value">12</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background:#fff3cd;">
+                        <i class="fas fa-dumbbell" style="color:#856404;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Bài tập</div>
+                        <div class="stat-value">15</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background:#d4edda;">
+                        <i class="fas fa-map-marker-alt" style="color:#155724;"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Địa điểm sân</div>
+                        <div class="stat-value">12</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <a asp-page="/AdminPresets" style="text-decoration:none;">
+                    <div class="admin-stat-card" style="cursor:pointer;border:1.5px solid #004c6d;">
+                        <div class="admin-stat-icon" style="background:#e8f4fd;">
+                            <i class="fas fa-brain" style="color:#004c6d;"></i>
+                        </div>
+                        <div>
+                            <div class="stat-label">Kỹ thuật mẫu AI</div>
+                            <div class="stat-value" id="stat-presets" style="font-size:1.4rem;">--</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- MENU QUẢN TRỊ -->
+        <h4 style="color:#004c6d;font-weight:700;margin-bottom:20px;">Quản lý nội dung</h4>
+        <div class="row g-3 mb-5">
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Techniques/Serve" class="admin-menu-card">
+                    <i class="fas fa-table-tennis"></i>
+                    <span>Kỹ thuật</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/Exercises" class="admin-menu-card">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Bài tập</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/NewsDomestic" class="admin-menu-card">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Tin tức</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/CourtsHanoi" class="admin-menu-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Địa điểm</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/PaddleBeginners" class="admin-menu-card">
+                    <i class="fas fa-table-tennis"></i>
+                    <span>Đánh giá vợt</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/MotionCompare" class="admin-menu-card">
+                    <i class="fas fa-camera"></i>
+                    <span>Phân tích AI</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <a asp-page="/AdminPresets" class="admin-menu-card" style="border:2px solid #004c6d;">
+                    <i class="fas fa-brain" style="color:#004c6d;"></i>
+                    <span style="color:#004c6d;font-weight:700;">Kỹ thuật mẫu AI</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- HOẠT ĐỘNG GẦN ĐÂY -->
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card">
+                    <h3><i class="fas fa-history me-2"></i>Hoạt động gần đây</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover" style="font-size:0.9rem;">
+                            <thead style="background:#f0f5f8;">
+                                <tr>
+                                    <th>Nội dung</th>
+                                    <th>Loại</th>
+                                    <th>Thời gian</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bài tập Drop Shot mới</td>
+                                    <td><span class="badge bg-primary">Bài tập</span></td>
+                                    <td>2 giờ trước</td>
+                                    <td><span class="badge bg-success">Đã đăng</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tin: Giải HN 2026</td>
+                                    <td><span class="badge bg-warning text-dark">Tin tức</span></td>
+                                    <td>5 giờ trước</td>
+                                    <td><span class="badge bg-success">Đã đăng</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sân DKQ Bình Thạnh</td>
+                                    <td><span class="badge bg-info text-dark">Địa điểm</span></td>
+                                    <td>1 ngày trước</td>
+                                    <td><span class="badge bg-success">Đã đăng</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Đánh giá Joola Hyperion</td>
+                                    <td><span class="badge" style="background:#8e44ad;">Vợt</span></td>
+                                    <td>2 ngày trước</td>
+                                    <td><span class="badge bg-success">Đã đăng</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Cập nhật luật chơi 2026</td>
+                                    <td><span class="badge bg-secondary">Trang</span></td>
+                                    <td>3 ngày trước</td>
+                                    <td><span class="badge bg-success">Đã đăng</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-chart-bar me-2"></i>Thống kê trang</h3>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small>Serve (phổ biến nhất)</small><small class="text-muted">1,234</small>
+                        </div>
+                        <div class="progress" style="height:8px;border-radius:4px;">
+                            <div class="progress-bar" style="width:85%;background:#004c6d;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small>Dink</small><small class="text-muted">987</small>
+                        </div>
+                        <div class="progress" style="height:8px;border-radius:4px;">
+                            <div class="progress-bar" style="width:68%;background:#00789c;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small>Drop Shot</small><small class="text-muted">756</small>
+                        </div>
+                        <div class="progress" style="height:8px;border-radius:4px;">
+                            <div class="progress-bar" style="width:52%;background:#00a8cc;"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small>Erne Shot</small><small class="text-muted">423</small>
+                        </div>
+                        <div class="progress" style="height:8px;border-radius:4px;">
+                            <div class="progress-bar" style="width:29%;background:#e63946;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-sign-out-alt me-2"></i>Tài khoản</h3>
+                    <p style="color:#555;font-size:0.9rem;">Đăng nhập với tư cách: <strong>@User.Identity?.Name</strong></p>
+                    <form method="post" asp-page="/Logout">
+                        <button type="submit" class="btn btn-outline-danger w-100">
+                            <i class="fas fa-sign-out-alt me-1"></i>Đăng xuất
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(async () => {
+    try {
+        const res = await fetch('http://localhost:8000/presets', { signal: AbortSignal.timeout(2000) });
+        const data = await res.json();
+        const el = document.getElementById('stat-presets');
+        if (el) el.textContent = (data.presets || []).length;
+    } catch {}
+})();
+</script>
+}

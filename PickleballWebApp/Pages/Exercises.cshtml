@@ -1,0 +1,291 @@
+@page
+@model PickleballWebApp.Pages.ExercisesModel
+@{
+    ViewData["Title"] = "Bài tập Pickleball";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Bài tập</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-dumbbell me-2"></i>Bài Tập Pickleball</h1>
+        <p class="lead">Hơn 15 bài tập từ cơ bản đến nâng cao – luyện mọi kỹ năng, mọi trình độ</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <!-- BỘ LỌC -->
+        <div class="info-card mb-5">
+            <div class="row align-items-center g-3">
+                <div class="col-auto"><strong style="color:#004c6d;">Lọc theo:</strong></div>
+                <div class="col-auto">
+                    <select class="form-select form-select-sm" style="border-color:#004c6d;color:#004c6d;font-weight:600;">
+                        <option>Tất cả trình độ</option>
+                        <option>Người mới bắt đầu</option>
+                        <option>Trung cấp</option>
+                        <option>Nâng cao</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select form-select-sm" style="border-color:#004c6d;color:#004c6d;font-weight:600;">
+                        <option>Tất cả kỹ thuật</option>
+                        <option>Serve</option>
+                        <option>Dink</option>
+                        <option>Volley</option>
+                        <option>Di chuyển</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- NGƯỜI MỚI -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:20px;">
+            <span class="difficulty-badge easy me-2">Người mới</span>Bài tập cơ bản
+        </h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card">
+                    <div class="ex-header">
+                        <div class="ex-icon">🎯</div>
+                        <div>
+                            <h5>Luyện Serve chính xác</h5>
+                            <span class="difficulty-badge easy">Dễ</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Đặt 3 cone ở 3 vị trí khác nhau trong ô giao bóng. Luyện serve vào từng vị trí, mỗi vị trí 20 lần.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 15 phút</div>
+                        <div><i class="fas fa-redo me-1"></i>Lặp lại: 3 x 20 cú mỗi vị trí</div>
+                        <div><i class="fas fa-user me-1"></i>Có thể tập một mình</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card">
+                    <div class="ex-header">
+                        <div class="ex-icon">🏓</div>
+                        <div>
+                            <h5>Đập bóng vào tường</h5>
+                            <span class="difficulty-badge easy">Dễ</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Đứng cách tường 2–3m, đánh bóng liên tục vào tường và hứng lại. Luyện cả forehand và backhand.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 10 phút</div>
+                        <div><i class="fas fa-redo me-1"></i>Lặp lại: 5 hiệp 2 phút</div>
+                        <div><i class="fas fa-user me-1"></i>Có thể tập một mình</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card">
+                    <div class="ex-header">
+                        <div class="ex-icon">🦶</div>
+                        <div>
+                            <h5>Di chuyển hình chữ T</h5>
+                            <span class="difficulty-badge easy">Dễ</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Đặt cone theo hình chữ T, luyện di chuyển nhanh đến từng cone và trở về vị trí trung tâm.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 10 phút</div>
+                        <div><i class="fas fa-redo me-1"></i>Lặp lại: 10 lần mỗi chiều</div>
+                        <div><i class="fas fa-user me-1"></i>Có thể tập một mình</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUNG CẤP -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:20px;">
+            <span class="difficulty-badge medium me-2">Trung cấp</span>Bài tập nâng trình
+        </h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">🌊</div>
+                        <div>
+                            <h5>Dink Rally 50 bóng</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Cùng đối tác dink liên tục 50 bóng không gián đoạn. Mỗi bóng phải rơi vào vùng kitchen. Tập cả cross-court và down-the-line.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 20 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-target me-1"></i>Mục tiêu: 50 liên tiếp</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">⬆️</div>
+                        <div>
+                            <h5>Third Shot Drop Drill</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Đối tác đứng ở kitchen trả bóng về baseline. Bạn thực hiện drop shot và di chuyển lên kitchen. Lặp lại 20 lần.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 15 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-redo me-1"></i>Lặp lại: 4 x 20 cú</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">🔄</div>
+                        <div>
+                            <h5>Bert & Erne Positioning</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Luyện di chuyển ngang sân (poaching) và giao tiếp với đồng đội trong đôi. Quan trọng cho thi đấu đôi.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 25 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần 2–4 người</div>
+                        <div><i class="fas fa-star me-1"></i>Đôi chơi quan trọng</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">⚡</div>
+                        <div>
+                            <h5>Volley-Volley Speed Drill</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Hai người đứng ở hai kitchen line và đánh volley nhanh liên tục. Luyện phản xạ và tốc độ tay.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 10 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-bolt me-1"></i>Rèn phản xạ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">🎭</div>
+                        <div>
+                            <h5>Skinny Singles</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Chơi đơn nhưng chỉ dùng một nửa sân (crosscourt). Rất hiệu quả để luyện cross-court dink và third shot drop.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 20 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-chess me-1"></i>Chiến thuật cao</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#f0c040;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff8e1;">🏃</div>
+                        <div>
+                            <h5>Reset Drill – Phòng thủ áp lực</h5>
+                            <span class="difficulty-badge medium">Trung bình</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Một người tấn công liên tục bằng drive/volley, người kia chỉ block/reset về kitchen. Luyện phòng thủ dưới áp lực.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 15 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-shield-alt me-1"></i>Rèn phòng thủ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÂNG CAO -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:20px;">
+            <span class="difficulty-badge hard me-2">Nâng cao</span>Bài tập chuyên nghiệp
+        </h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#e63946;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff0f0;">🚀</div>
+                        <div>
+                            <h5>Erne Shot Practice</h5>
+                            <span class="difficulty-badge hard">Khó</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Đối tác cố ý dink về sideline, bạn luyện di chuyển sang và thực hiện Erne. Bắt đầu chậm, dần tăng tốc.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 20 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần đối tác</div>
+                        <div><i class="fas fa-graduation-cap me-1"></i>Trình độ 4.0+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#e63946;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff0f0;">🎪</div>
+                        <div>
+                            <h5>Full Point Play – Thi đấu thử</h5>
+                            <span class="difficulty-badge hard">Khó</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Chơi điểm thật nhưng sau mỗi điểm phân tích lại: cú đánh quyết định, lỗi sai ở đâu, có thể làm gì tốt hơn.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-clock me-1"></i>Thời gian: 30 phút</div>
+                        <div><i class="fas fa-users me-1"></i>Cần 2–4 người</div>
+                        <div><i class="fas fa-brain me-1"></i>Phân tích chiến thuật</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="exercise-card" style="border-left-color:#e63946;">
+                    <div class="ex-header">
+                        <div class="ex-icon" style="background:#fff0f0;">📹</div>
+                        <div>
+                            <h5>Video + AI Review</h5>
+                            <span class="difficulty-badge hard">Khó</span>
+                        </div>
+                    </div>
+                    <p style="color:#555;font-size:0.9rem;margin-bottom:14px;">Quay video khi chơi, dùng tính năng phân tích động tác AI của DKQ để so sánh với chuyên gia và xác định điểm cần cải thiện.</p>
+                    <div style="font-size:0.85rem;color:#6c757d;">
+                        <div><i class="fas fa-camera me-1"></i>Dùng camera/webcam</div>
+                        <div><i class="fas fa-robot me-1"></i>Phân tích bằng AI</div>
+                        <div><i class="fas fa-chart-line me-1"></i>Tiến bộ nhanh nhất</div>
+                    </div>
+                    <a asp-page="/MotionCompare" class="btn btn-primary btn-sm mt-3 w-100">
+                        <i class="fas fa-camera me-1"></i>Thử ngay tại đây
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section" style="border-radius:16px;">
+            <h4><i class="fas fa-camera me-2"></i>Muốn biết bài tập nào bạn cần nhất?</h4>
+            <p>Dùng tính năng phân tích động tác AI để xác định chính xác kỹ thuật cần cải thiện.</p>
+            <a asp-page="/MotionCompare" class="btn btn-warning btn-lg fw-bold">
+                Phân tích động tác ngay <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</div>

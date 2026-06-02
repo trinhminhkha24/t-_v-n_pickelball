@@ -1,0 +1,195 @@
+@page
+@model PickleballWebApp.Pages.CourtsHanoiModel
+@{
+    ViewData["Title"] = "Sân Pickleball tại Hà Nội";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Sân Hà Nội</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-map-marker-alt me-2"></i>Sân Pickleball tại Hà Nội</h1>
+        <p class="lead">Tổng hợp các địa điểm thi đấu và luyện tập Pickleball uy tín tại Thủ đô</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row g-4 mb-5">
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-map-marker-alt"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">15+</div>
+                    <div style="color:#6c757d;">Địa điểm sân</div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-table-tennis"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">60+</div>
+                    <div style="color:#6c757d;">Sân thi đấu</div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="info-card">
+                    <div style="font-size:2.5rem;color:#004c6d;margin-bottom:10px;"><i class="fas fa-clock"></i></div>
+                    <div style="font-size:2rem;font-weight:800;color:#004c6d;">6AM–10PM</div>
+                    <div style="color:#6c757d;">Giờ mở cửa phổ biến</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Các sân nổi bật tại Hà Nội</h3>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>🏟️ Hanoi Pickleball Arena</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Cầu Giấy</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Số 15 Trần Thái Tông, Cầu Giấy, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>8 sân tiêu chuẩn, 2 sân trong nhà có máy lạnh</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 22:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>80.000 – 120.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0987 123 456</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(128 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Cho thuê vợt</span>
+                            <span class="badge-tag">Bán bóng</span>
+                            <span class="badge-tag">Huấn luyện viên</span>
+                            <span class="badge-tag">Giữ xe miễn phí</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>🎾 Long Biên Sports Center</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Long Biên</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>72 Thạch Bàn, Long Biên, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>6 sân ngoài trời, mặt sân acrylic chuyên dụng</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>5:30 – 21:30 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>70.000 – 100.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0912 456 789</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(95 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Sân lớn</span>
+                            <span class="badge-tag">Câu lạc bộ</span>
+                            <span class="badge-tag">Đỗ xe rộng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>⚡ DKQ Pickleball Club – Thanh Xuân</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Thanh Xuân</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>18 Nguyễn Trãi, Thanh Xuân, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>10 sân trong nhà, hệ thống đèn LED chuyên nghiệp</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 23:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>90.000 – 150.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0123 456 789</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(214 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Huấn luyện AI</span>
+                            <span class="badge-tag">Phòng tắm</span>
+                            <span class="badge-tag">Quán nước</span>
+                            <span class="badge-tag">Tủ đồ cá nhân</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>🌟 Hoàng Mai Pickleball Park</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Hoàng Mai</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>88 Giải Phóng, Hoàng Mai, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>12 sân hỗn hợp (6 trong nhà, 6 ngoài trời)</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>5:00 – 22:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>75.000 – 110.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0936 789 012</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(87 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Giá ưu đãi sáng</span>
+                            <span class="badge-tag">Cho thuê vợt</span>
+                            <span class="badge-tag">Câu lạc bộ mở</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header">
+                        <h4>🏅 Tây Hồ Pickleball Arena</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Tây Hồ</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Đường Lạc Long Quân, Tây Hồ, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>4 sân trong nhà, view hồ Tây tuyệt đẹp</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 21:00 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>100.000 – 160.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0965 234 567</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★★</span><span style="color:#6c757d;margin-left:4px;">(76 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Cao cấp</span>
+                            <span class="badge-tag">View đẹp</span>
+                            <span class="badge-tag">Chỗ đỗ xe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="court-card">
+                    <div class="court-card-header" style="background:linear-gradient(135deg,#5a1e96,#7b2fbe);">
+                        <h4>🎪 Hà Đông Sports Complex</h4>
+                        <p style="margin:0;font-size:0.9rem;opacity:0.8;">Quận Hà Đông</p>
+                    </div>
+                    <div class="court-card-body">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i><span>Khu đô thị Dương Nội, Hà Đông, Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-table-tennis"></i><span>16 sân, lớn nhất Hà Nội</span></div>
+                        <div class="detail-row"><i class="fas fa-clock"></i><span>6:00 – 22:30 (tất cả các ngày)</span></div>
+                        <div class="detail-row"><i class="fas fa-money-bill-wave"></i><span>65.000 – 95.000 VNĐ/giờ/sân</span></div>
+                        <div class="detail-row"><i class="fas fa-phone"></i><span>0978 345 678</span></div>
+                        <div class="detail-row"><i class="fas fa-star"></i><span style="color:#f0c040;">★★★★☆</span><span style="color:#6c757d;margin-left:4px;">(143 đánh giá)</span></div>
+                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                            <span class="badge-tag">Sân lớn nhất HN</span>
+                            <span class="badge-tag">Giải đấu thường xuyên</span>
+                            <span class="badge-tag">Nhà hàng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card mt-5">
+            <div class="tips-box">
+                <h3><i class="fas fa-lightbulb me-2"></i>Mẹo đặt sân ở Hà Nội</h3>
+                <ul style="padding-left:20px;color:#533f03;line-height:2;margin:0;">
+                    <li>Đặt sân trước ít nhất 1-2 ngày vào giờ cao điểm (6-8h sáng và 17-20h tối)</li>
+                    <li>Nhiều sân có ưu đãi cho đặt theo tháng hoặc theo câu lạc bộ</li>
+                    <li>Giờ sáng sớm (5:30-7h) thường rẻ hơn 20-30% so với giờ tối</li>
+                    <li>Thứ Bảy và Chủ Nhật cần đặt sớm hơn, sân thường kín từ chiều thứ Sáu</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

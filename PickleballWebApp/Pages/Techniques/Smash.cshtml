@@ -1,0 +1,86 @@
+@page
+@model PickleballWebApp.Pages.Techniques.SmashModel
+@{
+    ViewData["Title"] = "Smash / Overhead – Đập bóng trên cao";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Smash</li>
+            </ol>
+        </nav>
+        <h1>🔨 Smash / Overhead – Đập bóng trên cao</h1>
+        <p class="lead">Cú tấn công mạnh nhất trong Pickleball – dùng để kết thúc điểm ngay lập tức</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Smash (overhead) là cú đánh tấn công mạnh nhất, thực hiện khi đối thủ lob bóng lên cao. Đây là cơ hội hiếm có để kết thúc điểm ngay lập tức. Cú smash tốt cần sự phối hợp nhịp nhàng giữa chân di chuyển, vai, và thời điểm đánh bóng đúng lúc.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Nhận biết lob ngay khi bóng rời vợt đối thủ – di chuyển ngay lập tức.</li>
+                        <li>Lùi về phía sau để đứng dưới đỉnh quỹ đạo bóng, chân không thuận trước.</li>
+                        <li>Giơ tay không cầm vợt lên để canh thời điểm và định vị bóng.</li>
+                        <li>Đưa vợt lên cao sau lưng (giống tư thế ném bóng), khuỷu tay giơ cao.</li>
+                        <li>Tiếp xúc bóng ở điểm cao nhất có thể, cánh tay duỗi thẳng hoàn toàn.</li>
+                        <li>Đập bóng mạnh xuống sân đối phương theo đường chéo hoặc thẳng.</li>
+                        <li>Follow-through xuống dưới, hoàn thành động tác.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo smash hiệu quả</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Di chuyển sớm:</strong> Lùi về vị trí đúng trước khi bóng đến – đừng chờ bóng đến mới lùi</li>
+                        <li><strong>Nhắm vào góc sân:</strong> Smash chéo góc hoặc vào chân đối thủ khó trả hơn smash thẳng</li>
+                        <li><strong>Không smash tất cả:</strong> Đôi khi drop volley vào kitchen hiệu quả hơn smash mạnh</li>
+                        <li><strong>Smash backhand overhead:</strong> Đây là cú khó – luyện nhiều vì đối thủ sẽ cố lob vào đây</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Không di chuyển về vị trí đúng – smash mất lực và kiểm soát</li>
+                        <li>Tiếp xúc bóng quá muộn (bóng đã qua đỉnh) – bóng đi ra ngoài</li>
+                        <li>Smash quá mạnh vào lưới vì không canh thời điểm</li>
+                        <li>Bỏ lỡ cơ hội smash vì do dự quá lâu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge hard">Khó</span></td></tr>
+                        <tr><td>Phân loại</td><td>Tấn công mạnh</td></tr>
+                        <tr><td>Khi dùng</td><td>Đáp lại lob của đối thủ</td></tr>
+                        <tr><td>Sức mạnh</td><td>Tối đa</td></tr>
+                        <tr><td>Mục tiêu</td><td>Kết thúc điểm ngay</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Lob" class="btn btn-outline-primary btn-sm">🌙 Lob – Lốp bóng (đối thủ dùng)</a>
+                        <a asp-page="/Techniques/Drive" class="btn btn-outline-primary btn-sm">💥 Drive – Đánh mạnh</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

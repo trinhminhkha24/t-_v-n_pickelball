@@ -1,0 +1,166 @@
+@page
+@model PickleballWebApp.Pages.RulesModel
+@{
+    ViewData["Title"] = "Luật chơi Pickleball";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Luật chơi</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-book me-2"></i>Luật chơi Pickleball</h1>
+        <p class="lead">Nắm vững luật cơ bản để thi đấu tự tin và công bằng</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+
+                <!-- SÂN VÀ THIẾT BỊ -->
+                <div class="rule-card">
+                    <div class="rule-number">1</div>
+                    <h5>Sân và thiết bị thi đấu</h5>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li>Kích thước sân: <strong>6,1m × 13,4m</strong> (rộng × dài)</li>
+                        <li>Lưới cao <strong>91,4cm</strong> ở hai trụ và <strong>86,4cm</strong> ở giữa</li>
+                        <li>Vùng "Kitchen" (Non-Volley Zone – NVZ): <strong>2,13m</strong> tính từ lưới về mỗi phía</li>
+                        <li>Vợt (paddle): chất liệu rắn, không có lỗ, kích thước tổng chiều dài + chiều rộng không quá <strong>60,96cm</strong></li>
+                        <li>Bóng: bóng nhựa cứng có lỗ, đường kính <strong>7,29–7,62cm</strong></li>
+                    </ul>
+                </div>
+
+                <!-- TÍNH ĐIỂM -->
+                <div class="rule-card">
+                    <div class="rule-number">2</div>
+                    <h5>Hệ thống tính điểm</h5>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li>Chỉ đội/người đang <strong>giao bóng</strong> mới được tính điểm</li>
+                        <li>Đơn (singles): giao bóng thắng → được điểm và tiếp tục giao; thua → đổi quyền giao</li>
+                        <li>Đôi (doubles): mỗi đội có <strong>hai lần giao bóng</strong> (một cho mỗi người) trước khi mất quyền giao</li>
+                        <li>Điểm chiến thắng thông thường: <strong>11 điểm</strong>, phải thắng cách biệt ít nhất <strong>2 điểm</strong></li>
+                        <li>Một số giải dùng điểm <strong>15 hoặc 21</strong></li>
+                    </ul>
+                </div>
+
+                <!-- DOUBLE BOUNCE -->
+                <div class="rule-card">
+                    <div class="rule-number">3</div>
+                    <h5>Quy tắc hai lần nảy (Double Bounce Rule)</h5>
+                    <p style="color:#555;">Đây là quy tắc đặc trưng và quan trọng nhất của Pickleball:</p>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li>Sau khi giao bóng, <strong>đội nhận giao bóng phải để bóng nảy một lần</strong> trước khi đánh lại</li>
+                        <li>Sau đó, <strong>đội giao bóng cũng phải để bóng nảy một lần</strong> trước khi đánh tiếp</li>
+                        <li>Sau hai lần nảy bắt buộc này, cả hai đội có thể đánh volley (đánh bóng trước khi nảy) hoặc để nảy tùy ý</li>
+                        <li>Mục đích: tạo rally dài hơn và giảm lợi thế của bên giao bóng</li>
+                    </ul>
+                </div>
+
+                <!-- KITCHEN -->
+                <div class="rule-card">
+                    <div class="rule-number">4</div>
+                    <h5>Luật vùng Bếp (Non-Volley Zone – NVZ / Kitchen)</h5>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li><strong>Không được đánh volley</strong> khi đứng trong hoặc chạm vào đường biên của vùng Kitchen</li>
+                        <li>Không được bước vào Kitchen ngay sau khi đánh volley (động lượng không được kéo vào)</li>
+                        <li>Có thể bước vào Kitchen khi bóng đã nảy xuống sân của mình</li>
+                        <li>Vi phạm NVZ → mất điểm hoặc mất quyền giao bóng</li>
+                        <li>Vạch biên NVZ được tính là <strong>một phần của vùng Kitchen</strong></li>
+                    </ul>
+                </div>
+
+                <!-- GIAO BÓNG -->
+                <div class="rule-card">
+                    <div class="rule-number">5</div>
+                    <h5>Luật giao bóng (Serve)</h5>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li>Giao bóng phải thực hiện <strong>từ dưới lên</strong> (underhand), tiếp xúc bóng dưới thắt lưng</li>
+                        <li>Đứng sau vạch cuối sân, chân không được chạm hoặc vượt qua vạch khi giao</li>
+                        <li>Giao bóng chéo sân sang ô giao bóng đối diện</li>
+                        <li>Bóng phải bay qua lưới và <strong>không rơi vào vùng Kitchen</strong> của đối thủ</li>
+                        <li>Nếu bóng chạm lưới và rơi vào ô giao bóng hợp lệ → giao lại (let serve)</li>
+                        <li>Chỉ được giao bóng <strong>một lần</strong> (không có giao lần 2 như tennis)</li>
+                    </ul>
+                </div>
+
+                <!-- LỖI THƯỜNG GẶP -->
+                <div class="rule-card">
+                    <div class="rule-number">6</div>
+                    <h5>Các lỗi thường gặp (Faults)</h5>
+                    <ul style="color:#555;line-height:1.8;padding-left:20px;">
+                        <li>Bóng ra ngoài đường biên sân</li>
+                        <li>Bóng chạm lưới (trừ khi giao lại – let)</li>
+                        <li>Vi phạm vùng Kitchen khi đánh volley</li>
+                        <li>Không để bóng nảy theo quy tắc two-bounce</li>
+                        <li>Bóng chạm người chơi hoặc quần áo</li>
+                        <li>Đánh bóng hai lần liên tiếp</li>
+                        <li>Bóng rơi vào vùng Kitchen khi giao bóng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-ruler me-2"></i>Kích thước sân</h3>
+                    <div style="background:#f0f5f8;border-radius:10px;padding:16px;font-family:monospace;font-size:0.85rem;text-align:center;color:#004c6d;">
+                        <div style="border:2px solid #004c6d;padding:10px;border-radius:6px;position:relative;">
+                            <div style="text-align:center;margin-bottom:6px;font-weight:700;">← 6,1m →</div>
+                            <div style="display:flex;gap:4px;align-items:stretch;height:120px;">
+                                <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:0.75rem;color:#6c757d;">13,4m</div>
+                                <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+                                    <div style="background:#b8d4e8;flex:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;">Vùng giao bóng</div>
+                                    <div style="background:#f0c04080;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#856404;">KITCHEN (NVZ)</div>
+                                    <div style="background:#444;height:3px;border-radius:2px;"></div>
+                                    <div style="background:#f0c04080;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#856404;">KITCHEN (NVZ)</div>
+                                    <div style="background:#b8d4e8;flex:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;">Vùng giao bóng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div style="width:16px;height:16px;background:#b8d4e8;border-radius:3px;flex-shrink:0;"></div>
+                            <small style="color:#555;">Vùng giao bóng (Service Box)</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div style="width:16px;height:16px;background:#f0c04080;border-radius:3px;flex-shrink:0;border:1px solid #f0c040;"></div>
+                            <small style="color:#555;">Kitchen / NVZ – không volley</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo nhớ luật nhanh</h3>
+                    <div class="tips-box">
+                        <h3>5 điểm cốt lõi</h3>
+                        <ol style="padding-left:20px;margin:0;color:#533f03;line-height:2;">
+                            <li>Giao bóng từ dưới lên</li>
+                            <li>Hai lần nảy bắt buộc</li>
+                            <li>Không volley trong Kitchen</li>
+                            <li>Chỉ bên giao bóng được tính điểm</li>
+                            <li>Thắng phải cách 2 điểm</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-book-open me-2"></i>Tài liệu chính thức</h3>
+                    <p style="color:#555;font-size:0.9rem;">Luật Pickleball được cập nhật hàng năm bởi USA Pickleball (USAP) và Liên đoàn Pickleball Quốc tế (IFP).</p>
+                    <div class="mt-3">
+                        <a asp-page="/Techniques/Serve" class="btn btn-primary w-100 mb-2">
+                            <i class="fas fa-play me-1"></i>Bắt đầu học kỹ thuật
+                        </a>
+                        <a asp-page="/Exercises" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-dumbbell me-1"></i>Xem bài tập
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

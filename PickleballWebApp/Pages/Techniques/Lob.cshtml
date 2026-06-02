@@ -1,0 +1,85 @@
+@page
+@model PickleballWebApp.Pages.Techniques.LobModel
+@{
+    ViewData["Title"] = "Lob – Lốp bóng cao qua đầu";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Lob</li>
+            </ol>
+        </nav>
+        <h1>🌙 Lob – Lốp bóng cao qua đầu</h1>
+        <p class="lead">Cú đánh bất ngờ vượt qua đối thủ đứng ở lưới – vũ khí chiến thuật hiệu quả</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Lob là cú đánh đưa bóng đi cao và sâu, vượt qua đầu đối thủ đang đứng ở kitchen line. Lob hiệu quả khi đối thủ quá tập trung ở lưới và không di chuyển lùi kịp. Tuy nhiên, lob xấu có thể bị đối thủ smash và mất điểm ngay.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Thực hiện khi đối thủ đang đứng sát kitchen line và không chú ý phía sau.</li>
+                        <li>Giả vờ chuẩn bị dink để "đánh lừa" đối thủ – yếu tố bất ngờ là chìa khóa.</li>
+                        <li>Mở mặt vợt rộng hơn bình thường và đánh từ dưới lên theo đường cung lớn.</li>
+                        <li>Đưa bóng đi đủ cao để vượt qua tầm với của đối thủ khi họ nhảy.</li>
+                        <li>Nhắm bóng rơi gần vạch cuối sân của đối thủ (không quá ngắn để họ smash).</li>
+                        <li>Sau lob, chuẩn bị lùi về baseline phòng thủ nếu lob không hoàn hảo.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo dùng lob hiệu quả</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Yếu tố bất ngờ:</strong> Lob hiệu quả nhất khi đối thủ không ngờ tới – đừng dùng quá thường xuyên</li>
+                        <li><strong>Lob sâu:</strong> Bóng cần rơi gần vạch cuối sân – lob ngắn bị smash ngay</li>
+                        <li><strong>Lob topspin:</strong> Thêm topspin để bóng rơi nhanh và nảy xa sau khi chạm sân</li>
+                        <li><strong>Nhắm vào vai yếu:</strong> Lob về phía backhand overhead của đối thủ – cú đánh khó thực hiện nhất</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Lob quá ngắn – đối thủ dễ dàng smash và giành điểm</li>
+                        <li>Lob ra ngoài sân – mất điểm trực tiếp</li>
+                        <li>Dùng lob quá nhiều – đối thủ chuẩn bị sẵn và smash</li>
+                        <li>Không chuẩn bị phòng thủ sau khi lob – bị smash mà không kịp phản ứng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Tấn công / Phòng thủ</td></tr>
+                        <tr><td>Quỹ đạo</td><td>Cao, cung lớn</td></tr>
+                        <tr><td>Rủi ro</td><td>Cao nếu ngắn</td></tr>
+                        <tr><td>Hiệu quả</td><td>Cao khi bất ngờ</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Smash" class="btn btn-outline-primary btn-sm">🔨 Smash – Đập bóng (đáp lại lob)</a>
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

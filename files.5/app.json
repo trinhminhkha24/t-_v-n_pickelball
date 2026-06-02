@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Motion Compare",
+    "slug": "motion-compare-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Ứng dụng cần quyền camera để phân tích tư thế.",
+        "NSMicrophoneUsageDescription": "Không sử dụng microphone."
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA"],
+      "package": "com.example.motioncompare"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Cho phép Motion Compare truy cập camera."
+        }
+      ]
+    ],
+    "extra": {
+      "serverUrl": "http://192.168.1.10:8000"
+    }
+  }
+}

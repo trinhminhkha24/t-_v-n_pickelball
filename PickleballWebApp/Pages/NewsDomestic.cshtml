@@ -1,0 +1,158 @@
+@page
+@model PickleballWebApp.Pages.NewsDomesticModel
+@{
+    ViewData["Title"] = "Tin tức Pickleball trong nước";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Tin trong nước</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-flag me-2"></i>Tin Pickleball Trong Nước</h1>
+        <p class="lead">Cập nhật tin tức mới nhất về phong trào Pickleball tại Việt Nam</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <!-- TIN NỔI BẬT -->
+        <div class="info-card mb-5" style="border-left:5px solid #e63946;">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <span class="news-tag">TIN NỔI BẬT</span>
+                    <h3 style="color:#222;font-weight:700;margin-bottom:10px;">Giải Pickleball Mở Rộng Hà Nội 2026 thu hút hơn 500 vận động viên</h3>
+                    <p class="text-muted" style="font-size:0.9rem;"><i class="fas fa-calendar me-1"></i>18/05/2026 &nbsp;|&nbsp; <i class="fas fa-map-marker-alt me-1"></i>Hà Nội</p>
+                    <p style="color:#555;line-height:1.7;">Giải đấu Pickleball Mở Rộng Hà Nội 2026 vừa kết thúc thành công tốt đẹp tại Hanoi Sports Complex với sự tham gia của 512 vận động viên đến từ 28 tỉnh thành trên cả nước. Đây là giải đấu Pickleball lớn nhất từ trước đến nay được tổ chức tại miền Bắc, đánh dấu cột mốc quan trọng trong sự phát triển của môn thể thao này tại Việt Nam.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">Đọc thêm <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="news-card-img rounded-3" style="height:200px;background:linear-gradient(135deg,#004c6d,#e63946);">
+                        <i class="fas fa-trophy" style="font-size:4rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LƯỚI TIN TỨC -->
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Tin tức mới nhất</h3>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">Thi đấu</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>12/05/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>TP.HCM</span>
+                        </div>
+                        <h5>TP.HCM tổ chức giải Pickleball nội thành lần thứ 5 với hơn 300 cặp đôi tranh tài</h5>
+                        <p>Giải đấu quy tụ các tay vợt hàng đầu thành phố, với nhiều khuôn mặt trẻ nổi bật ở nội dung đơn nam và đôi nam nữ hỗn hợp...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#1a6b35,#28a745);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#28a745;">Phát triển</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>08/05/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>Toàn quốc</span>
+                        </div>
+                        <h5>Liên đoàn Pickleball Việt Nam chính thức được thành lập, đánh dấu bước ngoặt lịch sử</h5>
+                        <p>Sau nhiều năm hoạt động theo hình thức câu lạc bộ, Liên đoàn Pickleball Việt Nam đã chính thức được Bộ Văn hóa Thể thao và Du lịch cấp phép thành lập...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#8e44ad,#9b59b6);">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#9b59b6;">Giáo dục</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>03/05/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>Hà Nội</span>
+                        </div>
+                        <h5>Trường THPT Chu Văn An đưa Pickleball vào chương trình thể dục ngoại khóa</h5>
+                        <p>Dự án thí điểm đưa Pickleball vào trường học tại Hà Nội đang nhận được phản hồi rất tích cực từ học sinh và phụ huynh, mở đường cho môn thể thao phát triển trong giới trẻ...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#e67e22,#f39c12);">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#e67e22;">Cơ sở hạ tầng</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>29/04/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>Đà Nẵng</span>
+                        </div>
+                        <h5>Đà Nẵng khánh thành trung tâm Pickleball đầu tiên với 20 sân tiêu chuẩn quốc tế</h5>
+                        <p>Trung tâm Pickleball Đà Nẵng Arena chính thức đưa vào hoạt động, đánh dấu sự mở rộng của phong trào Pickleball ra khu vực miền Trung...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#2c3e50,#3d566e);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag" style="background:#3d566e;">Cộng đồng</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>24/04/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>Hà Nội</span>
+                        </div>
+                        <h5>Câu lạc bộ Pickleball 60+ Hà Nội: Bộ môn giúp người cao tuổi sống khỏe và vui</h5>
+                        <p>CLB dành cho người từ 60 tuổi trở lên tại Hà Nội hiện có hơn 200 thành viên, họp mặt tập luyện 4 buổi mỗi tuần tại công viên Thống Nhất...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="news-card">
+                    <div class="news-card-img" style="background:linear-gradient(135deg,#c00000,#e63946);">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">Thành tích</span>
+                        <div class="news-meta">
+                            <span><i class="fas fa-calendar me-1"></i>18/04/2026</span>
+                            <span><i class="fas fa-map-marker-alt me-1"></i>Quốc tế</span>
+                        </div>
+                        <h5>Đội tuyển Việt Nam giành HCĐ đôi nam tại giải Pickleball Đông Nam Á 2026</h5>
+                        <p>Cặp đôi Nguyễn Quang Huy – Trần Minh Đức đã xuất sắc vượt qua đội Thái Lan để giành tấm huy chương đồng lịch sử cho Pickleball Việt Nam...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHÂN TRANG -->
+        <div class="d-flex justify-content-center mt-5">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item active"><a class="page-link" href="#" style="background:#004c6d;border-color:#004c6d;">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="color:#004c6d;">Tiếp <i class="fas fa-chevron-right ms-1"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

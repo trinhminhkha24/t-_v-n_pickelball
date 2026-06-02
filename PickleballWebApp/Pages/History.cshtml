@@ -1,0 +1,142 @@
+@page
+@model PickleballWebApp.Pages.HistoryModel
+@{
+    ViewData["Title"] = "Lịch sử Pickleball";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Lịch sử</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-history me-2"></i>Lịch sử Pickleball</h1>
+        <p class="lead">Từ sân sau một ngôi nhà ở Washington đến môn thể thao tăng trưởng nhanh nhất thế giới</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-globe me-2"></i>Pickleball là gì?</h3>
+                    <p>Pickleball là môn thể thao dạng vợt kết hợp các yếu tố của tennis, cầu lông và bóng bàn. Trò chơi được chơi trên sân kích thước 6,1m × 13,4m với lưới thấp hơn tennis, sử dụng vợt đặc (paddle) và quả bóng nhựa có lỗ.</p>
+                    <p>Pickleball phù hợp với mọi lứa tuổi và trình độ. Đây là môn thể thao có tốc độ tăng trưởng người chơi nhanh nhất tại Mỹ trong nhiều năm liên tiếp và đang lan rộng mạnh mẽ sang Việt Nam.</p>
+                </div>
+
+                <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Dòng thời gian phát triển</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1965 – Sự ra đời</div>
+                        <div class="timeline-content">
+                            <strong>Bainbridge Island, Washington, Mỹ</strong> – Joel Pritchard (nghị sĩ) và Bill Bell sáng tạo ra Pickleball trong buổi chiều mùa hè để giải trí cho gia đình. Họ dùng vợt bóng bàn, quả bóng nhựa có lỗ và hạ thấp lưới cầu lông xuống 91cm. Người bạn Barney McCallum gia nhập và cùng định hình luật chơi.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1967 – Sân chơi đầu tiên</div>
+                        <div class="timeline-content">
+                            Sân Pickleball cố định đầu tiên được xây dựng tại nhà của Bob O'Brian – người hàng xóm của Pritchard tại Bainbridge Island. Luật chơi được chuẩn hóa và ghi chép lại.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1972 – Thành lập công ty</div>
+                        <div class="timeline-content">
+                            Công ty Pickleball Inc. được thành lập. Những cây vợt và quả bóng Pickleball thương mại đầu tiên ra đời, mở đường cho môn thể thao phát triển rộng hơn.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1984 – USAPA ra đời</div>
+                        <div class="timeline-content">
+                            Hiệp hội Pickleball Hoa Kỳ (USAPA – United States of America Pickleball Association) được thành lập, đánh dấu bước phát triển chính thức của môn thể thao này với hơn 40 sân ở các bang khác nhau.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2001 – Bước ra quốc tế</div>
+                        <div class="timeline-content">
+                            Pickleball lần đầu xuất hiện trong các chương trình thể dục của Thế vận hội đặc biệt (Special Olympics). Môn thể thao bắt đầu lan sang Canada và một số quốc gia khác.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010 – Bùng nổ tại Mỹ</div>
+                        <div class="timeline-content">
+                            Số lượng người chơi Pickleball tại Mỹ vượt qua 100.000 người. Pickleball chính thức gia nhập Thế vận hội cộng đồng Senior Games. Các giải đấu chuyên nghiệp bắt đầu xuất hiện.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022 – Môn thể thao của tiểu bang</div>
+                        <div class="timeline-content">
+                            Washington chính thức công nhận Pickleball là môn thể thao đại diện của tiểu bang. Số người chơi tại Mỹ đạt hơn 4,8 triệu. Liên đoàn Pickleball Quốc tế (IFP) ghi nhận hơn 60 quốc gia thành viên.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020-nay – Pickleball tại Việt Nam</div>
+                        <div class="timeline-content">
+                            Pickleball du nhập và phát triển nhanh chóng tại Việt Nam, đặc biệt ở Hà Nội và TP.HCM. Cộng đồng người chơi tăng trưởng mạnh, nhiều sân chuyên dụng được mở ra. Các giải đấu phong trào và chuyên nghiệp đầu tiên được tổ chức tại Việt Nam.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-question-circle me-2"></i>Tại sao gọi là "Pickleball"?</h3>
+                    <p>Có hai giải thích phổ biến về tên gọi này:</p>
+                    <ul style="padding-left:20px;color:#555;">
+                        <li class="mb-2"><strong>Pickle Boat:</strong> Nhà Pritchard đặt tên theo chiếc thuyền "pickle boat" trong đua thuyền – loại thuyền gồm những người chèo thừa từ các đội khác nhau, tương tự cách Pickleball kết hợp nhiều môn thể thao.</li>
+                        <li><strong>Con chó Pickles:</strong> Một số nguồn cho rằng tên được đặt theo con chó của gia đình Pritchard tên Pickles, chuyên chạy theo bắt bóng khi chúng lăn ra ngoài sân.</li>
+                    </ul>
+                    <p class="mt-2" style="color:#6c757d;font-size:0.9rem;">Dù là lý do nào, cái tên "Pickleball" đã trở thành thương hiệu toàn cầu!</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-chart-line me-2"></i>Số liệu ấn tượng</h3>
+                    <div class="mb-3">
+                        <div style="font-size:1.8rem;font-weight:800;color:#004c6d;">36.5 triệu</div>
+                        <div style="color:#6c757d;font-size:0.9rem;">Người chơi trên toàn cầu (2023)</div>
+                    </div>
+                    <div class="mb-3">
+                        <div style="font-size:1.8rem;font-weight:800;color:#004c6d;">#1</div>
+                        <div style="color:#6c757d;font-size:0.9rem;">Môn thể thao tăng trưởng nhanh nhất Mỹ 3 năm liên tiếp</div>
+                    </div>
+                    <div class="mb-3">
+                        <div style="font-size:1.8rem;font-weight:800;color:#004c6d;">60+</div>
+                        <div style="color:#6c757d;font-size:0.9rem;">Quốc gia thành viên IFP</div>
+                    </div>
+                    <div>
+                        <div style="font-size:1.8rem;font-weight:800;color:#004c6d;">1965</div>
+                        <div style="color:#6c757d;font-size:0.9rem;">Năm ra đời – hơn 60 năm lịch sử</div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-users me-2"></i>Người sáng lập</h3>
+                    <div class="mb-3">
+                        <strong style="color:#004c6d;">Joel Pritchard</strong>
+                        <p style="font-size:0.9rem;color:#555;margin:4px 0 0;">Nghị sĩ tiểu bang Washington, đồng sáng lập năm 1965</p>
+                    </div>
+                    <div class="mb-3">
+                        <strong style="color:#004c6d;">Bill Bell</strong>
+                        <p style="font-size:0.9rem;color:#555;margin:4px 0 0;">Doanh nhân, cùng Pritchard tạo ra trò chơi buổi chiều hè 1965</p>
+                    </div>
+                    <div>
+                        <strong style="color:#004c6d;">Barney McCallum</strong>
+                        <p style="font-size:0.9rem;color:#555;margin:4px 0 0;">Tham gia ngay từ đầu, giúp chuẩn hóa luật chơi và phát triển thiết bị</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 text-center">
+            <h4 style="color:#004c6d;font-weight:700;margin-bottom:16px;">Sẵn sàng bắt đầu học Pickleball?</h4>
+            <a asp-page="/Techniques/Serve" class="btn btn-primary me-3 px-4 py-2">
+                <i class="fas fa-play me-1"></i>Học kỹ thuật Serve đầu tiên
+            </a>
+            <a asp-page="/Rules" class="btn btn-outline-primary px-4 py-2">
+                <i class="fas fa-book me-1"></i>Xem luật chơi
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+bin/
+obj/
+node_modules/
+.expo/
+.expo-shared/
+web-build/
+dist/
+build/
+*.log

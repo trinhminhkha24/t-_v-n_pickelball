@@ -1,0 +1,152 @@
+@page
+@model PickleballWebApp.Pages.PaddleIntermediateModel
+@{
+    ViewData["Title"] = "Vợt Pickleball cho người chơi trung cấp";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Vợt trung cấp</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-table-tennis me-2"></i>Vợt Pickleball Trung Cấp</h1>
+        <p class="lead">Nâng cấp thiết bị – bứt tốc trình độ. Top vợt cho người chơi 3.0–4.5</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="info-card mb-5">
+            <h3><i class="fas fa-level-up-alt me-2"></i>Khi nào nên nâng cấp vợt?</h3>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-clock"></i></div>
+                    <strong style="color:#004c6d;">Sau 6 tháng chơi</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">Bạn đã quen với cảm giác bóng và cần hiệu suất cao hơn từ thiết bị</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-spin fa-cog"></i></div>
+                    <strong style="color:#004c6d;">Cần xoáy nhiều hơn</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">Mặt Carbon fiber tạo ma sát cao hơn, giúp tạo spin dễ và nhiều hơn</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div style="font-size:2rem;color:#004c6d;margin-bottom:8px;"><i class="fas fa-fist-raised"></i></div>
+                    <strong style="color:#004c6d;">Muốn sức mạnh hơn</strong>
+                    <p style="font-size:0.9rem;color:#6c757d;margin-top:6px;">Vợt trung cấp có lõi dày và cứng hơn, truyền lực mạnh hơn cho Drive và Smash</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color:#004c6d;font-weight:700;margin-bottom:24px;">Top vợt trung cấp được khuyến nghị</h3>
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="paddle-card" style="border-top-color:#e63946;">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge" style="background:#e63946;font-size:0.85rem;padding:6px 14px;">Đánh spin tốt nhất</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <h4>Joola Ben Johns Hyperion</h4>
+                    <div class="price">2.800.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Spin cao</span>
+                        <span class="badge-tag">Kiểm soát xuất sắc</span>
+                        <span class="badge-tag">Pro series</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>235–255g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Carbon Friction</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Aero-Foam II</strong></td></tr>
+                        <tr><td>Hình dạng</td><td><strong>Elongated (dài)</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Được sử dụng bởi Ben Johns – tay vợt số 1 thế giới. Bề mặt Carbon Friction tạo spin cực mạnh, lý tưởng cho người thích phong cách tấn công toàn diện.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="paddle-card" style="border-top-color:#00789c;">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge" style="background:#00789c;font-size:0.85rem;padding:6px 14px;">Cân bằng hoàn hảo</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <h4>Selkirk Vanguard Power Air Invikta</h4>
+                    <div class="price">3.200.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Cân bằng</span>
+                        <span class="badge-tag">Sức mạnh</span>
+                        <span class="badge-tag">Elongated</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>225–245g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Selkirk MAXflex Fiberglass</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Quantum Core</strong></td></tr>
+                        <tr><td>Hình dạng</td><td><strong>Invikta (elongated)</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Vợt được các pro players yêu thích vì sự cân bằng lý tưởng. Mặt MAXflex tạo lực bật cực tốt, cán dài giúp tăng tầm với ở volley và erne shot.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-success" style="font-size:0.85rem;padding:6px 14px;">Kiểm soát tốt nhất</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <h4>Franklin Signature Pro</h4>
+                    <div class="price">1.900.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Kiểm soát</span>
+                        <span class="badge-tag">Dink siêu mượt</span>
+                        <span class="badge-tag">Cán ngắn</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>220–240g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>Carbon fiber</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>PP honeycomb 16mm</strong></td></tr>
+                        <tr><td>Hình dạng</td><td><strong>Standard (vuông)</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Lõi 16mm dày tạo cảm giác bóng mượt mà, kiểm soát tốt ở kitchen. Phù hợp với phong cách chơi thiên về dink, drop shot và defense.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="paddle-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge bg-warning text-dark" style="font-size:0.85rem;padding:6px 14px;">Giá tốt nhất phân khúc</span>
+                        <div class="rating">★★★★☆</div>
+                    </div>
+                    <h4>Engage Pursuit EX 6.0</h4>
+                    <div class="price">1.600.000 VNĐ</div>
+                    <div class="mb-3">
+                        <span class="badge-tag">Giá trị cao</span>
+                        <span class="badge-tag">Bền</span>
+                        <span class="badge-tag">Đa năng</span>
+                    </div>
+                    <table class="spec-table mb-3">
+                        <tr><td>Trọng lượng</td><td><strong>230–250g</strong></td></tr>
+                        <tr><td>Chất liệu mặt</td><td><strong>ControlPro II</strong></td></tr>
+                        <tr><td>Lõi</td><td><strong>Skin-Tec Core</strong></td></tr>
+                        <tr><td>Hình dạng</td><td><strong>Standard</strong></td></tr>
+                    </table>
+                    <p style="font-size:0.9rem;color:#555;">Engage Pursuit mang lại hiệu suất tương đương các vợt đắt tiền hơn với mức giá phải chăng. Tốt cho người muốn nâng cấp mà chưa muốn đầu tư quá nhiều.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card mt-5">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h3><i class="fas fa-camera me-2"></i>Luyện tập với vợt mới hiệu quả hơn!</h3>
+                    <p style="color:#555;">Dù chọn cây vợt nào, kỹ thuật đúng luôn quan trọng hơn thiết bị. Dùng tính năng Phân tích động tác AI để so sánh chuyển động với chuyên gia và cải thiện từng ngày.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a asp-page="/MotionCompare" class="btn btn-primary px-4 py-2">
+                        <i class="fas fa-camera me-1"></i>Phân tích động tác ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

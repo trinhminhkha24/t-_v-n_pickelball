@@ -1,0 +1,85 @@
+@page
+@model PickleballWebApp.Pages.Techniques.BlockShotModel
+@{
+    ViewData["Title"] = "Block Shot – Đỡ bóng/chặn bóng";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Block Shot</li>
+            </ol>
+        </nav>
+        <h1>🛡️ Block Shot – Chặn bóng phòng thủ</h1>
+        <p class="lead">Cú đánh phòng thủ tinh tế – hấp thụ lực tấn công và chuyển thành thế kiểm soát</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Block shot là cú đánh phòng thủ, dùng mặt vợt để chặn lại cú tấn công mạnh của đối thủ. Thay vì vung vợt mạnh, bạn <strong>hấp thụ lực bóng</strong> và trả nhẹ về kitchen đối thủ. Đây là kỹ thuật cứu điểm hiệu quả khi bị tấn công dồn dập.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Nhận biết bóng đang đến với tốc độ cao và chuẩn bị tư thế phòng thủ.</li>
+                        <li>Giữ vợt trước mặt, cẳng tay song song mặt đất – không vung.</li>
+                        <li><strong>Cầm vợt lỏng</strong> (grip khoảng 3-4/10) – đây là chìa khóa để hấp thụ lực.</li>
+                        <li>Chỉ đặt vợt chặn trước đường bóng – không cần backswing hay follow-through mạnh.</li>
+                        <li>Để lực của bóng đối thủ tự "bật" nhẹ lại qua lưới và rơi vào kitchen.</li>
+                        <li>Điều chỉnh góc mặt vợt để kiểm soát hướng bóng trả lại.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Bí quyết Block Shot thành công</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li><strong>Tay lỏng:</strong> Grip lỏng là bí quyết số 1 – cầm chặt sẽ bật bóng ra ngoài</li>
+                        <li><strong>Không vung:</strong> Chỉ đặt vợt chặn, để lực bóng đối thủ làm công việc</li>
+                        <li><strong>Nhắm vào kitchen:</strong> Mục tiêu là trả nhẹ vào kitchen – reset rally về thế cân bằng</li>
+                        <li><strong>Tư thế thấp:</strong> Khuỵu đầu gối để xử lý bóng thấp về chân tốt hơn</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Cầm vợt quá chặt – bóng bật ra ngoài sân thay vì rơi vào kitchen</li>
+                        <li>Cố vung mạnh để "trả đũa" – mất kiểm soát và thường ra ngoài</li>
+                        <li>Không chuẩn bị tư thế kịp – block bị muộn và bóng đi sai hướng</li>
+                        <li>Mặt vợt quá đóng – bóng vào lưới</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge medium">Trung bình</span></td></tr>
+                        <tr><td>Phân loại</td><td>Phòng thủ</td></tr>
+                        <tr><td>Grip khi đánh</td><td>Rất lỏng (3-4/10)</td></tr>
+                        <tr><td>Mục tiêu</td><td>Kitchen đối thủ</td></tr>
+                        <tr><td>Khi dùng</td><td>Bị tấn công bóng nhanh</td></tr>
+                    </table>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Volley" class="btn btn-outline-primary btn-sm">⚡ Volley – Đánh vô lê</a>
+                        <a asp-page="/Techniques/Dink" class="btn btn-outline-primary btn-sm">🎯 Dink – Bỏ nhỏ sát lưới</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm"><i class="fas fa-camera me-1"></i>Phân tích động tác</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

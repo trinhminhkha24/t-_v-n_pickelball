@@ -1,0 +1,99 @@
+@page
+@model PickleballWebApp.Pages.Techniques.ServeModel
+@{
+    ViewData["Title"] = "Serve – Giao bóng";
+}
+
+<div class="technique-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item" style="color:rgba(255,255,255,0.7);">Kỹ thuật</li>
+                <li class="breadcrumb-item active" style="color:white;">Serve</li>
+            </ol>
+        </nav>
+        <h1>🏓 Serve – Giao bóng</h1>
+        <p class="lead">Cú đánh khởi đầu mỗi điểm – nền tảng không thể thiếu của mọi người chơi</p>
+    </div>
+</div>
+
+<div class="technique-body">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-info-circle me-2"></i>Tổng quan</h3>
+                    <p>Giao bóng (Serve) là cú đánh bắt đầu mỗi lượt thi đấu. Trong Pickleball, serve phải thực hiện theo kiểu <strong>underhand</strong> (từ dưới lên), khác với tennis. Một cú serve tốt giúp bạn kiểm soát điểm ngay từ đầu và tạo áp lực cho đối thủ.</p>
+                    <p>Đây là kỹ thuật bắt buộc và dễ học nhất – nhưng để làm chủ serve biến hóa thì cần nhiều luyện tập.</p>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-list-ol me-2"></i>Các bước thực hiện</h3>
+                    <ol class="step-list">
+                        <li>Đứng sau vạch cuối sân (baseline), trong phần sân chéo với ô giao bóng của đối thủ. Ít nhất một chân phải ở phía sau vạch.</li>
+                        <li>Cầm bóng bằng tay không thuận, giơ ngang hông. Vợt cầm chắc nhưng không quá gắng.</li>
+                        <li>Đưa vợt ra sau theo chuyển động lắc lư tự nhiên từ dưới lên, như kiểu chơi bowling.</li>
+                        <li>Tung bóng nhẹ lên hoặc thả xuống (không được tung cao quá đầu gối), tiếp xúc bóng khi vợt đang di chuyển lên.</li>
+                        <li>Tiếp xúc bóng phải ở điểm <strong>thấp hơn thắt lưng</strong> và đầu vợt phải thấp hơn cổ tay.</li>
+                        <li>Vung vợt theo hướng mục tiêu, hoàn thành động tác theo lực (follow-through) hướng về phía trên.</li>
+                        <li>Bóng phải bay chéo qua lưới và rơi vào trong ô giao bóng hợp lệ của đối thủ.</li>
+                    </ol>
+                </div>
+
+                <div class="tips-box mb-4">
+                    <h3><i class="fas fa-lightbulb me-2"></i>Mẹo quan trọng</h3>
+                    <ul style="padding-left:20px;color:#533f03;line-height:1.9;margin:0;">
+                        <li>Thay đổi tốc độ, độ xoáy và vị trí giao bóng để đối thủ không đoán được</li>
+                        <li>Serve vào vị trí chân thuận của đối thủ để buộc họ phải di chuyển bất tiện</li>
+                        <li>Serve sâu (deep serve) về phía cuối sân sẽ đẩy đối thủ lùi xa và khó lên kitchen</li>
+                        <li>Thực hành "topspin serve" và "slice serve" khi đã nắm vững cơ bản</li>
+                    </ul>
+                </div>
+
+                <div class="common-mistakes-box">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Lỗi thường gặp</h3>
+                    <ul style="margin:0;">
+                        <li>Tiếp xúc bóng quá cao (trên thắt lưng) → lỗi serve</li>
+                        <li>Bước chân qua vạch cuối sân trước khi đánh bóng</li>
+                        <li>Giao bóng vào vùng Kitchen của đối thủ → lỗi</li>
+                        <li>Đầu vợt cao hơn cổ tay khi tiếp xúc bóng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-table me-2"></i>Thông số kỹ thuật</h3>
+                    <table class="spec-table">
+                        <tr><td>Độ khó</td><td><span class="difficulty-badge easy">Dễ</span></td></tr>
+                        <tr><td>Phân loại</td><td>Kỹ thuật cơ bản</td></tr>
+                        <tr><td>Vị trí đánh</td><td>Sau baseline</td></tr>
+                        <tr><td>Hướng bóng</td><td>Chéo sân (crosscourt)</td></tr>
+                        <tr><td>Kiểu đánh</td><td>Underhand (từ dưới lên)</td></tr>
+                    </table>
+                </div>
+
+                <div class="info-card mb-4">
+                    <h3><i class="fas fa-dumbbell me-2"></i>Bài tập luyện serve</h3>
+                    <ul style="padding-left:20px;color:#555;line-height:1.9;margin:0;">
+                        <li><strong>Drill 1:</strong> 50 serves vào ô phải, 50 serves vào ô trái mỗi ngày</li>
+                        <li><strong>Drill 2:</strong> Đặt 3 cone ở các vị trí target – luyện độ chính xác</li>
+                        <li><strong>Drill 3:</strong> Luyện serve deep (nảy gần vạch cuối sân đối thủ)</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-arrow-right me-2"></i>Kỹ thuật liên quan</h3>
+                    <div class="d-flex flex-column gap-2">
+                        <a asp-page="/Techniques/Return" class="btn btn-outline-primary btn-sm">↩️ Return – Trả giao bóng</a>
+                        <a asp-page="/Techniques/Drive" class="btn btn-outline-primary btn-sm">💥 Drive – Đánh mạnh</a>
+                        <a asp-page="/MotionCompare" class="btn btn-primary btn-sm">
+                            <i class="fas fa-camera me-1"></i>Phân tích động tác
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
