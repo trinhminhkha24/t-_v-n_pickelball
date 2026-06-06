@@ -9,6 +9,8 @@ builder.Services.AddAuthentication("CookieAuth")
         options.LoginPath = "/Login";
     });
 
+builder.Services.AddSingleton<PickleballWebApp.Services.UserDataService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +28,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<PickleballWebApp.Middleware.PageTrackingMiddleware>();
 
 app.MapRazorPages();
 

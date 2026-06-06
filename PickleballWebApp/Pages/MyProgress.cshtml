@@ -1,0 +1,319 @@
+@page
+@model PickleballWebApp.Pages.MyProgressModel
+@{
+    ViewData["Title"] = "Tiến độ luyện tập";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Tiến độ luyện tập</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-chart-line me-2"></i>Tiến Độ Luyện Tập</h1>
+        <p class="lead">Theo dõi hành trình và sự tiến bộ của bạn – @User.Identity!.Name</p>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+
+        <!-- ========== THỐNG KÊ TỔNG QUAN ========== -->
+        <div class="row g-4 mb-4">
+            <div class="col-6 col-md-3">
+                <div class="info-card text-center h-100" style="border-top:4px solid #004c6d;">
+                    <div style="font-size:2.2rem;font-weight:800;color:#004c6d;">@Model.Stats.TotalSessions</div>
+                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Buổi luyện tập</div>
+                    <i class="fas fa-dumbbell mt-2" style="color:#004c6d;opacity:0.4;font-size:1.3rem;"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="info-card text-center h-100" style="border-top:4px solid #28a745;">
+                    <div style="font-size:2.2rem;font-weight:800;color:#28a745;">
+                        @(Model.Stats.TotalSessions > 0 ? Model.Stats.AverageAccuracy.ToString("F1") + "%" : "--")
+                    </div>
+                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Độ chính xác TB</div>
+                    <i class="fas fa-bullseye mt-2" style="color:#28a745;opacity:0.4;font-size:1.3rem;"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="info-card text-center h-100" style="border-top:4px solid #f0c040;">
+                    <div style="font-size:2.2rem;font-weight:800;color:#856404;">
+                        @(Model.Stats.TotalSessions > 0 ? Model.Stats.BestAccuracy.ToString("F1") + "%" : "--")
+                    </div>
+                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Điểm cao nhất</div>
+                    <i class="fas fa-trophy mt-2" style="color:#f0c040;opacity:0.6;font-size:1.3rem;"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                @{
+                    var trend = Model.Stats.RecentTrend;
+                    var trendColor = trend > 0 ? "#28a745" : trend < 0 ? "#e63946" : "#6c757d";
+                    var trendIcon = trend > 0 ? "fa-arrow-up" : trend < 0 ? "fa-arrow-down" : "fa-minus";
+                    var trendBorder = trend > 0 ? "#28a745" : trend < 0 ? "#e63946" : "#6c757d";
+                }
+                <div class="info-card text-center h-100" style="border-top:4px solid @trendBorder;">
+                    <div style="font-size:2.2rem;font-weight:800;color:@trendColor;">
+                        @if (Model.Stats.TotalSessions >= 4)
+                        {
+                            <i class="fas @trendIcon me-1" style="font-size:1.6rem;"></i>
+                            @(Math.Abs(trend).ToString("F1"))@:%
+                        }
+                        else
+                        {
+                            <span style="font-size:1.2rem;color:#6c757d;">Chưa đủ dữ liệu</span>
+                        }
+                    </div>
+                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Xu hướng gần đây</div>
+                    <i class="fas fa-chart-line mt-2" style="color:@trendColor;opacity:0.4;font-size:1.3rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- ========== BIỂU ĐỒ ĐỘ CHÍNH XÁC ========== -->
+            <div class="col-lg-8">
+                <div class="info-card mb-4">
+                    <h4 style="color:#004c6d;font-weight:700;margin-bottom:16px;">
+                        <i class="fas fa-chart-area me-2"></i>Tiến bộ theo thời gian
+                    </h4>
+                    @if (Model.RecentSessions.Count == 0)
+                    {
+                        <div style="text-align:center;padding:40px;color:#6c757d;">
+                            <i class="fas fa-camera" style="font-size:2rem;opacity:0.3;display:block;margin-bottom:12px;"></i>
+                            Chưa có buổi luyện tập nào. Hãy thử <a asp-page="/MotionCompare">phân tích động tác</a>!
+                        </div>
+                    }
+                    else
+                    {
+                        <canvas id="progress-chart" height="140" style="width:100%;"></canvas>
+                        <div style="display:flex;gap:20px;margin-top:8px;font-size:0.8rem;color:#6c757d;">
+                            <span><span style="display:inline-block;width:12px;height:3px;background:#004c6d;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>Độ chính xác</span>
+                            <span><span style="display:inline-block;width:12px;height:3px;background:rgba(40,167,69,0.5);border-radius:2px;vertical-align:middle;margin-right:4px;border-top:2px dashed #28a745;"></span>Ngưỡng tốt (75%)</span>
+                        </div>
+                    }
+                </div>
+
+                <!-- ========== LỊCH SỬ PHIÊN LÀM VIỆC ========== -->
+                <div class="info-card">
+                    <h4 style="color:#004c6d;font-weight:700;margin-bottom:16px;">
+                        <i class="fas fa-history me-2"></i>Lịch sử buổi luyện tập
+                    </h4>
+                    @if (Model.RecentSessions.Count == 0)
+                    {
+                        <p style="color:#6c757d;text-align:center;padding:20px 0;">Chưa có buổi luyện tập nào được ghi lại.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover" style="font-size:0.88rem;">
+                                <thead>
+                                    <tr style="color:#004c6d;font-weight:700;border-bottom:2px solid #004c6d;">
+                                        <th>Thời gian</th>
+                                        <th>Kỹ thuật</th>
+                                        <th>Chế độ</th>
+                                        <th class="text-center">Độ chính xác</th>
+                                        <th class="text-center">Frames</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var s in Model.RecentSessions)
+                                    {
+                                        var accColor = s.OverallAccuracy >= 75 ? "#28a745"
+                                                     : s.OverallAccuracy >= 50 ? "#856404" : "#e63946";
+                                        <tr>
+                                            <td style="color:#6c757d;white-space:nowrap;">
+                                                @s.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                                            </td>
+                                            <td><span class="badge" style="background:#e8f4f8;color:#004c6d;font-weight:600;">@(string.IsNullOrEmpty(s.PresetName) ? "—" : s.PresetName)</span></td>
+                                            <td>
+                                                @if (s.Mode == "camera")
+                                                {
+                                                    <span><i class="fas fa-video me-1" style="color:#004c6d;"></i>Camera</span>
+                                                }
+                                                else
+                                                {
+                                                    <span><i class="fas fa-file-video me-1" style="color:#6c757d;"></i>Video</span>
+                                                }
+                                            </td>
+                                            <td class="text-center fw-bold" style="color:@accColor;">
+                                                @s.OverallAccuracy.ToString("F1")%
+                                            </td>
+                                            <td class="text-center" style="color:#6c757d;">@s.NumFrames</td>
+                                        </tr>
+                                        if (s.Feedback.Count > 0)
+                                        {
+                                            <tr style="background:#fafafa;">
+                                                <td colspan="5" style="padding:4px 16px 10px;color:#555;font-size:0.82rem;">
+                                                    <i class="fas fa-comment-alt me-1" style="color:#004c6d;opacity:0.5;"></i>
+                                                    @string.Join(" · ", s.Feedback.Take(2))
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- ========== SIDEBAR: HOẠT ĐỘNG GẦN ĐÂY ========== -->
+            <div class="col-lg-4">
+                <div class="info-card mb-4">
+                    <h5 style="color:#004c6d;font-weight:700;margin-bottom:14px;">
+                        <i class="fas fa-map-marked-alt me-2"></i>Hoạt động gần đây
+                    </h5>
+                    @if (Model.RecentVisits.Count == 0)
+                    {
+                        <p style="color:#6c757d;font-size:0.88rem;">Chưa có hoạt động nào được ghi lại.</p>
+                    }
+                    else
+                    {
+                        <div style="max-height:360px;overflow-y:auto;">
+                            @foreach (var v in Model.RecentVisits)
+                            {
+                                <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                                    <div style="width:8px;height:8px;border-radius:50%;background:#004c6d;margin-top:5px;flex-shrink:0;"></div>
+                                    <div style="flex:1;min-width:0;">
+                                        <div style="font-weight:600;color:#333;font-size:0.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                            @v.PageTitle
+                                        </div>
+                                        <div style="color:#6c757d;font-size:0.78rem;">
+                                            @v.VisitedAt.ToLocalTime().ToString("dd/MM HH:mm")
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <!-- Phân tích kỹ thuật hay dùng nhất -->
+                @{
+                    var topPresets = Model.RecentSessions
+                        .Where(s => !string.IsNullOrEmpty(s.PresetName))
+                        .GroupBy(s => s.PresetName)
+                        .Select(g => new { Name = g.Key, Count = g.Count(), Avg = g.Average(s => s.OverallAccuracy) })
+                        .OrderByDescending(x => x.Count)
+                        .Take(5)
+                        .ToList();
+                }
+                @if (topPresets.Count > 0)
+                {
+                    <div class="info-card mb-4">
+                        <h5 style="color:#004c6d;font-weight:700;margin-bottom:14px;">
+                            <i class="fas fa-star me-2"></i>Kỹ thuật luyện nhiều nhất
+                        </h5>
+                        @foreach (var p in topPresets)
+                        {
+                            var barWidth = Math.Min(100, (int)(p.Avg));
+                            var barColor = p.Avg >= 75 ? "#28a745" : p.Avg >= 50 ? "#f0c040" : "#e63946";
+                            <div style="margin-bottom:12px;">
+                                <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+                                    <span style="font-weight:600;font-size:0.85rem;color:#333;">@p.Name</span>
+                                    <span style="font-size:0.8rem;color:#6c757d;">@p.Count buổi · TB @p.Avg.ToString("F0")%</span>
+                                </div>
+                                <div style="height:6px;background:#eee;border-radius:3px;">
+                                    <div style="height:6px;width:@barWidth%;background:@barColor;border-radius:3px;transition:width 0.5s;"></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="info-card">
+                    <h5 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
+                        <i class="fas fa-rocket me-2"></i>Luyện tập ngay
+                    </h5>
+                    <p style="color:#555;font-size:0.88rem;">Mỗi buổi luyện tập đều được ghi lại để bạn theo dõi tiến bộ!</p>
+                    <a asp-page="/MotionCompare" class="btn btn-primary w-100">
+                        <i class="fas fa-camera me-1"></i>Bắt đầu phân tích động tác
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+(function() {
+    const sessions = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+        Model.RecentSessions.Select(s => new { s.OverallAccuracy, createdAt = s.CreatedAt.ToLocalTime().ToString("dd/MM") }).ToList()
+    ));
+
+    if (!sessions || sessions.length === 0) return;
+
+    const canvas = document.getElementById('progress-chart');
+    if (!canvas) return;
+
+    // Draw after layout is complete
+    requestAnimationFrame(() => {
+        const W = canvas.offsetWidth || 600;
+        canvas.width = W;
+        canvas.height = 140;
+        const ctx = canvas.getContext('2d');
+        const sorted = [...sessions].reverse(); // oldest first
+        const scores = sorted.map(s => s.overallAccuracy);
+        const labels = sorted.map(s => s.createdAt);
+        const n = scores.length;
+        const padL = 36, padR = 16, padT = 16, padB = 28;
+        const W2 = W - padL - padR;
+        const H2 = canvas.height - padT - padB;
+
+        // Grid
+        ctx.strokeStyle = 'rgba(0,0,0,0.06)'; ctx.lineWidth = 1;
+        [0, 25, 50, 75, 100].forEach(v => {
+            const y = padT + H2 - (v / 100) * H2;
+            ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + W2, y); ctx.stroke();
+            ctx.fillStyle = '#aaa'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+            ctx.fillText(v + '%', padL - 4, y + 3);
+        });
+
+        // 75% reference line
+        const y75 = padT + H2 - 0.75 * H2;
+        ctx.strokeStyle = 'rgba(40,167,69,0.4)'; ctx.lineWidth = 1;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath(); ctx.moveTo(padL, y75); ctx.lineTo(padL + W2, y75); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Area fill
+        const step = n > 1 ? W2 / (n - 1) : 0;
+        ctx.fillStyle = 'rgba(0,76,109,0.08)';
+        ctx.beginPath();
+        ctx.moveTo(padL, padT + H2);
+        scores.forEach((s, i) => ctx.lineTo(padL + i * step, padT + H2 - (s / 100) * H2));
+        ctx.lineTo(padL + (n - 1) * step, padT + H2);
+        ctx.closePath(); ctx.fill();
+
+        // Line
+        ctx.strokeStyle = '#004c6d'; ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        scores.forEach((s, i) => {
+            const x = padL + i * step;
+            const y = padT + H2 - (s / 100) * H2;
+            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Dots + labels
+        scores.forEach((s, i) => {
+            const x = padL + i * step;
+            const y = padT + H2 - (s / 100) * H2;
+            ctx.fillStyle = s >= 75 ? '#28a745' : s >= 50 ? '#f0c040' : '#e63946';
+            ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+            // X-axis label (every ~5 points or if few)
+            if (n <= 8 || i % Math.ceil(n / 8) === 0) {
+                ctx.fillStyle = '#888'; ctx.font = '9px sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText(labels[i], x, padT + H2 + padB - 4);
+            }
+        });
+    });
+})();
+</script>
+}

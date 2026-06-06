@@ -292,6 +292,7 @@
 (() => {
     const API_BASE = 'http://localhost:8000';
     const WS_URL   = 'ws://localhost:8000/ws/compare';
+    const USERNAME = '@Model.CurrentUsername';  // null when not logged in
 
     // COCO-17 joint names tiếng Việt
     const JOINT_NAMES = [
@@ -332,6 +333,18 @@
             setNoServer(true);
             return false;
         }
+    }
+
+    // ===================== SESSION SAVE =====================
+    async function saveSession(payload) {
+        if (!USERNAME) return; // not logged in
+        try {
+            await fetch('/MotionCompare?handler=SaveSession', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        } catch { /* non-critical */ }
     }
 
     function drawKeypoints(canvas, kpts) {
@@ -389,6 +402,7 @@
     const placeholder = document.getElementById('camera-placeholder');
 
     let ws = null, sending = false, sendInterval = null;
+    let camSessionStart = 0, camScores = [], camLastFeedback = [], camLastJoints = [];
 
     function setStatus(msg, color) {
         statusEl.textContent = msg; statusEl.style.color = color || '#6c757d';
@@ -410,6 +424,7 @@
         ws.onopen = () => {
             ws.send(JSON.stringify({ type: 'init', preset: presetEl.value || '' }));
             sending = true; btnStart.disabled = true; btnStop.disabled = false;
+            camSessionStart = Date.now(); camScores = []; camLastFeedback = []; camLastJoints = [];
             setStatus('Đang phân tích...', '#004c6d');
             sendInterval = setInterval(() => {
                 if (!sending || !video.videoWidth) return;
@@ -430,6 +445,9 @@
                     setStatus('Đang so sánh: ' + (msg.ref_name || ''), '#00789c');
                 } else if (msg.type === 'result') {
                     updateScore(msg.overall);
+                    if (msg.overall != null) { camScores.push(msg.overall); }
+                    camLastFeedback = msg.feedback || [];
+                    camLastJoints   = msg.per_joint || [];
                     feedbackEl.innerHTML = '';
                     (msg.feedback || []).forEach(f => {
                         const li = document.createElement('li'); li.textContent = f; feedbackEl.appendChild(li);
@@ -459,6 +477,19 @@
         }
         drawKeypoints(overlay, null);
         setStatus('Đã dừng phân tích', '#6c757d');
+
+        if (camScores.length > 0) {
+            const avg = camScores.reduce((a, b) => a + b, 0) / camScores.length;
+            saveSession({
+                presetName: presetEl.value || '',
+                mode: 'camera',
+                overallAccuracy: Math.round(avg * 10) / 10,
+                numFrames: camScores.length,
+                durationSec: (Date.now() - camSessionStart) / 1000,
+                feedback: camLastFeedback,
+                perJointAccuracy: camLastJoints
+            });
+        }
     }
 
     async function startCamera() {
@@ -663,6 +694,26 @@
 
             // Hiện joint frame đầu
             vShowJoints(videoFrames[0]);
+
+            // Lưu kết quả phân tích video
+            const topFbForSave = Object.entries(fbCount).sort((a,b)=>b[1]-a[1]).slice(0,5).map(e=>e[0]);
+            const avgJoints = (() => {
+                if (!videoFrames.length) return [];
+                const n = (videoFrames[0].per_joint || []).length;
+                return Array.from({length: n}, (_, i) => {
+                    const vals = videoFrames.map(f => f.per_joint?.[i]).filter(v => v != null);
+                    return vals.length ? Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10)/10 : null;
+                });
+            })();
+            saveSession({
+                presetName: vPreset.value || '',
+                mode: 'video',
+                overallAccuracy: data.overall,
+                numFrames: data.num_frames_valid || videoFrames.length,
+                durationSec: data.duration_sec || 0,
+                feedback: topFbForSave,
+                perJointAccuracy: avgJoints
+            });
 
         } catch (e) {
             vProgressWrap.style.display = 'none';
