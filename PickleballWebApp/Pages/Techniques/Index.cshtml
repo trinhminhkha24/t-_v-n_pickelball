@@ -1,0 +1,263 @@
+@page
+@{
+    ViewData["Title"] = "Kỹ thuật Pickleball";
+}
+
+<div class="page-hero technique-hub-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
+                <li class="breadcrumb-item"><a asp-page="/Index" style="color:rgba(255,255,255,0.7);">Trang chủ</a></li>
+                <li class="breadcrumb-item active" style="color:white;">Kỹ thuật</li>
+            </ol>
+        </nav>
+        <h1><i class="fas fa-table-tennis-paddle-ball me-2"></i>Kỹ thuật Pickleball</h1>
+        <p class="lead">Tổng hợp toàn bộ kỹ thuật trong dự án, chia theo cơ bản và nâng cao để bạn chọn đúng nội dung cần học.</p>
+        <div class="technique-hub-meta">
+            <span class="technique-hub-chip"><i class="fas fa-layer-group"></i>12 kỹ thuật</span>
+            <span class="technique-hub-chip"><i class="fas fa-signal"></i>2 cấp độ</span>
+            <span class="technique-hub-chip"><i class="fas fa-camera"></i>Có phân tích động tác</span>
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="technique-hub-panel mb-5">
+            <h3>Chọn lộ trình học</h3>
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <div class="info-card h-100 mb-0" style="border-top:4px solid #28a745;">
+                        <h4 class="mb-2" style="color:#155724;font-weight:800;">Kỹ thuật cơ bản</h4>
+                        <p class="mb-0" style="color:#555;">Serve, Return, Forehand, Backhand, Volley và Dink là nhóm nền tảng giúp bạn vào sân nhanh và kiểm soát bóng tốt hơn.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-card h-100 mb-0" style="border-top:4px solid #f0c040;">
+                        <h4 class="mb-2" style="color:#856404;font-weight:800;">Kỹ thuật nâng cao</h4>
+                        <p class="mb-0" style="color:#555;">Drop Shot, Drive, Lob, Smash, Block Shot và Erne Shot mở rộng khả năng tấn công, phòng thủ và tạo đột biến.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+                    <h2 class="section-title mb-0">Kỹ thuật cơ bản</h2>
+                    <a asp-page="/MotionCompare" class="btn btn-outline-primary btn-sm">Phân tích động tác</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Serve" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🏓</div>
+                        <div>
+                            <span class="difficulty-badge easy mb-2">Dễ</span>
+                            <h4>Serve</h4>
+                        </div>
+                    </div>
+                    <p>Giao bóng đúng luật, sâu và có điểm rơi để tạo lợi thế ngay từ lượt đánh đầu tiên.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Return" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">↩️</div>
+                        <div>
+                            <span class="difficulty-badge easy mb-2">Dễ</span>
+                            <h4>Return</h4>
+                        </div>
+                    </div>
+                    <p>Trả giao bóng ổn định để kéo rally về trạng thái an toàn và chuẩn bị lên vị trí tốt hơn.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Forehand" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">👊</div>
+                        <div>
+                            <span class="difficulty-badge easy mb-2">Dễ</span>
+                            <h4>Forehand</h4>
+                        </div>
+                    </div>
+                    <p>Cú đánh thuận tay mạnh mẽ, linh hoạt và là nền tảng của đa số pha tấn công trong pickleball.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Backhand" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🤚</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Backhand</h4>
+                        </div>
+                    </div>
+                    <p>Biến bên tay không thuận thành điểm mạnh với backhand một tay hoặc hai tay.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Volley" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">⚡</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Volley</h4>
+                        </div>
+                    </div>
+                    <p>Đánh trên không ở gần lưới để kiểm soát nhịp độ và phản công nhanh trong các pha đôi công.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Dink" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🎯</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Dink</h4>
+                        </div>
+                    </div>
+                    <p>Cú bỏ nhỏ sát lưới giúp giữ bóng thấp, tạo lỗi và mở ra cơ hội tấn công ở kitchen line.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level basic">Cơ bản</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <h2 class="section-title mb-3">Kỹ thuật nâng cao</h2>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/DropShot" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🌊</div>
+                        <div>
+                            <span class="difficulty-badge hard mb-2">Khó</span>
+                            <h4>Drop Shot</h4>
+                        </div>
+                    </div>
+                    <p>Cú bỏ rơi mềm, rơi gần kitchen để làm chậm nhịp và kéo đối thủ lên vị trí khó.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Drive" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">💥</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Drive</h4>
+                        </div>
+                    </div>
+                    <p>Cú đánh nhanh, mạnh để áp lực hóa đối thủ và mở ra cơ hội ghi điểm trực tiếp.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Lob" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🌙</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Lob</h4>
+                        </div>
+                    </div>
+                    <p>Lốp bóng cao qua đầu đối thủ để kéo họ lùi sâu và phá nhịp áp sát lưới.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/Smash" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🔨</div>
+                        <div>
+                            <span class="difficulty-badge hard mb-2">Khó</span>
+                            <h4>Smash</h4>
+                        </div>
+                    </div>
+                    <p>Đập bóng từ trên cao để kết thúc pha bóng khi đối thủ lốp sai hoặc để bóng nổi.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/BlockShot" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🛡️</div>
+                        <div>
+                            <span class="difficulty-badge medium mb-2">Trung bình</span>
+                            <h4>Block Shot</h4>
+                        </div>
+                    </div>
+                    <p>Phản xạ chặn bóng nhanh, ổn định trong các pha đối thủ đánh mạnh vào người hoặc kitchen.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <a asp-page="/Techniques/ErneShot" class="technique-hub-card">
+                    <div class="hub-card-top">
+                        <div class="hub-icon">🚀</div>
+                        <div>
+                            <span class="difficulty-badge hard mb-2">Rất khó</span>
+                            <h4>Erne Shot</h4>
+                        </div>
+                    </div>
+                    <p>Kỹ thuật lao ra bên ngoài sân để volley bóng sớm và tạo bất ngờ tối đa cho đối thủ.</p>
+                    <div class="hub-footer">
+                        <span class="hub-level advanced">Nâng cao</span>
+                        <span class="hub-arrow">Xem chi tiết →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -375,13 +375,21 @@
     const panelCamera = document.getElementById('panel-camera');
     const panelVideo  = document.getElementById('panel-video');
 
+    let uploadModeActive = false;
+
     function switchTab(mode) {
         if (mode === 'camera') {
             tabCamera.classList.add('active'); tabVideo.classList.remove('active');
             panelCamera.style.display = ''; panelVideo.style.display = 'none';
+            uploadModeActive = false;
         } else {
             tabVideo.classList.add('active'); tabCamera.classList.remove('active');
             panelVideo.style.display = ''; panelCamera.style.display = 'none';
+            // Khi chuyển sang tab upload video, đảm bảo mọi overlay che phủ
+            // (modal backdrop, fullscreen dimmers) được vô hiệu hoá để cho phép
+            // người dùng thao tác upload.
+            uploadModeActive = true;
+            removeBlockingOverlaysForUpload();
         }
     }
     tabCamera.addEventListener('click', () => switchTab('camera'));
@@ -727,6 +735,39 @@
     // ===================== KHỞI TẠO =====================
     loadPresets(presetEl,  statusEl, statusDot);
     loadPresets(vPreset, null, null);
+
+    // Helper: tìm và vô hiệu hoá phần tử overlay che phủ toàn trang.
+    function removeBlockingOverlaysForUpload() {
+        try {
+            const selectors = ['.modal-backdrop', '.modal-backdrop.show', '.fullscreen-overlay', '.app-overlay'];
+            selectors.forEach(s => document.querySelectorAll(s).forEach(el => {
+                el.dataset._dbg_old_display = el.style.display || '';
+                el.style.display = 'none';
+                el.style.pointerEvents = 'none';
+            }));
+
+            // Remove ASP.NET overlay that shows compile/runtime errors injected by the dev middleware
+            const dotnetErr = document.getElementById('dotnet-compile-error');
+            if (dotnetErr) dotnetErr.remove();
+
+            // Only target known overlay/backdrop selectors above. Avoid scanning
+            // and hiding arbitrary large page elements (that may hide upload UI).
+
+            // Small visual hint for debugging
+            const tag = document.createElement('div');
+            tag.textContent = 'Overlay disabled for upload';
+            tag.style.position = 'fixed';
+            tag.style.left = '8px'; tag.style.bottom = '8px';
+            tag.style.background = '#d1ffd8'; tag.style.color = '#0b6623';
+            tag.style.padding = '6px 8px'; tag.style.border = '1px solid #0b6623';
+            tag.style.zIndex = 2147483647; tag.style.borderRadius = '6px'; tag.style.fontWeight = '700';
+            document.body.appendChild(tag);
+            setTimeout(() => tag.remove(), 4000);
+        } catch (e) { console.error('removeBlockingOverlaysForUpload', e); }
+    }
+
+    // Run on-demand: key 'R' re-runs the overlay removal if needed.
+    document.addEventListener('keydown', (e) => { if (e.key === 'r' || e.key === 'R') removeBlockingOverlaysForUpload(); });
 
 })();
 </script>

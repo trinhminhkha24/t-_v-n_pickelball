@@ -1,0 +1,38 @@
+{
+  "id": "4e74bc2d48da4d4abbb7d1daab7ec357",
+  "createdAt": "2026-06-20T07:38:31.4099607Z",
+  "username": "admin",
+  "presetName": "Forehand-Demo",
+  "mode": "video",
+  "overallAccuracy": 34.5,
+  "numFrames": 227,
+  "durationSec": 7.57,
+  "feedback": [
+    "C\u1ED5 ch\u00E2n tr\u00E1i: n\u00E2ng cao h\u01A1n, d\u1ECBch sang ph\u1EA3i (22%)",
+    "C\u1ED5 ch\u00E2n ph\u1EA3i: n\u00E2ng cao h\u01A1n, d\u1ECBch sang ph\u1EA3i (18%)",
+    "C\u1ED5 ch\u00E2n tr\u00E1i: n\u00E2ng cao h\u01A1n, d\u1ECBch sang ph\u1EA3i (19%)",
+    "C\u1ED5 ch\u00E2n ph\u1EA3i: n\u00E2ng cao h\u01A1n, d\u1ECBch sang ph\u1EA3i (23%)",
+    "M\u1EAFt ph\u1EA3i: h\u1EA1 th\u1EA5p h\u01A1n, d\u1ECBch sang tr\u00E1i (1%)"
+  ],
+  "perJointAccuracy": [
+    23.1,
+    24,
+    23.7,
+    25.5,
+    24.6,
+    27.2,
+    27.8,
+    29.1,
+    35.3,
+    27.7,
+    39.4,
+    72.3,
+    72.3,
+    32.9,
+    30.8,
+    23,
+    22.6
+  ],
+  "videoUrl": null,
+  "reportUrl": null
+}
