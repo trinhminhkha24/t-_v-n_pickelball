@@ -2,9 +2,26 @@
 @model PickleballWebApp.Pages.MyProgressModel
 @{
     ViewData["Title"] = "Tiến độ luyện tập";
+    var totalSessions = Model.DashboardStats.TotalSessions;
+    var averageAccuracy = totalSessions > 0 ? Model.DashboardStats.AverageAccuracy : 0;
+    var bestAccuracy = totalSessions > 0 ? Model.DashboardStats.BestAccuracy : 0;
+    var trend = Model.DashboardStats.RecentTrend;
+    var trendPositive = trend > 0;
+    var trendLabel = totalSessions >= 4
+        ? $"{(trendPositive ? "+" : trend < 0 ? "" : "")}{Math.Abs(trend):F1}%"
+        : "Chưa đủ dữ liệu";
+    var lastSessionText = Model.DashboardStats.LastSessionAt.HasValue
+        ? Model.DashboardStats.LastSessionAt.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+        : "Chưa có buổi nào";
+    var nextGoal = averageAccuracy < 50 ? 50 : averageAccuracy < 65 ? 65 : averageAccuracy < 75 ? 75 : averageAccuracy < 85 ? 85 : 90;
+    var goalProgress = totalSessions == 0 ? 0 : Math.Min(100, (int)Math.Round(averageAccuracy));
+    var sessionsGoal = 10;
+    var sessionsProgress = Math.Min(100, (int)Math.Round((double)totalSessions / sessionsGoal * 100));
+    var activeRange = string.IsNullOrWhiteSpace(Model.Range) ? "30d" : Model.Range;
+    var displayName = User.Identity?.IsAuthenticated == true ? (User.Identity?.Name ?? "Người dùng") : "Khách";
 }
 
-<div class="page-hero">
+<div class="page-hero progress-hero">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="background:transparent;padding:0;margin-bottom:12px;">
@@ -12,62 +29,130 @@
                 <li class="breadcrumb-item active" style="color:white;">Tiến độ luyện tập</li>
             </ol>
         </nav>
-        <h1><i class="fas fa-chart-line me-2"></i>Tiến Độ Luyện Tập</h1>
-        <p class="lead">Theo dõi hành trình và sự tiến bộ của bạn – @User.Identity!.Name</p>
+        <h1><i class="fas fa-chart-line me-2"></i>Tiến độ luyện tập</h1>
+        <p class="lead">Theo dõi hành trình tiến bộ của bạn, xem buổi gần nhất và biết mình đang tiến tới mốc nào tiếp theo.</p>
+        <div class="progress-hero-meta">
+            <span class="progress-hero-chip"><i class="fas fa-user"></i>@displayName</span>
+            <span class="progress-hero-chip"><i class="fas fa-camera"></i>@totalSessions buổi đã ghi lại</span>
+            <span class="progress-hero-chip"><i class="fas fa-bullseye"></i>Mục tiêu kế tiếp: @nextGoal%</span>
+        </div>
     </div>
 </div>
 
 <div class="page-content">
     <div class="container">
+        @if (!Model.IsAuthenticated)
+        {
+            <div class="info-card mb-4" style="border-top:4px solid #f0c040;">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div>
+                        <h4 class="mb-2" style="color:#004c6d;font-weight:800;"><i class="fas fa-lock-open me-2"></i>Xem trang tiến độ</h4>
+                        <p class="mb-0" style="color:#555;">Bạn đang xem với quyền khách. Đăng nhập để dữ liệu luyện tập, biểu đồ và lịch sử của bạn hiển thị đầy đủ.</p>
+                    </div>
+                    <a asp-page="/Login" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                    </a>
+                </div>
+            </div>
+        }
 
-        <!-- ========== THỐNG KÊ TỔNG QUAN ========== -->
+        <div class="info-card mb-4 progress-filter-card">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    <h4 class="mb-1" style="color:#004c6d;font-weight:800;"><i class="fas fa-filter me-2"></i>Lọc tiến độ</h4>
+                    <div style="color:#6c757d;font-size:0.9rem;">Xem nhanh theo khoảng thời gian bạn quan tâm.</div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <a asp-page="/MyProgress" asp-route-range="7d" class="btn btn-sm @(activeRange == "7d" ? "btn-primary" : "btn-outline-primary")">7 ngày</a>
+                    <a asp-page="/MyProgress" asp-route-range="30d" class="btn btn-sm @(activeRange == "30d" ? "btn-primary" : "btn-outline-primary")">30 ngày</a>
+                    <a asp-page="/MyProgress" asp-route-range="90d" class="btn btn-sm @(activeRange == "90d" ? "btn-primary" : "btn-outline-primary")">90 ngày</a>
+                    <a asp-page="/MyProgress" asp-route-range="all" class="btn btn-sm @(activeRange == "all" ? "btn-primary" : "btn-outline-primary")">Toàn bộ</a>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-4 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="info-card text-center h-100" style="border-top:4px solid #004c6d;">
-                    <div style="font-size:2.2rem;font-weight:800;color:#004c6d;">@Model.Stats.TotalSessions</div>
-                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Buổi luyện tập</div>
-                    <i class="fas fa-dumbbell mt-2" style="color:#004c6d;opacity:0.4;font-size:1.3rem;"></i>
+            <div class="col-lg-7">
+                <div class="progress-summary-card h-100">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+                        <div>
+                            <div class="progress-kicker">Tổng quan tiến độ</div>
+                            <h2 class="progress-title">Bạn đang ở mức @goalProgress% so với mục tiêu tiếp theo</h2>
+                            <p class="progress-subtitle mb-0">Mỗi buổi luyện tập mới sẽ làm rõ đường tiến bộ của bạn hơn, từ độ chính xác đến độ ổn định.</p>
+                        </div>
+                        <div class="progress-score-badge">
+                            <span>@(totalSessions > 0 ? averageAccuracy.ToString("F1") : "--")%</span>
+                            <small>Độ chính xác TB</small>
+                        </div>
+                    </div>
+
+                    <div class="progress-meter-label d-flex justify-content-between mb-2">
+                        <span>Mục tiêu hiện tại</span>
+                        <span>@nextGoal%</span>
+                    </div>
+                    <div class="progress progress-track mb-3" role="progressbar" aria-valuenow="@goalProgress" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-animated" style="width:@goalProgress%;background:linear-gradient(90deg,#004c6d,#00a8cc,#28a745);"></div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 progress-summary-links">
+                        <a asp-page="/MotionCompare" class="btn btn-primary">
+                            <i class="fas fa-camera me-1"></i>Phân tích buổi mới
+                        </a>
+                        <a asp-page="/Techniques/Index" class="btn btn-outline-primary">
+                            <i class="fas fa-table-tennis-paddle-ball me-1"></i>Xem kỹ thuật
+                        </a>
+                    </div>
+                    <div style="margin-top:16px;color:#6c757d;font-size:0.85rem;">
+                        Đang xem: <strong style="color:#004c6d;">@Model.RangeLabel</strong>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="info-card text-center h-100" style="border-top:4px solid #28a745;">
-                    <div style="font-size:2.2rem;font-weight:800;color:#28a745;">
-                        @(Model.Stats.TotalSessions > 0 ? Model.Stats.AverageAccuracy.ToString("F1") + "%" : "--")
+
+            <div class="col-lg-5">
+                <div class="progress-highlights-card h-100">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="mini-metric-card">
+                                <i class="fas fa-dumbbell"></i>
+                                <div class="value">@totalSessions</div>
+                                <div class="label">Buổi luyện tập</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mini-metric-card success">
+                                <i class="fas fa-trophy"></i>
+                                <div class="value">@(totalSessions > 0 ? bestAccuracy.ToString("F1") : "--")%</div>
+                                <div class="label">Điểm cao nhất</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mini-metric-card warning">
+                                <i class="fas fa-bullseye"></i>
+                                <div class="value">@lastSessionText</div>
+                                <div class="label">Lần gần nhất</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mini-metric-card trend">
+                                <i class="fas @((totalSessions >= 4 && trendPositive) ? "fa-arrow-up" : (totalSessions >= 4 && trend < 0) ? "fa-arrow-down" : "fa-minus")"></i>
+                                <div class="value">@trendLabel</div>
+                                <div class="label">Xu hướng gần đây</div>
+                            </div>
+                        </div>
                     </div>
-                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Độ chính xác TB</div>
-                    <i class="fas fa-bullseye mt-2" style="color:#28a745;opacity:0.4;font-size:1.3rem;"></i>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="info-card text-center h-100" style="border-top:4px solid #f0c040;">
-                    <div style="font-size:2.2rem;font-weight:800;color:#856404;">
-                        @(Model.Stats.TotalSessions > 0 ? Model.Stats.BestAccuracy.ToString("F1") + "%" : "--")
+
+                    <div class="progress-volume-box mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong style="color:#004c6d;">Mốc luyện tập @sessionsGoal buổi</strong>
+                            <span style="color:#6c757d;font-size:0.85rem;">@totalSessions/@sessionsGoal buổi</span>
+                        </div>
+                        <div class="progress progress-track" style="height:10px;">
+                            <div class="progress-bar" style="width:@sessionsProgress%;background:linear-gradient(90deg,#004c6d,#00789c,#f0c040);"></div>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:#6c757d;margin-top:6px;">
+                            <span>0</span>
+                            <span>@sessionsGoal</span>
+                        </div>
                     </div>
-                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Điểm cao nhất</div>
-                    <i class="fas fa-trophy mt-2" style="color:#f0c040;opacity:0.6;font-size:1.3rem;"></i>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                @{
-                    var trend = Model.Stats.RecentTrend;
-                    var trendColor = trend > 0 ? "#28a745" : trend < 0 ? "#e63946" : "#6c757d";
-                    var trendIcon = trend > 0 ? "fa-arrow-up" : trend < 0 ? "fa-arrow-down" : "fa-minus";
-                    var trendBorder = trend > 0 ? "#28a745" : trend < 0 ? "#e63946" : "#6c757d";
-                }
-                <div class="info-card text-center h-100" style="border-top:4px solid @trendBorder;">
-                    <div style="font-size:2.2rem;font-weight:800;color:@trendColor;">
-                        @if (Model.Stats.TotalSessions >= 4)
-                        {
-                            <i class="fas @trendIcon me-1" style="font-size:1.6rem;"></i>
-                            @(Math.Abs(trend).ToString("F1"))@:%
-                        }
-                        else
-                        {
-                            <span style="font-size:1.2rem;color:#6c757d;">Chưa đủ dữ liệu</span>
-                        }
-                    </div>
-                    <div style="color:#6c757d;font-size:0.85rem;margin-top:4px;">Xu hướng gần đây</div>
-                    <i class="fas fa-chart-line mt-2" style="color:@trendColor;opacity:0.4;font-size:1.3rem;"></i>
                 </div>
             </div>
         </div>
@@ -80,11 +165,11 @@
                     <h4 style="color:#004c6d;font-weight:700;margin-bottom:16px;">
                         <i class="fas fa-chart-area me-2"></i>Tiến bộ theo thời gian
                     </h4>
-                    @if (Model.RecentSessions.Count == 0)
+                    @if (Model.VisibleSessions.Count == 0)
                     {
                         <div style="text-align:center;padding:40px;color:#6c757d;">
                             <i class="fas fa-camera" style="font-size:2rem;opacity:0.3;display:block;margin-bottom:12px;"></i>
-                            Chưa có buổi luyện tập nào. Hãy thử <a asp-page="/MotionCompare">phân tích động tác</a>!
+                            Chưa có buổi luyện tập nào trong khoảng <strong>@Model.RangeLabel</strong>. Hãy thử <a asp-page="/MotionCompare">phân tích động tác</a>!
                         </div>
                     }
                     else
@@ -97,14 +182,60 @@
                     }
                 </div>
 
+                <div class="info-card mb-4 progress-plan-card">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                        <h4 class="mb-0" style="color:#004c6d;font-weight:700;">
+                            <i class="fas fa-route me-2"></i>Lộ trình chinh phục mốc tiếp theo
+                        </h4>
+                        <span class="badge" style="background:#e8f4fd;color:#004c6d;font-weight:700;">Mục tiêu: @nextGoal%</span>
+                    </div>
+                    <div class="progress-timeline">
+                        <div class="progress-timeline-item done">
+                            <div class="dot"></div>
+                            <div>
+                                <strong>Ổn định cơ bản</strong>
+                                <p>Giữ được nhịp luyện đều và có dữ liệu theo dõi.</p>
+                            </div>
+                        </div>
+                        <div class="progress-timeline-item @(averageAccuracy >= 50 ? "done" : "")">
+                            <div class="dot"></div>
+                            <div>
+                                <strong>Vượt 50%</strong>
+                                <p>Đạt khả năng kiểm soát động tác ở mức an toàn.</p>
+                            </div>
+                        </div>
+                        <div class="progress-timeline-item @(averageAccuracy >= 65 ? "done" : "")">
+                            <div class="dot"></div>
+                            <div>
+                                <strong>Vượt 65%</strong>
+                                <p>Bắt đầu ổn định hơn ở các pha luyện có áp lực.</p>
+                            </div>
+                        </div>
+                        <div class="progress-timeline-item @(averageAccuracy >= 75 ? "done" : "")">
+                            <div class="dot"></div>
+                            <div>
+                                <strong>Vượt 75%</strong>
+                                <p>Mốc tốt để chuyển sang tinh chỉnh chi tiết và biến hoá kỹ thuật.</p>
+                            </div>
+                        </div>
+                        <div class="progress-timeline-item @(averageAccuracy >= 85 ? "done" : "")">
+                            <div class="dot"></div>
+                            <div>
+                                <strong>Vượt 85%</strong>
+                                <p>Mức tiến bộ rất tốt, phù hợp để tăng độ khó bài tập.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- ========== LỊCH SỬ PHIÊN LÀM VIỆC ========== -->
                 <div class="info-card">
                     <h4 style="color:#004c6d;font-weight:700;margin-bottom:16px;">
                         <i class="fas fa-history me-2"></i>Lịch sử buổi luyện tập
                     </h4>
-                    @if (Model.RecentSessions.Count == 0)
+                    @if (Model.VisibleSessions.Count == 0)
                     {
-                        <p style="color:#6c757d;text-align:center;padding:20px 0;">Chưa có buổi luyện tập nào được ghi lại.</p>
+                        <p style="color:#6c757d;text-align:center;padding:20px 0;">Chưa có buổi luyện tập nào được ghi lại trong khoảng thời gian này.</p>
                     }
                     else
                     {
@@ -120,7 +251,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var s in Model.RecentSessions)
+                                    @foreach (var s in Model.VisibleSessions)
                                     {
                                         var accColor = s.OverallAccuracy >= 75 ? "#28a745"
                                                      : s.OverallAccuracy >= 50 ? "#856404" : "#e63946";
@@ -203,9 +334,22 @@
                     }
                 </div>
 
+                <div class="info-card mb-4" style="border-top:4px solid #28a745;">
+                    <h5 style="color:#004c6d;font-weight:700;margin-bottom:14px;">
+                        <i class="fas fa-seedling me-2"></i>Mức độ hiện tại
+                    </h5>
+                    <div class="mb-2" style="font-size:0.9rem;color:#6c757d;">Dựa trên độ chính xác trung bình</div>
+                    <div class="progress progress-track mb-2" style="height:10px;">
+                        <div class="progress-bar" style="width:@goalProgress%;background:linear-gradient(90deg,#28a745,#f0c040,#e63946);"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#6c757d;">
+                        <span>0%</span><span>@goalProgress%</span><span>100%</span>
+                    </div>
+                </div>
+
                 <!-- Phân tích kỹ thuật hay dùng nhất -->
                 @{
-                    var topPresets = Model.RecentSessions
+                    var topPresets = Model.VisibleSessions
                         .Where(s => !string.IsNullOrEmpty(s.PresetName))
                         .GroupBy(s => s.PresetName)
                         .Select(g => new { Name = g.Key, Count = g.Count(), Avg = g.Average(s => s.OverallAccuracy) })
@@ -240,10 +384,20 @@
                     <h5 style="color:#004c6d;font-weight:700;margin-bottom:12px;">
                         <i class="fas fa-rocket me-2"></i>Luyện tập ngay
                     </h5>
-                    <p style="color:#555;font-size:0.88rem;">Mỗi buổi luyện tập đều được ghi lại để bạn theo dõi tiến bộ!</p>
                     <a asp-page="/MotionCompare" class="btn btn-primary w-100">
                         <i class="fas fa-camera me-1"></i>Bắt đầu phân tích động tác
                     </a>
+                </div>
+
+                <div class="info-card mt-4" style="border-top:4px solid #f0c040;">
+                    <h5 style="color:#004c6d;font-weight:700;margin-bottom:14px;">
+                        <i class="fas fa-list-check me-2"></i>Gợi ý buổi tiếp theo
+                    </h5>
+                    <ul class="progress-next-steps">
+                        <li>Chạy lại cùng một kỹ thuật 3 lần liên tiếp để so sánh độ ổn định.</li>
+                        <li>Chọn 1 mốc cần vượt: 65%, 75% hoặc 85%.</li>
+                        <li>Sau buổi luyện, mở trang tiến độ để xem đường cong thay đổi thế nào.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -255,7 +409,7 @@
 <script>
 (function() {
     const sessions = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
-        Model.RecentSessions.Select(s => new { s.OverallAccuracy, createdAt = s.CreatedAt.ToLocalTime().ToString("dd/MM") }).ToList()
+        Model.VisibleSessions.Select(s => new { s.OverallAccuracy, createdAt = s.CreatedAt.ToLocalTime().ToString("dd/MM") }).ToList()
     ));
 
     if (!sessions || sessions.length === 0) return;

@@ -5,11 +5,18 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TuVanNguoiDungPickleball</AssemblyName>
+    <!-- Suppress NU1510 about UserSecrets pruning when the SDK injects the package. -->
+    <NoWarn>$(NoWarn);NU1510</NoWarn>
+  </PropertyGroup>
+
+  <!-- User secrets only for development (Debug) builds to avoid adding the
+       UserSecrets package into non-dev publish outputs. This removes warnings
+       about pruning the package during publish/build. -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <UserSecretsId>eddc6c66-6194-40d8-8b64-1c990acd47c0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.9" />
     <PackageReference Include="Supabase" Version="1.1.1" />
   </ItemGroup>
 
